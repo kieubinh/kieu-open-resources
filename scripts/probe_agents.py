@@ -27,6 +27,7 @@ def main():
     parser.add_argument("agent", choices=["codex", "claude"])
     parser.add_argument("--audit-log", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--timeout", type=int, default=240)
     args = parser.parse_args()
     if not os.environ.get("KIEU_RESOURCE_URL") or not os.environ.get("KIEU_RESOURCE_TOKEN"):
         parser.error("Set KIEU_RESOURCE_URL and a read-only KIEU_RESOURCE_TOKEN")
@@ -44,7 +45,7 @@ def main():
             config.write_text(json.dumps({"mcpServers": {"kieu_resource": {"type": "stdio", "command": mcp}}}))
             command = [executable, "-p", "--output-format", "stream-json", "--permission-mode", "plan", "--strict-mcp-config", "--mcp-config", str(config), PROMPT]
         try:
-            completed = subprocess.run(command, capture_output=True, text=True, timeout=240)
+            completed = subprocess.run(command, capture_output=True, text=True, timeout=args.timeout)
         except subprocess.TimeoutExpired:
             print(json.dumps({"agent": args.agent, "passed": False, "error": "timeout"}))
             return 2

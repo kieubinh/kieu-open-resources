@@ -24,6 +24,7 @@ Read and write tokens are distinct. Give agents the read token by default; grant
 
 ```sh
 kieu-resource --json search "Vietnamese document" --kind dataset --language vi --task question-answering --operation research
+kieu-resource --json search "Vietnamese document" --kind dataset --operation research --relevance-scores agent-scores.json
 kieu-resource --json inspect RESOURCE_ID
 kieu-resource --json quickstart RESOURCE_ID
 kieu-resource --json preview RESOURCE_ID --limit 3
@@ -33,9 +34,12 @@ kieu-resource --json manifest RESOURCE_ID --project my-qa-project --operation re
 kieu-resource --json submit-candidate candidate.json
 kieu-resource --json collections
 kieu-resource --json sync-github RESOURCE_ID
+kieu-resource --json install-skills --agent both --project /path/to/another-repository
 ```
 
 `search --operation` returns only resources explicitly documented as permitted for that operation. Unknown or conflicting rights remain unresolved. `manifest` refuses unresolved or prohibited use. `--save` on `manifest` writes to the registry and requires a write token. All successes have `{ "ok": true, "value": ... }`; failures have `{ "ok": false, "error": { "code", "message" } }`. Exit codes: 0 success, 2 input/configuration, 3 authentication/authorization, 4 service/storage unavailable, 5 other domain errors. Discovery never executes quickstart code or downloads source data.
+
+`--relevance-scores` accepts a JSON object of resource IDs to scores from 0 to 1, for example `{ "vi-qa-reviewed": 0.9 }`. A coding agent may supply these scores after reading the task. The registry validates the scores and applies them only after approval, rights, size, privacy and other deterministic filters. Scores never make an ineligible resource eligible; absent scores use stable lexical ranking.
 
 ## MCP for Codex and Claude Code
 
@@ -48,7 +52,7 @@ claude mcp add --transport stdio --scope user kieu-resource -- kieu-resource-mcp
 claude mcp list
 ```
 
-Confirm the installed CLI version's MCP environment forwarding if it does not inherit the exported variables. Do not put actual tokens in committed `.mcp.json`, `config.toml` or shell history. For repo-local skills, `.agents/skills/` and `.claude/skills/` point to the canonical `skills/` copies. For future repositories, copy or link these two skill folders and add the short `AGENTS.md` / `CLAUDE.md` routing text; install the CLI from this repository or a package release. A configured MCP server is a separate step from installing the skill.
+Confirm the installed CLI version's MCP environment forwarding if it does not inherit the exported variables. Do not put actual tokens in committed `.mcp.json`, `config.toml` or shell history. For this repository, `.agents/skills/` and `.claude/skills/` point to the packaged canonical skills. For future repositories, run `kieu-resource install-skills --agent both --project PATH` and add the short `AGENTS.md` / `CLAUDE.md` routing text. The wheel contains both Agent Skills. Installing a skill or the CLI does not connect the MCP server.
 
 Read-only MCP tools: `search_resources`, `list_collections`, `get_resource`, `get_quick_start`, `preview_dataset`, `check_usage_rights`, `compare_resources`, `get_resource_history`, `generate_manifest`. Write tools: `submit_candidate`, `save_resource_manifest`, `submit_evaluation`; these require the write token and remain review proposals. `sync-github` is an admin CLI action: it checks a GitHub source's current commit and queues a revision proposal without changing the approved pin. All operations use the same `/v1/operations` backend. The service rate limits callers and logs operation, scope and status without credential values.
 
@@ -70,6 +74,14 @@ For “Build a Vietnamese document question-answering system using approved Kieu
 4. `compare` suitable IDs. `preview` up to three reviewed rows; never download a corpus during discovery.
 5. Read `quickstart`, verify the example and adapt it to the selected pinned revision. Request authorization before large downloads, private data or training.
 6. `manifest ... --output resources.manifest.json`, commit that file with the integration code and tests. Submit newly found external data through `submit-candidate` for separate review.
+
+The runnable [Vietnamese QA baseline](examples/approved_vi_qa.py) follows the same API flow. With a reviewed Vietnamese question-answering dataset in the service, run:
+
+```sh
+PYTHONPATH=src python3 examples/approved_vi_qa.py 'Xin chào?' --manifest resources.manifest.json
+```
+
+It searches for an approved low-privacy dataset, compares candidates when available, inspects metadata and history, checks research rights, reads at most three reviewed inline rows, performs an exact-match QA baseline, and writes pinned source, revision and rights evidence to the manifest. It never executes quickstart text or downloads a corpus. The synthetic integration fixture in `tests/test_discovery.py` supplies a reviewed sample and checks the answer and manifest. For a real AI project, replace the exact-match baseline only after reviewing the selected source's schema, examples, license and data access plan; authorize large downloads, sensitive processing and training first.
 
 Because this repository starts empty, the sequence currently returns no approved matches. Tests use synthetic resources and verify the entire CLI → API → MCP path. For live Codex and Claude Code runs, seed an isolated local registry with at least two reviewed synthetic candidates, a prohibited candidate and an unknown-rights candidate; use a read token and run `python3 scripts/probe_agents.py codex --audit-log PATH --output PATH` and then `claude` with the same options. The probe launches each real agent with an explicit MCP config and checks server audit events for search, inspection, rights, comparison and manifest generation. It does not assume success from the skill alone. These live probes require installed, authenticated agent CLIs and have not been run as part of the unit test suite.
 

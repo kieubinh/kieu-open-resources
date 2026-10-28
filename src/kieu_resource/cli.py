@@ -9,8 +9,13 @@ from .client import call
 from .registry import ResourceError
 
 
+class _Parser(argparse.ArgumentParser):
+    def error(self, message):
+        raise ResourceError("INVALID_INPUT", message)
+
+
 def parser():
-    p = argparse.ArgumentParser(prog="kieu-resource")
+    p = _Parser(prog="kieu-resource")
     p.add_argument("--json", action="store_true", help="emit machine-readable JSON")
     sub = p.add_subparsers(dest="command", required=True)
     s = sub.add_parser("search")
@@ -20,6 +25,7 @@ def parser():
     s.add_argument("--streaming", action="store_true", default=None)
     s.add_argument("--max-size-bytes", type=int)
     s.add_argument("--limit", type=int, default=20)
+    s.add_argument("--relevance-scores", type=Path, help="JSON map of agent relevance scores; eligibility filters still apply")
     for name in ("inspect", "quickstart", "preview", "license-check", "history"):
         cmd = sub.add_parser(name)
         cmd.add_argument("resource_id")
@@ -41,13 +47,46 @@ def parser():
     sub.add_parser("collections")
     sync = sub.add_parser("sync-github")
     sync.add_argument("resource_id")
+    install = sub.add_parser("install-skills", help="copy packaged skills into an agent project")
+    install.add_argument("--agent", choices=("codex", "claude", "both"), default="both")
+    install.add_argument("--project", type=Path, default=Path.cwd())
     return p
+
+
+def install_skills(project, agent):
+    source = Path(__file__).parent / "skills"
+    targets = {"codex": ".agents", "claude": ".claude"}
+    selected = targets if agent == "both" else {agent: targets[agent]}
+    installed = []
+    try:
+        for folder in selected.values():
+            for name in ("kieu-resource-discovery", "kieu-model-builder"):
+                content = (source / name / "SKILL.md").read_bytes()
+                target = Path(project) / folder / "skills" / name / "SKILL.md"
+                if target.exists():
+                    if target.read_bytes() != content:
+                        raise ResourceError("CONFLICT", f"skill already exists with different content: {target}", 409)
+                else:
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    target.write_bytes(content)
+                installed.append(str(target))
+    except OSError as exc:
+        raise ResourceError("FILE_ERROR", f"cannot install skills: {exc}") from exc
+    return {"installed": installed}
 
 
 def run(args):
     c = args.command
+    if c == "install-skills":
+        return install_skills(args.project, args.agent)
     if c == "search":
-        return call("search_resources", {k: v for k, v in vars(args).items() if k in {"query", "kind", "language", "task", "modality", "collection", "configuration", "split", "streaming", "max_size_bytes", "max_privacy_risk", "operation", "limit"} and v is not None})
+        payload = {k: v for k, v in vars(args).items() if k in {"query", "kind", "language", "task", "modality", "collection", "configuration", "split", "streaming", "max_size_bytes", "max_privacy_risk", "operation", "limit"} and v is not None}
+        if args.relevance_scores:
+            try:
+                payload["relevance_scores"] = json.loads(args.relevance_scores.read_text(encoding="utf-8"))
+            except (OSError, ValueError) as exc:
+                raise ResourceError("INVALID_INPUT", f"relevance scores file: {exc}") from exc
+        return call("search_resources", payload)
     if c == "collections":
         return call("list_collections", {})
     if c == "sync-github":
@@ -75,8 +114,8 @@ def run(args):
 
 
 def main(argv=None):
-    args = parser().parse_args(argv)
     try:
+        args = parser().parse_args(argv)
         result = run(args)
         print(json.dumps({"ok": True, "value": result}, ensure_ascii=False, indent=2 if not args.json else None))
         return 0

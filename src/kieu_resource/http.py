@@ -73,6 +73,7 @@ class Handler(BaseHTTPRequestHandler):
             if hmac.compare_digest(known, token):
                 scope = identity["scope"] if isinstance(identity, dict) else identity
                 actor = identity["id"] if isinstance(identity, dict) else scope
+                self._actor = actor
                 if write and scope != "write":
                     raise ResourceError("FORBIDDEN", "write credential required", 403)
                 now = time.monotonic()
@@ -118,6 +119,7 @@ class Handler(BaseHTTPRequestHandler):
         if not isinstance(payload, dict) or not isinstance(payload.get("operation"), str) or not isinstance(payload.get("arguments", {}), dict):
             raise ResourceError("INVALID_INPUT", "operation and object arguments required")
         operation, args = payload["operation"], payload.get("arguments", {})
+        self._operation = operation
         write = operation in {"submit_candidate", "save_resource_manifest", "submit_evaluation", "sync_github_source"}
         actor = self._auth(write)
         # Protected writes fail closed if auditing is unavailable.
@@ -137,11 +139,13 @@ class Handler(BaseHTTPRequestHandler):
             self._send(exc.status, {"ok": False, "error": exc.as_dict()})
 
     def do_POST(self):
+        self._operation = "request"
+        self._actor = "unknown"
         try:
             self._handle()
         except ResourceError as exc:
             try:
-                self._audit("request", "unknown", exc.code)
+                self._audit(self._operation, self._actor, exc.code)
             except ResourceError:
                 pass
             self._send(exc.status, {"ok": False, "error": exc.as_dict()})

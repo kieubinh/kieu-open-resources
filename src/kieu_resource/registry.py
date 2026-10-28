@@ -1,6 +1,7 @@
 """One validated registry and policy implementation for every interface."""
 
 import json
+import math
 import os
 import re
 import tempfile
@@ -61,14 +62,14 @@ def validate_resource(item):
     rights = item.get("rights")
     if not isinstance(rights, dict) or any(k not in OPERATIONS or v not in RIGHTS for k, v in rights.items()):
         raise ResourceError("INVALID_METADATA", "rights must map known operations to permitted, prohibited or unknown")
-    if not isinstance(item.get("evidence", []), list):
+    if not isinstance(item.get("evidence"), list):
         raise ResourceError("INVALID_METADATA", "evidence must be a list")
-    for evidence in item["evidence"]:
+    for evidence in item.get("evidence", []):
         if not isinstance(evidence, dict) or "url" not in evidence or "claim" not in evidence:
             raise ResourceError("INVALID_METADATA", "evidence needs url and claim")
         _url(evidence["url"], "evidence.url")
         _string(evidence["claim"], "evidence.claim", 2000)
-    if item["status"] == "approved" and not item["evidence"]:
+    if item["status"] == "approved" and not item.get("evidence"):
         raise ResourceError("INVALID_METADATA", "approved resources require source evidence")
     if item.get("license_status", "unknown") not in {"verified", "unverified", "unknown"}:
         raise ResourceError("INVALID_METADATA", "invalid license_status")
@@ -126,7 +127,9 @@ class Registry:
             data = json.loads(self.path.read_text(encoding="utf-8"))
         except (OSError, ValueError) as exc:
             raise ResourceError("CORRUPT_REGISTRY", "registry cannot be read or parsed", 503) from exc
-        if not isinstance(data, dict) or data.get("schema_version") != 1 or not isinstance(data.get("resources"), list):
+        if (not isinstance(data, dict) or data.get("schema_version") != 1 or
+                not isinstance(data.get("resources"), list) or
+                any(not isinstance(data.get(key, []), list) for key in ("candidates", "manifests", "evaluation_submissions", "revision_proposals"))):
             raise ResourceError("CORRUPT_REGISTRY", "unsupported registry structure", 503)
         ids = set()
         for item in data["resources"]:
@@ -153,7 +156,7 @@ class Registry:
             if os.path.exists(tmp):
                 os.unlink(tmp)
 
-    def search(self, query="", kind=None, language=None, task=None, modality=None, collection=None, configuration=None, split=None, streaming=None, max_size_bytes=None, max_privacy_risk=None, operation=None, approved=True, limit=20):
+    def search(self, query="", kind=None, language=None, task=None, modality=None, collection=None, configuration=None, split=None, streaming=None, max_size_bytes=None, max_privacy_risk=None, operation=None, approved=True, limit=20, relevance_scores=None):
         if not isinstance(limit, int) or not 1 <= limit <= 100:
             raise ResourceError("INVALID_INPUT", "limit must be between 1 and 100")
         if operation and operation not in OPERATIONS:
@@ -172,6 +175,8 @@ class Registry:
         privacy_order = {"none": 0, "low": 1, "moderate": 2, "high": 3}
         if max_privacy_risk is not None and max_privacy_risk not in privacy_order:
             raise ResourceError("INVALID_INPUT", "max_privacy_risk must be none, low, moderate or high")
+        if relevance_scores is not None and (not isinstance(relevance_scores, dict) or len(relevance_scores) > 100 or any(not isinstance(key, str) or not isinstance(value, (int, float)) or isinstance(value, bool) or not math.isfinite(value) or not 0 <= value <= 1 for key, value in relevance_scores.items())):
+            raise ResourceError("INVALID_INPUT", "relevance_scores must map at most 100 ids to finite scores from 0 to 1")
         terms = query.casefold().split()
         results = []
         for item in self._read()["resources"]:
@@ -204,8 +209,8 @@ class Registry:
                 continue
             score = sum(4 if term in item["title"].casefold() else 1 for term in terms)
             results.append((score, item))
-        results.sort(key=lambda pair: (-pair[0], pair[1]["id"]))
-        return [{"id": item["id"], "title": item["title"], "kind": item["kind"], "revision": item["revision"], "status": item["status"], "score": score, "rights": item["rights"]} for score, item in results[:limit]]
+        results.sort(key=lambda pair: (-(relevance_scores.get(pair[1]["id"], 0) if relevance_scores else 0), -pair[0], pair[1]["id"]))
+        return [{"id": item["id"], "title": item["title"], "kind": item["kind"], "revision": item["revision"], "status": item["status"], "score": score, "relevance_score": relevance_scores.get(item["id"]) if relevance_scores else None, "rights": item["rights"]} for score, item in results[:limit]]
 
     def collections(self):
         names = {name for item in self._read()["resources"] if item["status"] == "approved" for name in item.get("collections", [])}
@@ -233,17 +238,24 @@ class Registry:
 
     def rights(self, resource_id, operation):
         item = self.get(resource_id)
+        return self._usage(item, operation)
+
+    @staticmethod
+    def _usage(item, operation):
         if operation not in OPERATIONS:
             raise ResourceError("INVALID_INPUT", "unknown operation")
         documented = item["rights"].get(operation, "unknown")
         conflicts = item.get("rights_conflicts", [])
-        decision = "unresolved" if documented == "unknown" or conflicts or item.get("license_status") != "verified" else documented
-        return {"id": resource_id, "operation": operation, "decision": decision, "documented": documented, "license": item["license"], "license_status": item.get("license_status", "unknown"), "conflicts": conflicts, "evidence": item["evidence"], "note": "Documented registry assessment; recheck original terms before use."}
+        decision = "prohibited" if documented == "prohibited" else "unresolved" if documented == "unknown" or conflicts or item.get("license_status") != "verified" else documented
+        return {"id": item["id"], "operation": operation, "decision": decision, "documented": documented, "license": item["license"], "license_status": item.get("license_status", "unknown"), "conflicts": conflicts, "evidence": item["evidence"], "note": "Documented registry assessment; recheck original terms before use."}
 
     def compare(self, resource_ids, operation=None):
         if not isinstance(resource_ids, list) or not 2 <= len(resource_ids) <= 10 or len(set(resource_ids)) != len(resource_ids):
             raise ResourceError("INVALID_INPUT", "compare needs 2 to 10 distinct ids")
-        return [{"resource": self.get(rid), "usage": self.rights(rid, operation) if operation else None} for rid in resource_ids]
+        snapshot = {item["id"]: item for item in self._read()["resources"] if item["status"] == "approved"}
+        if any(rid not in snapshot for rid in resource_ids):
+            raise ResourceError("NOT_FOUND", "approved resource not found", 404)
+        return [{"resource": snapshot[rid], "usage": self._usage(snapshot[rid], operation) if operation else None} for rid in resource_ids]
 
     def history(self, resource_id):
         item = self.get(resource_id)
@@ -255,9 +267,12 @@ class Registry:
         if not isinstance(resource_ids, list) or not resource_ids or any(not isinstance(rid, str) for rid in resource_ids) or len(set(resource_ids)) != len(resource_ids):
             raise ResourceError("INVALID_INPUT", "manifest needs resource ids")
         selections = []
+        snapshot = {item["id"]: item for item in self._read()["resources"] if item["status"] == "approved"}
         for rid in resource_ids:
-            item = self.get(rid)
-            usage = self.rights(rid, operation)
+            if rid not in snapshot:
+                raise ResourceError("NOT_FOUND", "approved resource not found", 404)
+            item = snapshot[rid]
+            usage = self._usage(item, operation)
             if usage["decision"] != "permitted":
                 raise ResourceError("RIGHTS_UNRESOLVED", f"{rid}: {usage['decision']}", 422)
             selections.append({"id": rid, "revision": item["revision"], "source_url": item["source_url"], "license": item["license"], "operation": operation, "evidence": item["evidence"]})
@@ -270,7 +285,8 @@ class Registry:
         validate_resource(candidate)
         with _LOCK:
             data = self._read()
-            if any(x["id"] == candidate["id"] for x in data["resources"] + data.get("candidates", [])):
+            existing = [x["id"] for x in data["resources"]] + [x["resource"]["id"] for x in data.get("candidates", [])]
+            if candidate["id"] in existing:
                 raise ResourceError("CONFLICT", "resource id already exists", 409)
             data.setdefault("candidates", []).append({"resource": candidate, "submitted_by": actor, "submitted_at": datetime.now(timezone.utc).isoformat()})
             self._write(data)
@@ -285,12 +301,15 @@ class Registry:
         operation = resources[0].get("operation")
         if any(r.get("operation") != operation for r in resources):
             raise ResourceError("INVALID_INPUT", "manifest selections must use one operation")
-        canonical = self.manifest([r["id"] for r in resources], manifest.get("project"), operation)
-        for supplied, actual in zip(resources, canonical["resources"]):
-            if supplied.get("revision") != actual["revision"] or supplied.get("source_url") != actual["source_url"]:
-                raise ResourceError("STALE_MANIFEST", "resource provenance changed; regenerate manifest", 409)
         with _LOCK:
+            canonical = self.manifest([r["id"] for r in resources], manifest.get("project"), operation)
+            for supplied, actual in zip(resources, canonical["resources"]):
+                if supplied.get("revision") != actual["revision"] or supplied.get("source_url") != actual["source_url"]:
+                    raise ResourceError("STALE_MANIFEST", "resource provenance changed; regenerate manifest", 409)
             data = self._read()
+            current = {r["id"]: r for r in data["resources"]}
+            if any(current[r["id"]]["revision"] != r["revision"] or self._usage(current[r["id"]], operation)["decision"] != "permitted" for r in canonical["resources"]):
+                raise ResourceError("STALE_MANIFEST", "resource changed during save; regenerate manifest", 409)
             data.setdefault("manifests", []).append({"manifest": canonical, "saved_by": actor})
             self._write(data)
         return canonical

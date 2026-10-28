@@ -7,7 +7,7 @@ setup(
     python_requires=">=3.9",
     package_dir={"": "src"},
     packages=find_packages("src"),
-    package_data={"kieu_resource": ["catalogue.html"]},
+    package_data={"kieu_resource": ["catalogue.html", "skills/*/SKILL.md"]},
     include_package_data=True,
     entry_points={"console_scripts": [
         "kieu-resource=kieu_resource.cli:main",

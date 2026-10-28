@@ -7,7 +7,7 @@ from .client import call
 from .registry import ResourceError
 
 _TOOLS = {
-    "search_resources": {"query": "string", "kind": "string", "language": "string", "task": "string", "modality": "string", "collection": "string", "configuration": "string", "split": "string", "streaming": "boolean", "max_size_bytes": "integer", "max_privacy_risk": "string", "operation": "string", "limit": "integer"},
+    "search_resources": {"query": "string", "kind": "string", "language": "string", "task": "string", "modality": "string", "collection": "string", "configuration": "string", "split": "string", "streaming": "boolean", "max_size_bytes": "integer", "max_privacy_risk": "string", "operation": "string", "limit": "integer", "relevance_scores": "object"},
     "list_collections": {},
     "get_resource": {"resource_id": "string"},
     "get_quick_start": {"resource_id": "string"},
@@ -24,6 +24,8 @@ _REQUIRED = {"get_resource": ["resource_id"], "get_quick_start": ["resource_id"]
 
 
 def handle(message):
+    if not isinstance(message, dict) or message.get("jsonrpc") != "2.0" or not isinstance(message.get("method"), str):
+        return {"jsonrpc": "2.0", "id": message.get("id") if isinstance(message, dict) else None, "error": {"code": -32600, "message": "invalid request"}}
     method = message.get("method")
     ident = message.get("id")
     if method == "notifications/initialized":
@@ -37,6 +39,8 @@ def handle(message):
         return {"jsonrpc": "2.0", "id": ident, "result": {"tools": tools}}
     if method == "tools/call":
         params = message.get("params", {})
+        if not isinstance(params, dict):
+            return {"jsonrpc": "2.0", "id": ident, "error": {"code": -32602, "message": "invalid parameters"}}
         name, args = params.get("name"), params.get("arguments", {})
         if name not in _TOOLS or not isinstance(args, dict):
             return {"jsonrpc": "2.0", "id": ident, "error": {"code": -32602, "message": "unknown tool or invalid arguments"}}
