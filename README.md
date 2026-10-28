@@ -15,7 +15,7 @@ The [LeetCode Video Skill](skills/kieu-leetcode-video/SKILL.md) teaches how to b
 - Canonical skill: [skills/kieu-leetcode-video/SKILL.md](skills/kieu-leetcode-video/SKILL.md)
 - Codex: [.agents/skills/kieu-leetcode-video/SKILL.md](.agents/skills/kieu-leetcode-video/SKILL.md)
 - Claude Code: [.claude/skills/kieu-leetcode-video/SKILL.md](.claude/skills/kieu-leetcode-video/SKILL.md)
-- Reference episode: LeetCode #10, Regular Expression Matching
+- Reference episodes: LeetCode #4 Median of Two Sorted Arrays (current standard, `examples/leetcode-4-median-of-two-sorted-arrays`), #44 Wildcard Matching, #10 Regular Expression Matching
 - Video stack: Remotion, Python 3, local VoiceStudio TTS and algorithm visualizations
 
 ### Guiding principles
