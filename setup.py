@@ -14,6 +14,7 @@ setup(
     include_package_data=True,
     entry_points={"console_scripts": [
         "kieu-open-resources=kieu_open_resources.cli:main",
+        "kieu-open-resources-mcp=kieu_open_resources.mcp:main",
         # legacy v1 remote-first service, kept working until it is rebuilt on the core SDK (P1)
         "kieu-resource=kieu_resource.cli:main",
         "kieu-resource-api=kieu_resource.http:main",

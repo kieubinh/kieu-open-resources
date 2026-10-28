@@ -1,7 +1,7 @@
 # Architecture and decisions
 
 ```
-registry/ (git, reviewed PRs)  →  kieu_open_resources core SDK  →  CLI (P0)   MCP (P1, planned)   web/API (planned)
+registry/ (git, reviewed PRs)  →  kieu_open_resources core SDK  →  CLI   MCP (stdio)   web/API (planned)
 ```
 
 Rules: the git registry is the only source of truth; every interface calls the SDK (`registry`, `schema`, `licensing`, `search`, `discovery`, `evaluation`, `manifest`, `candidates`, `sanitize`); skills describe workflows and hold no registry logic; nothing in P0 touches the network or executes resource content.
@@ -15,7 +15,8 @@ Rules: the git registry is the only source of truth; every interface calls the S
 | Manifest (`kieu-resources.lock.json`) add/validate/remove | implemented, tested |
 | Candidate submission, evaluation submission, evidenced review | implemented, tested |
 | Discovery skill + Codex/Claude entrypoints + `install-skill` | implemented; **agent behaviour not measured in a live runtime** |
-| MCP server on the core SDK, dataset preview adapters, remote transport | **planned (P1)** |
+| Local stdio MCP server on the core SDK (read-only default, gated proposal writes, audit log) | implemented, tested over real stdio; **not yet verified in a live Codex/Claude Code session** |
+| Dataset preview adapters beyond inline reviewed samples, remote transport | **planned** |
 | `kieu-model-builder` rework, AI relevance ranker, baselines | **planned (P2)** |
 | Generated SQLite index | not built; not justified by registry size |
 

@@ -44,7 +44,7 @@ kieu-open-resources license-check kieu-resource-discovery --operation training  
 kieu-open-resources manifest add <approved-id> --project . --operation inference --rationale "..." --alternative <id>
 ```
 
-Seeded with this repository's own three skills (status `candidate`: awaiting a maintainer's recorded approval). It contains **no** datasets or models yet; the [Vietnamese QA tutorial](docs/tutorials/vietnamese-document-qa.md) shows the honest empty-result and candidate-review path. Docs: [architecture and status](docs/architecture/overview.md) · [schema and governance](docs/registry/schema.md) · [CLI](docs/cli/README.md) · [skills](docs/skills/README.md) · [MCP (planned)](docs/mcp/README.md). Verify: `PYTHONPATH=src python3 -m unittest discover -s tests -t tests -v`.
+Seeded with this repository's own three skills (status `candidate`: awaiting a maintainer's recorded approval). It contains **no** datasets or models yet; the [Vietnamese QA tutorial](docs/tutorials/vietnamese-document-qa.md) shows the honest empty-result and candidate-review path. Docs: [architecture and status](docs/architecture/overview.md) · [schema and governance](docs/registry/schema.md) · [CLI](docs/cli/README.md) · [skills](docs/skills/README.md) · [MCP server](docs/mcp/README.md). Verify: `PYTHONPATH=src python3 -m unittest discover -s tests -t tests -v`.
 
 ## Kieu Resources registry
 
