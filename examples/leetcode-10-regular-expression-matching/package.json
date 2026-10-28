@@ -1,0 +1,26 @@
+{
+  "name": "kieu-studio-ep02-regular-expression-matching",
+  "version": "6.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "studio": "python3 scripts/build_timeline.py --preview && remotion studio src/index.ts",
+    "render:preview": "python3 scripts/build_timeline.py --preview && remotion render src/index.ts EP02-RegularExpression output/EP02_SILENT_REVIEW.mp4 --codec=h264",
+    "voice:check": "python3 scripts/voicestudio.py --check",
+    "voice:voices": "python3 scripts/voicestudio.py --voices",
+    "voice:generate": "python3 scripts/voicestudio.py --synthesize",
+    "render:release": "python3 scripts/build_timeline.py && remotion render src/index.ts EP02-RegularExpression output/EP02_VOICESTUDIO_RELEASE.mp4 --codec=h264",
+    "test": "python3 -m unittest discover -s scripts -p '*test.py' -v"
+  },
+  "dependencies": {
+    "remotion": "^4.0.0",
+    "@remotion/cli": "^4.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.8.0"
+  }
+}
