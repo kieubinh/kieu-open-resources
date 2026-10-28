@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "id": "kieu-model-builder",
+  "name": "Kieu Model Builder Skill",
+  "description": "Agent skill outlining a staged process for planning private or task-specific AI systems (baseline, RAG, fine-tuning) from eligible models and datasets.",
+  "type": "skill",
+  "categories": [
+    "agent-capability"
+  ],
+  "tags": [
+    "model",
+    "fine-tuning",
+    "evaluation"
+  ],
+  "tasks": [
+    "model-development",
+    "planning"
+  ],
+  "languages": [
+    "en",
+    "vi"
+  ],
+  "keywords": [
+    "agent skill",
+    "codex",
+    "claude code"
+  ],
+  "source": {
+    "url": "https://github.com/kieubinh/kieu-open-resources/tree/main/skills/kieu-model-builder",
+    "provider": "github",
+    "repository": "https://github.com/kieubinh/kieu-open-resources",
+    "revision": "ff07bd220056f92c9c3592db9158a84ddfac0b74",
+    "revision_type": "commit"
+  },
+  "dates": {
+    "added": "2026-10-28",
+    "last_verified": "2026-10-28"
+  },
+  "maintainer": "Kieu Studio",
+  "documentation": [
+    "https://github.com/kieubinh/kieu-open-resources/blob/main/skills/kieu-model-builder/SKILL.md"
+  ],
+  "quickstart": [
+    {
+      "title": "Use after resource discovery",
+      "steps": [
+        "Run the kieu-resource-discovery workflow first",
+        "Then ask the agent to plan the model approach"
+      ],
+      "verified": false
+    }
+  ],
+  "requirements": {
+    "install": "Clone the repository or run 'kieu-open-resources install-skill'",
+    "access": "open",
+    "integration_difficulty": "low"
+  },
+  "platforms": [
+    "macos",
+    "linux"
+  ],
+  "runtimes": [
+    "codex",
+    "claude-code"
+  ],
+  "license": {
+    "id": "MIT",
+    "status": "verified",
+    "evidence": [
+      {
+        "path": "LICENSE",
+        "claim": "Repository LICENSE file is the MIT License (c) 2026 Kieu Studio",
+        "license_id": "MIT"
+      }
+    ]
+  },
+  "usage_rights": {
+    "use": "permitted",
+    "research": "permitted",
+    "modification": "permitted",
+    "redistribution": "permitted",
+    "commercial-use": "permitted"
+  },
+  "restrictions": [],
+  "approval": {
+    "status": "candidate",
+    "history": []
+  },
+  "validation": {
+    "status": "not_run"
+  },
+  "provenance": {
+    "origin": "Authored in this repository",
+    "added_via": "P0 registry seed; awaiting maintainer review"
+  },
+  "revisions": [
+    {
+      "revision": "ff07bd220056f92c9c3592db9158a84ddfac0b74",
+      "date": "2026-10-28",
+      "note": "commit pinned when the entry was seeded"
+    }
+  ],
+  "evaluation_refs": [],
+  "limitations": [
+    "Early draft: predates the V2 CLI and still refers to the legacy kieu-resource service; to be reworked in P2"
+  ],
+  "related": [
+    "kieu-resource-discovery"
+  ],
+  "projects": [
+    "kieu-open-resources"
+  ]
+}

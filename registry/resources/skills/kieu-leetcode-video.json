@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "id": "kieu-leetcode-video",
+  "name": "Kieu LeetCode Video Skill",
+  "description": "Agent skill that produces and QA-checks Kieu Studio problem-solving videos for LeetCode problems: all official examples, hints, a 10-second thinking pause, Python 3, Remotion and local VoiceStudio narration.",
+  "type": "skill",
+  "categories": [
+    "video",
+    "education"
+  ],
+  "tags": [
+    "leetcode",
+    "remotion",
+    "voicestudio",
+    "education"
+  ],
+  "tasks": [
+    "video-production",
+    "education"
+  ],
+  "languages": [
+    "en",
+    "vi"
+  ],
+  "keywords": [
+    "agent skill",
+    "codex",
+    "claude code"
+  ],
+  "source": {
+    "url": "https://github.com/kieubinh/kieu-open-resources/tree/main/skills/kieu-leetcode-video",
+    "provider": "github",
+    "repository": "https://github.com/kieubinh/kieu-open-resources",
+    "revision": "ff07bd220056f92c9c3592db9158a84ddfac0b74",
+    "revision_type": "commit"
+  },
+  "dates": {
+    "added": "2026-10-28",
+    "last_verified": "2026-10-28"
+  },
+  "maintainer": "Kieu Studio",
+  "documentation": [
+    "https://github.com/kieubinh/kieu-open-resources/blob/main/skills/kieu-leetcode-video/SKILL.md"
+  ],
+  "quickstart": [
+    {
+      "title": "Use in Codex or Claude Code",
+      "steps": [
+        "Open this repository in the agent",
+        "Ask: Use the kieu-leetcode-video skill to build a video for LeetCode #N"
+      ],
+      "verified": false
+    }
+  ],
+  "requirements": {
+    "install": "Clone the repository or run 'kieu-open-resources install-skill'",
+    "access": "open",
+    "integration_difficulty": "low"
+  },
+  "platforms": [
+    "macos",
+    "linux"
+  ],
+  "runtimes": [
+    "codex",
+    "claude-code"
+  ],
+  "license": {
+    "id": "MIT",
+    "status": "verified",
+    "evidence": [
+      {
+        "path": "LICENSE",
+        "claim": "Repository LICENSE file is the MIT License (c) 2026 Kieu Studio",
+        "license_id": "MIT"
+      }
+    ]
+  },
+  "usage_rights": {
+    "use": "permitted",
+    "research": "permitted",
+    "modification": "permitted",
+    "redistribution": "permitted",
+    "commercial-use": "permitted"
+  },
+  "restrictions": [
+    "Third-party assets (e.g. LeetCode problem text, logos) keep their own rights; see README license notice"
+  ],
+  "approval": {
+    "status": "candidate",
+    "history": []
+  },
+  "validation": {
+    "status": "not_run"
+  },
+  "provenance": {
+    "origin": "Authored in this repository",
+    "added_via": "P0 registry seed; awaiting maintainer review"
+  },
+  "revisions": [
+    {
+      "revision": "ff07bd220056f92c9c3592db9158a84ddfac0b74",
+      "date": "2026-10-28",
+      "note": "commit pinned when the entry was seeded"
+    }
+  ],
+  "evaluation_refs": [],
+  "limitations": [
+    "Needs a local VoiceStudio endpoint and Remotion/npm for release-quality output",
+    "Guide-voice previews are review-only, never publish-ready"
+  ],
+  "related": [
+    "kieu-resource-discovery"
+  ],
+  "projects": [
+    "kieu-open-resources"
+  ]
+}

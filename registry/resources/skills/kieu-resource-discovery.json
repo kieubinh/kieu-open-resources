@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "id": "kieu-resource-discovery",
+  "name": "Kieu Resource Discovery Skill",
+  "description": "Agent skill with the workflow for searching the Kieu Open Resources registry, checking usage rights per operation, comparing candidates and recording a project manifest.",
+  "type": "skill",
+  "categories": [
+    "agent-capability"
+  ],
+  "tags": [
+    "discovery",
+    "registry",
+    "licensing",
+    "manifest"
+  ],
+  "tasks": [
+    "resource-discovery",
+    "license-check",
+    "agent-workflow"
+  ],
+  "languages": [
+    "en",
+    "vi"
+  ],
+  "keywords": [
+    "agent skill",
+    "codex",
+    "claude code"
+  ],
+  "source": {
+    "url": "https://github.com/kieubinh/kieu-open-resources/tree/main/skills/kieu-resource-discovery",
+    "provider": "github",
+    "repository": "https://github.com/kieubinh/kieu-open-resources",
+    "revision": "ff07bd220056f92c9c3592db9158a84ddfac0b74",
+    "revision_type": "commit"
+  },
+  "dates": {
+    "added": "2026-10-28",
+    "last_verified": "2026-10-28"
+  },
+  "maintainer": "Kieu Studio",
+  "documentation": [
+    "https://github.com/kieubinh/kieu-open-resources/blob/main/skills/kieu-resource-discovery/SKILL.md"
+  ],
+  "quickstart": [
+    {
+      "title": "Install into another repository",
+      "steps": [
+        "pip install -e /path/to/kieu-open-resources",
+        "kieu-open-resources install-skill --project /path/to/other-repo"
+      ],
+      "verified": false
+    }
+  ],
+  "requirements": {
+    "install": "Clone the repository or run 'kieu-open-resources install-skill'",
+    "access": "open",
+    "integration_difficulty": "low"
+  },
+  "platforms": [
+    "macos",
+    "linux"
+  ],
+  "runtimes": [
+    "codex",
+    "claude-code"
+  ],
+  "license": {
+    "id": "MIT",
+    "status": "verified",
+    "evidence": [
+      {
+        "path": "LICENSE",
+        "claim": "Repository LICENSE file is the MIT License (c) 2026 Kieu Studio",
+        "license_id": "MIT"
+      }
+    ]
+  },
+  "usage_rights": {
+    "use": "permitted",
+    "research": "permitted",
+    "modification": "permitted",
+    "redistribution": "permitted",
+    "commercial-use": "permitted"
+  },
+  "restrictions": [],
+  "approval": {
+    "status": "candidate",
+    "history": []
+  },
+  "validation": {
+    "status": "not_run"
+  },
+  "provenance": {
+    "origin": "Authored in this repository",
+    "added_via": "P0 registry seed; awaiting maintainer review"
+  },
+  "revisions": [
+    {
+      "revision": "ff07bd220056f92c9c3592db9158a84ddfac0b74",
+      "date": "2026-10-28",
+      "note": "commit pinned when the entry was seeded"
+    }
+  ],
+  "evaluation_refs": [],
+  "limitations": [
+    "Requires the kieu-open-resources CLI on PATH",
+    "Discovery reliability inside real Codex/Claude Code sessions has not been measured yet"
+  ],
+  "related": [
+    "kieu-model-builder"
+  ],
+  "projects": [
+    "kieu-open-resources"
+  ]
+}
