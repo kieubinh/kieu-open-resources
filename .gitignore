@@ -13,3 +13,10 @@ __pycache__/
 *.wav
 *.mp3
 *.zip
+
+# Kieu Resources registry
+*.audit.jsonl
+.venv/
+*.egg-info/
+dist/
+build/
