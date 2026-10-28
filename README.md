@@ -3,7 +3,8 @@
 Reusable open-source skills, educational tools and video templates from **Kieu Studio / The Art of Coding**.
 
 - [Problem-solving video factory](#problem-solving-video-factory): the `kieu-leetcode-video` skill and a LeetCode #10 reference episode.
-- [Kieu Resources registry](#kieu-resources-registry): the resource registry, policy engine, `kieu-resource` CLI, HTTP API and MCP adapter, with the `kieu-resource-discovery` and `kieu-model-builder` skills.
+- [Kieu Open Resources registry (V2, P0)](#kieu-open-resources-registry-v2): git-versioned registry, core SDK, `kieu-open-resources` CLI and the `kieu-resource-discovery` skill.
+- [Legacy Kieu Resources service (v1)](#kieu-resources-registry): the earlier remote-first HTTP API / MCP adapter; not connected to the V2 registry.
 
 ## Problem-solving video factory
 
@@ -31,7 +32,23 @@ The [LeetCode Video Skill](skills/kieu-leetcode-video/SKILL.md) teaches how to b
 
 Clone this repository, open it in Codex or Claude Code and request: "Use the kieu-leetcode-video skill to build a video about LeetCode #10, explaining all examples with problem-solving exercises and a ten-second thinking pause."
 
+## Kieu Open Resources registry (V2)
+
+One authoritative registry (`registry/`, reviewed via pull requests) read by one SDK (`src/kieu_open_resources`). The CLI works offline with no accounts, website or network.
+
+```sh
+python3 -m pip install -e .
+kieu-open-resources doctor
+kieu-open-resources search "discovery" --type skill --format json
+kieu-open-resources license-check kieu-resource-discovery --operation training    # unresolved, never silently allowed
+kieu-open-resources manifest add <approved-id> --project . --operation inference --rationale "..." --alternative <id>
+```
+
+Seeded with this repository's own three skills (status `candidate`: awaiting a maintainer's recorded approval). It contains **no** datasets or models yet; the [Vietnamese QA tutorial](docs/tutorials/vietnamese-document-qa.md) shows the honest empty-result and candidate-review path. Docs: [architecture and status](docs/architecture/overview.md) · [schema and governance](docs/registry/schema.md) · [CLI](docs/cli/README.md) · [skills](docs/skills/README.md) · [MCP (planned)](docs/mcp/README.md). Verify: `PYTHONPATH=src python3 -m unittest discover -s tests -t tests -v`.
+
 ## Kieu Resources registry
+
+> **Legacy v1 service.** Kept working and tested, but it has its own empty `registry.json` and is not the V2 registry. It will be rebuilt on the core SDK in P1.
 
 One authoritative, machine-readable resource registry with a shared policy engine. The catalogue page, HTTP API, installable `kieu-resource` CLI and MCP stdio adapter all use the same service. This new repository starts with an empty registry; no real resource has been silently approved.
 

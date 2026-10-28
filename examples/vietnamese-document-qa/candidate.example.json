@@ -1,0 +1,19 @@
+{
+  "id": "example-vi-docqa-dataset",
+  "name": "Example Vietnamese document QA dataset (illustrative placeholder)",
+  "description": "Illustrative placeholder showing what an agent submits when the registry has no eligible Vietnamese document QA dataset. Not a real dataset; replace every field with verified facts about the real resource you found.",
+  "type": "dataset",
+  "tasks": ["question-answering"],
+  "languages": ["vi"],
+  "tags": ["vietnamese", "document-qa"],
+  "source": {"url": "https://example.org/replace-with-real-dataset-page", "provider": "example", "revision": "REPLACE-with-real-commit-or-version", "revision_type": "version"},
+  "maintainer": "agent:claude-code",
+  "license": {"id": "unknown", "status": "unknown", "evidence": []},
+  "limitations": ["License not yet checked", "Contents not inspected"],
+  "submission": {
+    "submitted_by": "agent:claude-code",
+    "use_cases": ["Held-out evaluation for a Vietnamese document QA baseline"],
+    "known_risks": ["Rights for training and commercial use unknown", "PII risk unknown"],
+    "submission_provenance": "Found by external search after the registry returned no approved match"
+  }
+}
