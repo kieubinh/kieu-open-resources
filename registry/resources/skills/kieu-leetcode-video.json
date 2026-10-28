@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "kieu-leetcode-video",
   "name": "Kieu LeetCode Video Skill",
-  "description": "Agent skill that produces and QA-checks Kieu Studio problem-solving videos for LeetCode problems: all official examples, hints, a 10-second thinking pause, Python 3, Remotion and local VoiceStudio narration.",
+  "description": "Agent skill that produces and QA-checks Kieu Studio problem-solving videos for LeetCode problems: every official example, rejected approaches and a correctness argument before code, a 10-second thinking pause, Python 3, Remotion and local VoiceStudio narration, with a Median of Two Sorted Arrays (LeetCode #4) reference episode.",
   "type": "skill",
   "categories": [
     "video",
@@ -31,12 +31,12 @@
     "url": "https://github.com/kieubinh/kieu-open-resources/tree/main/skills/kieu-leetcode-video",
     "provider": "github",
     "repository": "https://github.com/kieubinh/kieu-open-resources",
-    "revision": "3e67ae163530458af35a1f632811def223b0da1a",
+    "revision": "e795e37c1ba38db0e87f8647def1c22db4d562be",
     "revision_type": "commit"
   },
   "dates": {
     "added": "2026-10-28",
-    "last_verified": "2026-10-28"
+    "last_verified": "2026-10-29"
   },
   "maintainer": "Kieu Studio",
   "documentation": [
@@ -107,12 +107,18 @@
       "revision": "3e67ae163530458af35a1f632811def223b0da1a",
       "date": "2026-10-28",
       "note": "re-pinned to the merge commit that contains V2 P0 (skill content changed)"
+    },
+    {
+      "revision": "e795e37c1ba38db0e87f8647def1c22db4d562be",
+      "date": "2026-10-29",
+      "note": "skill updated to the EP04 workflow (PR #4); source.revision re-pinned"
     }
   ],
   "evaluation_refs": [],
   "limitations": [
     "Needs a local VoiceStudio endpoint and Remotion/npm for release-quality output",
-    "Guide-voice previews are review-only, never publish-ready"
+    "Guide-voice previews are review-only, never publish-ready",
+    "Reference episodes are review-only until VoiceStudio audio, Remotion render and human editorial approval exist"
   ],
   "related": [
     "kieu-resource-discovery"
