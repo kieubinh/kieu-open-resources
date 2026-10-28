@@ -29,7 +29,7 @@
     "url": "https://github.com/kieubinh/kieu-open-resources/tree/main/skills/kieu-model-builder",
     "provider": "github",
     "repository": "https://github.com/kieubinh/kieu-open-resources",
-    "revision": "ff07bd220056f92c9c3592db9158a84ddfac0b74",
+    "revision": "3e67ae163530458af35a1f632811def223b0da1a",
     "revision_type": "commit"
   },
   "dates": {
@@ -98,6 +98,11 @@
       "revision": "ff07bd220056f92c9c3592db9158a84ddfac0b74",
       "date": "2026-10-28",
       "note": "commit pinned when the entry was seeded"
+    },
+    {
+      "revision": "3e67ae163530458af35a1f632811def223b0da1a",
+      "date": "2026-10-28",
+      "note": "re-pinned to the merge commit that contains V2 P0 (skill content changed)"
     }
   ],
   "evaluation_refs": [],
