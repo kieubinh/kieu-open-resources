@@ -1,0 +1,1262 @@
+[
+  {
+    "sceneId": "01-mission",
+    "fromFrame": 0,
+    "toFrame": 136,
+    "text": "Chào mừng đến với Kieu Studio, The Art of Coding."
+  },
+  {
+    "sceneId": "01-mission",
+    "fromFrame": 136,
+    "toFrame": 373,
+    "text": "Trong series này, chúng ta không xem LeetCode như một bộ sưu tập đáp án để học thuộc."
+  },
+  {
+    "sceneId": "01-mission",
+    "fromFrame": 373,
+    "toFrame": 537,
+    "text": "Mỗi bài là một tình huống luyện khả năng giải quyết vấn đề."
+  },
+  {
+    "sceneId": "01-mission",
+    "fromFrame": 537,
+    "toFrame": 868,
+    "text": "Hôm nay, bạn sẽ tập quan sát yêu cầu, phát hiện điều kiện quan trọng, đưa ra giả thuyết, tự kiểm tra rồi mới viết code."
+  },
+  {
+    "sceneId": "01-mission",
+    "fromFrame": 868,
+    "toFrame": 1113,
+    "text": "Nếu bạn từng thấy bài Hard quá đáng sợ, hãy thử học cùng chúng tôi theo đúng thứ tự này."
+  },
+  {
+    "sceneId": "01-mission",
+    "fromFrame": 1113,
+    "toFrame": 1394,
+    "text": "Câu hỏi quan trọng không phải viết dòng code nào đầu tiên, mà là vì sao chúng ta cần dòng code đó."
+  },
+  {
+    "sceneId": "02-hook",
+    "fromFrame": 1396,
+    "toFrame": 1616,
+    "text": "Hãy tưởng tượng có hai hàng người đã đứng theo chiều cao từ thấp đến cao."
+  },
+  {
+    "sceneId": "02-hook",
+    "fromFrame": 1616,
+    "toFrame": 1775,
+    "text": "Chúng ta muốn tìm người nằm giữa nếu gộp cả hai hàng."
+  },
+  {
+    "sceneId": "02-hook",
+    "fromFrame": 1775,
+    "toFrame": 1967,
+    "text": "Cách tự nhiên là bảo mọi người nhập lại thành một hàng duy nhất."
+  },
+  {
+    "sceneId": "02-hook",
+    "fromFrame": 1967,
+    "toFrame": 2159,
+    "text": "Nhưng nếu một hàng cực dài, việc sắp xếp lại từ đầu sẽ lãng phí."
+  },
+  {
+    "sceneId": "02-hook",
+    "fromFrame": 2159,
+    "toFrame": 2366,
+    "text": "Điều thú vị là thứ tự trong từng hàng đã chứa một phần lớn thông tin."
+  },
+  {
+    "sceneId": "02-hook",
+    "fromFrame": 2366,
+    "toFrame": 2589,
+    "text": "Tại sao phải di chuyển tất cả khi có thể tìm một vị trí phân chia phù hợp?"
+  },
+  {
+    "sceneId": "02-hook",
+    "fromFrame": 2589,
+    "toFrame": 2705,
+    "text": "Đây chính là cốt lõi của bài số bốn."
+  },
+  {
+    "sceneId": "03-problem",
+    "fromFrame": 2707,
+    "toFrame": 2892,
+    "text": "Bài số bốn trên LeetCode có tên Median of Two Sorted Arrays."
+  },
+  {
+    "sceneId": "03-problem",
+    "fromFrame": 2892,
+    "toFrame": 3059,
+    "text": "Chúng ta nhận hai mảng số nguyên nums một và nums hai."
+  },
+  {
+    "sceneId": "03-problem",
+    "fromFrame": 3059,
+    "toFrame": 3164,
+    "text": "Mỗi mảng đã được sắp xếp tăng dần."
+  },
+  {
+    "sceneId": "03-problem",
+    "fromFrame": 3164,
+    "toFrame": 3473,
+    "text": "Kết quả cần trả về là trung vị của tất cả phần tử hai mảng nếu nhìn chúng như một tập hợp có thứ tự."
+  },
+  {
+    "sceneId": "03-problem",
+    "fromFrame": 3473,
+    "toFrame": 3692,
+    "text": "Một yêu cầu không được bỏ qua là thời gian chạy O của logarit m cộng n."
+  },
+  {
+    "sceneId": "03-problem",
+    "fromFrame": 3692,
+    "toFrame": 4016,
+    "text": "Đây không chỉ là lời khuyên tối ưu hóa; nó khiến giải pháp duyệt từng phần tử chưa đạt mục tiêu của đề."
+  },
+  {
+    "sceneId": "04-median",
+    "fromFrame": 4018,
+    "toFrame": 4254,
+    "text": "Nếu số lượng phần tử là lẻ, trung vị là một phần tử đúng ở giữa sau khi sắp xếp."
+  },
+  {
+    "sceneId": "04-median",
+    "fromFrame": 4254,
+    "toFrame": 4375,
+    "text": "Chẳng hạn một, hai, ba thì đáp án là hai."
+  },
+  {
+    "sceneId": "04-median",
+    "fromFrame": 4375,
+    "toFrame": 4706,
+    "text": "Nếu số lượng là chẵn, chẳng hạn một, hai, ba, bốn, thì chúng ta lấy trung bình của hai và ba, được hai phẩy năm."
+  },
+  {
+    "sceneId": "04-median",
+    "fromFrame": 4706,
+    "toFrame": 4848,
+    "text": "Đây là chỗ nhiều người nhầm giữa median và mean."
+  },
+  {
+    "sceneId": "04-median",
+    "fromFrame": 4848,
+    "toFrame": 5055,
+    "text": "Mean là trung bình tất cả giá trị; median là vị trí ở giữa của thứ tự."
+  },
+  {
+    "sceneId": "04-median",
+    "fromFrame": 5055,
+    "toFrame": 5327,
+    "text": "Với bài toán này, ta chỉ cần biết một hoặc hai phần tử giữa, không cần biết cả dãy đã gộp."
+  },
+  {
+    "sceneId": "05-constraints",
+    "fromFrame": 5329,
+    "toFrame": 5502,
+    "text": "Hãy quan sát ràng buộc vì chúng sinh ra các ca kiểm thử."
+  },
+  {
+    "sceneId": "05-constraints",
+    "fromFrame": 5502,
+    "toFrame": 5795,
+    "text": "Kích thước từng mảng từ không tới một nghìn, nhưng tổng ít nhất là một và nhiều nhất hai nghìn."
+  },
+  {
+    "sceneId": "05-constraints",
+    "fromFrame": 5795,
+    "toFrame": 5974,
+    "text": "Điều đó có nghĩa một trong hai mảng hoàn toàn có thể rỗng."
+  },
+  {
+    "sceneId": "05-constraints",
+    "fromFrame": 5974,
+    "toFrame": 6279,
+    "text": "Các giá trị số nguyên từ âm một triệu đến dương một triệu, nên có số âm, số không và số trùng nhau."
+  },
+  {
+    "sceneId": "05-constraints",
+    "fromFrame": 6279,
+    "toFrame": 6569,
+    "text": "Khi thử một giải pháp, chúng ta phải tự hỏi: điều gì xảy ra nếu bên trái không có phần tử nào?"
+  },
+  {
+    "sceneId": "05-constraints",
+    "fromFrame": 6569,
+    "toFrame": 6683,
+    "text": "Nếu hai phần tử ở hai biên bằng nhau?"
+  },
+  {
+    "sceneId": "05-constraints",
+    "fromFrame": 6683,
+    "toFrame": 6752,
+    "text": "Nếu tổng là số chẵn?"
+  },
+  {
+    "sceneId": "06-stats",
+    "fromFrame": 6754,
+    "toFrame": 6851,
+    "text": "LeetCode xếp bài này vào mức Hard."
+  },
+  {
+    "sceneId": "06-stats",
+    "fromFrame": 6851,
+    "toFrame": 7137,
+    "text": "Bộ dữ liệu Leetbot cập nhật ngày bốn tháng chín năm hai nghìn không trăm hai mươi sáu ghi nhận tỷ lệ"
+  },
+  {
+    "sceneId": "06-stats",
+    "fromFrame": 7137,
+    "toFrame": 7266,
+    "text": "chấp nhận là bốn mươi sáu phẩy bốn phần trăm."
+  },
+  {
+    "sceneId": "06-stats",
+    "fromFrame": 7266,
+    "toFrame": 7532,
+    "text": "Đây là ảnh chụp dữ liệu theo thời điểm, không phải một tỷ lệ trực tiếp ngay lúc bạn đang xem."
+  },
+  {
+    "sceneId": "06-stats",
+    "fromFrame": 7532,
+    "toFrame": 7818,
+    "text": "Chúng ta chưa có con số đáng tin cậy về lượt nộp được chấp nhận và tổng lượt nộp tại cùng thời điểm,"
+  },
+  {
+    "sceneId": "06-stats",
+    "fromFrame": 7818,
+    "toFrame": 7915,
+    "text": "nên sẽ không tự tạo hai con số đó."
+  },
+  {
+    "sceneId": "06-stats",
+    "fromFrame": 7915,
+    "toFrame": 8092,
+    "text": "Quan trọng hơn: lượt nộp là số lần thử, không phải số người."
+  },
+  {
+    "sceneId": "07-ex1",
+    "fromFrame": 8094,
+    "toFrame": 8312,
+    "text": "Với ví dụ đầu tiên, nums một là một và ba, nums hai chỉ có số hai."
+  },
+  {
+    "sceneId": "07-ex1",
+    "fromFrame": 8312,
+    "toFrame": 8454,
+    "text": "Nếu gộp để hình dung, ta được một, hai, ba."
+  },
+  {
+    "sceneId": "07-ex1",
+    "fromFrame": 8454,
+    "toFrame": 8748,
+    "text": "Tổng cộng ba phần tử, trung vị là hai, nên đầu ra hai chấm không không không không không."
+  },
+  {
+    "sceneId": "07-ex1",
+    "fromFrame": 8748,
+    "toFrame": 8913,
+    "text": "Trên màn hình, hãy nhìn số hai đứng giữa hai phía."
+  },
+  {
+    "sceneId": "07-ex1",
+    "fromFrame": 8913,
+    "toFrame": 9167,
+    "text": "Nhưng lưu ý: chúng ta chỉ gộp để hiểu đề, chưa phải thuật toán sẽ triển khai."
+  },
+  {
+    "sceneId": "07-ex1",
+    "fromFrame": 9167,
+    "toFrame": 9517,
+    "text": "Từ một ví dụ dễ, hãy tự đặt câu hỏi liệu có cách nào xác nhận số hai nằm giữa mà không cần tạo mảng mới?"
+  },
+  {
+    "sceneId": "08-ex2",
+    "fromFrame": 9519,
+    "toFrame": 9735,
+    "text": "Ví dụ thứ hai, nums một gồm một và hai, nums hai gồm ba và bốn."
+  },
+  {
+    "sceneId": "08-ex2",
+    "fromFrame": 9735,
+    "toFrame": 9924,
+    "text": "Sau khi hình dung theo thứ tự, ta có một, hai, ba, bốn."
+  },
+  {
+    "sceneId": "08-ex2",
+    "fromFrame": 9924,
+    "toFrame": 10154,
+    "text": "Có bốn phần tử, vì vậy không tồn tại một phần tử duy nhất nằm giữa."
+  },
+  {
+    "sceneId": "08-ex2",
+    "fromFrame": 10154,
+    "toFrame": 10274,
+    "text": "Hai giá trị trung tâm là hai và ba."
+  },
+  {
+    "sceneId": "08-ex2",
+    "fromFrame": 10274,
+    "toFrame": 10411,
+    "text": "Lấy tổng rồi chia hai được hai phẩy năm."
+  },
+  {
+    "sceneId": "08-ex2",
+    "fromFrame": 10411,
+    "toFrame": 10761,
+    "text": "Điều này cho ta một manh mối quan trọng: nếu tách dãy thành nửa trái và nửa phải, lời giải chỉ cần giá"
+  },
+  {
+    "sceneId": "08-ex2",
+    "fromFrame": 10761,
+    "toFrame": 10942,
+    "text": "trị lớn nhất của nửa trái và nhỏ nhất của nửa phải."
+  },
+  {
+    "sceneId": "09-examples-recap",
+    "fromFrame": 10944,
+    "toFrame": 11048,
+    "text": "Hãy dừng ở đây một chút để tổng hợp."
+  },
+  {
+    "sceneId": "09-examples-recap",
+    "fromFrame": 11048,
+    "toFrame": 11212,
+    "text": "Ở ví dụ một, chúng ta chỉ cần giá trị lớn nhất phía trái."
+  },
+  {
+    "sceneId": "09-examples-recap",
+    "fromFrame": 11212,
+    "toFrame": 11353,
+    "text": "Ở ví dụ hai, cần thêm giá trị nhỏ nhất phía phải."
+  },
+  {
+    "sceneId": "09-examples-recap",
+    "fromFrame": 11353,
+    "toFrame": 11690,
+    "text": "Nhưng có một điều bắt buộc: phía trái phải chứa chính xác một nửa phần tử, hoặc nhiều hơn một phần tử nếu tổng là lẻ."
+  },
+  {
+    "sceneId": "09-examples-recap",
+    "fromFrame": 11690,
+    "toFrame": 11831,
+    "text": "Nếu số lượng phía trái sai, vị trí giữa cũng sai."
+  },
+  {
+    "sceneId": "09-examples-recap",
+    "fromFrame": 11831,
+    "toFrame": 11992,
+    "text": "Vậy nhiệm vụ mới của chúng ta không còn là gộp hai mảng."
+  },
+  {
+    "sceneId": "09-examples-recap",
+    "fromFrame": 11992,
+    "toFrame": 12253,
+    "text": "Nó trở thành tìm một đường cắt sao cho số lượng đúng và thứ tự hai bên không bị đảo lộn."
+  },
+  {
+    "sceneId": "10-naive",
+    "fromFrame": 12255,
+    "toFrame": 12396,
+    "text": "Khi gặp bài khó, đừng vội bỏ qua lời giải dễ nhất."
+  },
+  {
+    "sceneId": "10-naive",
+    "fromFrame": 12396,
+    "toFrame": 12664,
+    "text": "Ta có thể nối hai mảng rồi sort; cách đó tốn thời gian cỡ tổng độ dài nhân logarit tổng độ dài."
+  },
+  {
+    "sceneId": "10-naive",
+    "fromFrame": 12664,
+    "toFrame": 12921,
+    "text": "Vì hai mảng đã tăng dần, ta còn có thể dùng hai con trỏ để trộn chúng trong O của m cộng n."
+  },
+  {
+    "sceneId": "10-naive",
+    "fromFrame": 12921,
+    "toFrame": 13020,
+    "text": "Đây là hai cách đúng về mặt đáp án."
+  },
+  {
+    "sceneId": "10-naive",
+    "fromFrame": 13020,
+    "toFrame": 13215,
+    "text": "Chúng rất hữu ích để kiểm tra các ví dụ và làm bộ đối chiếu khi test."
+  },
+  {
+    "sceneId": "10-naive",
+    "fromFrame": 13215,
+    "toFrame": 13418,
+    "text": "Nhưng đề bài đòi thời gian logarit, nên cả hai chưa phải giải pháp cuối."
+  },
+  {
+    "sceneId": "10-naive",
+    "fromFrame": 13418,
+    "toFrame": 13621,
+    "text": "Phân biệt đúng và đạt yêu cầu là kỹ năng giải quyết vấn đề quan trọng."
+  },
+  {
+    "sceneId": "11-reject",
+    "fromFrame": 13623,
+    "toFrame": 13916,
+    "text": "Một ý tưởng có vẻ tốt hơn: không tạo mảng mới mà chỉ dùng hai con trỏ, đi đến vị trí giữa rồi dừng lại."
+  },
+  {
+    "sceneId": "11-reject",
+    "fromFrame": 13916,
+    "toFrame": 14192,
+    "text": "Cách này tiết kiệm bộ nhớ, nhưng số bước trong trường hợp xấu nhất vẫn tăng theo tổng kích thước."
+  },
+  {
+    "sceneId": "11-reject",
+    "fromFrame": 14192,
+    "toFrame": 14269,
+    "text": "Vậy chúng ta thiếu điều gì?"
+  },
+  {
+    "sceneId": "11-reject",
+    "fromFrame": 14269,
+    "toFrame": 14531,
+    "text": "Tìm kiếm nhị phân hoạt động tốt khi mỗi phép so sánh cho phép loại bỏ một vùng lựa chọn lớn."
+  },
+  {
+    "sceneId": "11-reject",
+    "fromFrame": 14531,
+    "toFrame": 14869,
+    "text": "Nếu có thể so sánh hai giá trị ngay sát đường cắt và biết nên dịch cắt trái hay phải, chúng ta sẽ tiến nhanh hơn nhiều."
+  },
+  {
+    "sceneId": "11-reject",
+    "fromFrame": 14869,
+    "toFrame": 14961,
+    "text": "Đây là lý do phải đổi câu hỏi."
+  },
+  {
+    "sceneId": "12-hints",
+    "fromFrame": 14963,
+    "toFrame": 15100,
+    "text": "Trước khi xem lời giải, bạn có ba gợi ý."
+  },
+  {
+    "sceneId": "12-hints",
+    "fromFrame": 15100,
+    "toFrame": 15429,
+    "text": "Một: ta chỉ cần một hoặc hai số giữa, có nhất thiết phải xây dựng toàn bộ dãy sau khi gộp không?"
+  },
+  {
+    "sceneId": "12-hints",
+    "fromFrame": 15429,
+    "toFrame": 15611,
+    "text": "Hai: hãy tưởng tượng đặt một đường cắt trên mỗi mảng."
+  },
+  {
+    "sceneId": "12-hints",
+    "fromFrame": 15611,
+    "toFrame": 15824,
+    "text": "Có cách nào khiến tổng số phần tử bên trái được cố định không?"
+  },
+  {
+    "sceneId": "12-hints",
+    "fromFrame": 15824,
+    "toFrame": 16170,
+    "text": "Ba: vì mỗi mảng đã sắp xếp, liệu chỉ cần quan sát hai giá trị ở mép đường cắt trên từng mảng là đủ để"
+  },
+  {
+    "sceneId": "12-hints",
+    "fromFrame": 16170,
+    "toFrame": 16266,
+    "text": "biết hai nửa có đúng thứ tự?"
+  },
+  {
+    "sceneId": "12-hints",
+    "fromFrame": 16266,
+    "toFrame": 16386,
+    "text": "Hãy thử vẽ hai đường cắt trên giấy."
+  },
+  {
+    "sceneId": "12-hints",
+    "fromFrame": 16386,
+    "toFrame": 16585,
+    "text": "Đừng viết code, chỉ tìm một điều kiện có thể kiểm chứng."
+  },
+  {
+    "sceneId": "14-reveal",
+    "fromFrame": 16887,
+    "toFrame": 16965,
+    "text": "Hết thời gian suy nghĩ."
+  },
+  {
+    "sceneId": "14-reveal",
+    "fromFrame": 16965,
+    "toFrame": 17162,
+    "text": "Hãy xem điều gì xảy ra khi kẻ một đường dọc trên mỗi mảng."
+  },
+  {
+    "sceneId": "14-reveal",
+    "fromFrame": 17162,
+    "toFrame": 17396,
+    "text": "Bên trái mỗi đường cắt là một nhóm nhỏ đã sắp xếp, bên phải cũng vậy."
+  },
+  {
+    "sceneId": "14-reveal",
+    "fromFrame": 17396,
+    "toFrame": 17746,
+    "text": "Nếu hai nhóm trái cộng lại có đúng số phần tử cần thiết, và mọi giá trị bên trái không vượt quá mọi giá"
+  },
+  {
+    "sceneId": "14-reveal",
+    "fromFrame": 17746,
+    "toFrame": 17899,
+    "text": "trị bên phải, thì điểm giữa đã được xác định."
+  },
+  {
+    "sceneId": "14-reveal",
+    "fromFrame": 17899,
+    "toFrame": 18079,
+    "text": "Điểm thú vị là ta không cần so sánh từng cặp phần tử."
+  },
+  {
+    "sceneId": "14-reveal",
+    "fromFrame": 18079,
+    "toFrame": 18367,
+    "text": "Mỗi mảng đã tăng dần, nên chỉ cần kiểm tra bốn giá trị ngay bên cạnh hai đường cắt."
+  },
+  {
+    "sceneId": "15-smaller",
+    "fromFrame": 18369,
+    "toFrame": 18542,
+    "text": "Ta luôn gọi A là mảng ngắn hơn và B là mảng dài hơn."
+  },
+  {
+    "sceneId": "15-smaller",
+    "fromFrame": 18542,
+    "toFrame": 18835,
+    "text": "Nếu ban đầu nums một dài hơn nums hai, hãy đổi tên hai biến; dữ liệu không cần thay đổi."
+  },
+  {
+    "sceneId": "15-smaller",
+    "fromFrame": 18835,
+    "toFrame": 19015,
+    "text": "Bây giờ, i là số phần tử của A nằm bên trái đường cắt."
+  },
+  {
+    "sceneId": "15-smaller",
+    "fromFrame": 19015,
+    "toFrame": 19242,
+    "text": "Vì tổng số phần tử phía trái phải cố định, j sẽ bằng leftSize trừ i."
+  },
+  {
+    "sceneId": "15-smaller",
+    "fromFrame": 19242,
+    "toFrame": 19402,
+    "text": "Như vậy, chỉ cần chọn i thì j được tính tự động."
+  },
+  {
+    "sceneId": "15-smaller",
+    "fromFrame": 19402,
+    "toFrame": 19792,
+    "text": "Chúng ta chỉ cần tìm kiếm nhị phân trên i từ không đến độ dài A, kể cả cắt trước phần tử đầu hoặc sau phần tử cuối."
+  },
+  {
+    "sceneId": "16-four",
+    "fromFrame": 19794,
+    "toFrame": 19892,
+    "text": "Hãy đặt tên cho bốn giá trị."
+  },
+  {
+    "sceneId": "16-four",
+    "fromFrame": 19892,
+    "toFrame": 20070,
+    "text": "A trái, viết AL, là phần tử cuối ở nửa trái mảng A."
+  },
+  {
+    "sceneId": "16-four",
+    "fromFrame": 20070,
+    "toFrame": 20245,
+    "text": "A phải, viết AR, là phần tử đầu ở nửa phải mảng A."
+  },
+  {
+    "sceneId": "16-four",
+    "fromFrame": 20245,
+    "toFrame": 20346,
+    "text": "Tương tự BL và BR cho mảng B."
+  },
+  {
+    "sceneId": "16-four",
+    "fromFrame": 20346,
+    "toFrame": 20632,
+    "text": "Nếu cắt ngay đầu mảng thì phía trái trống, ta dùng âm vô cực làm giá trị thay thế."
+  },
+  {
+    "sceneId": "16-four",
+    "fromFrame": 20632,
+    "toFrame": 20859,
+    "text": "Nếu cắt ngay cuối mảng thì phía phải trống, ta dùng dương vô cực."
+  },
+  {
+    "sceneId": "16-four",
+    "fromFrame": 20859,
+    "toFrame": 21274,
+    "text": "Những giá trị đặc biệt này không phải dữ liệu thật; chỉ là cách viết gọn để không phải mở thêm nhiều nhánh xử lý rìa."
+  },
+  {
+    "sceneId": "17-invariant",
+    "fromFrame": 21276,
+    "toFrame": 21413,
+    "text": "Đây là điều kiện chính xác nhất trong bài."
+  },
+  {
+    "sceneId": "17-invariant",
+    "fromFrame": 21413,
+    "toFrame": 21674,
+    "text": "Đường cắt hợp lệ khi AL nhỏ hơn hoặc bằng BR, đồng thời BL nhỏ hơn hoặc bằng AR."
+  },
+  {
+    "sceneId": "17-invariant",
+    "fromFrame": 21674,
+    "toFrame": 21782,
+    "text": "Tại sao chỉ có hai bất đẳng thức?"
+  },
+  {
+    "sceneId": "17-invariant",
+    "fromFrame": 21782,
+    "toFrame": 22086,
+    "text": "Bởi trong từng mảng, tất cả phần tử trái đã nhỏ hơn hoặc bằng phần tử phải của chính mảng đó."
+  },
+  {
+    "sceneId": "17-invariant",
+    "fromFrame": 22086,
+    "toFrame": 22288,
+    "text": "Chúng ta chỉ còn cần kiểm tra hai phía cắt chéo giữa hai mảng."
+  },
+  {
+    "sceneId": "17-invariant",
+    "fromFrame": 22288,
+    "toFrame": 22654,
+    "text": "Khi cả hai điều kiện đúng, phần tử lớn nhất bên trái là max của AL và BL; nhỏ nhất bên phải là min của AR và BR."
+  },
+  {
+    "sceneId": "17-invariant",
+    "fromFrame": 22654,
+    "toFrame": 22756,
+    "text": "Median đã nằm ngay trước mắt."
+  },
+  {
+    "sceneId": "18-go-left",
+    "fromFrame": 22758,
+    "toFrame": 22829,
+    "text": "Giả sử AL lớn hơn BR."
+  },
+  {
+    "sceneId": "18-go-left",
+    "fromFrame": 22829,
+    "toFrame": 23234,
+    "text": "Điều đó có nghĩa chúng ta đã đưa một phần tử A quá lớn sang nửa trái, trong khi có một phần tử B nhỏ hơn nằm ở nửa phải."
+  },
+  {
+    "sceneId": "18-go-left",
+    "fromFrame": 23234,
+    "toFrame": 23318,
+    "text": "Đường cắt không thể đúng."
+  },
+  {
+    "sceneId": "18-go-left",
+    "fromFrame": 23318,
+    "toFrame": 23655,
+    "text": "Muốn sửa, ta phải lấy ít phần tử từ A ở phía trái hơn: giảm i bằng cách cập nhật hi thành i trừ một."
+  },
+  {
+    "sceneId": "18-go-left",
+    "fromFrame": 23655,
+    "toFrame": 23793,
+    "text": "Do j bằng leftSize trừ i, j tự động tăng."
+  },
+  {
+    "sceneId": "18-go-left",
+    "fromFrame": 23793,
+    "toFrame": 23935,
+    "text": "Chúng ta không phải đoán cả hai đường cắt."
+  },
+  {
+    "sceneId": "18-go-left",
+    "fromFrame": 23935,
+    "toFrame": 24152,
+    "text": "Mỗi lần cập nhật loại bỏ khoảng một nửa vùng tìm kiếm còn lại."
+  },
+  {
+    "sceneId": "19-go-right",
+    "fromFrame": 24154,
+    "toFrame": 24284,
+    "text": "Bây giờ đổi tình huống: BL lớn hơn AR."
+  },
+  {
+    "sceneId": "19-go-right",
+    "fromFrame": 24284,
+    "toFrame": 24517,
+    "text": "Một phần tử của B nằm phía trái lại lớn hơn phần tử A nằm phía phải."
+  },
+  {
+    "sceneId": "19-go-right",
+    "fromFrame": 24517,
+    "toFrame": 24682,
+    "text": "Chúng ta đang lấy quá ít phần tử từ A sang trái."
+  },
+  {
+    "sceneId": "19-go-right",
+    "fromFrame": 24682,
+    "toFrame": 24909,
+    "text": "Vì vậy, tăng i bằng cách đặt lo bằng i cộng một; lúc đó j tự giảm."
+  },
+  {
+    "sceneId": "19-go-right",
+    "fromFrame": 24909,
+    "toFrame": 25039,
+    "text": "Hai hướng cập nhật hoàn toàn đối xứng."
+  },
+  {
+    "sceneId": "19-go-right",
+    "fromFrame": 25039,
+    "toFrame": 25224,
+    "text": "Bạn không cần nhớ hai dòng code như công thức bí hiểm."
+  },
+  {
+    "sceneId": "19-go-right",
+    "fromFrame": 25224,
+    "toFrame": 25548,
+    "text": "Chỉ cần hỏi bên nào có phần tử đang nằm sai phía, rồi sửa vị trí cắt để đưa nó về đúng nhóm."
+  },
+  {
+    "sceneId": "20-walk1",
+    "fromFrame": 25550,
+    "toFrame": 25789,
+    "text": "Chúng ta sẽ lần theo thuật toán với ví dụ chính thức một."
+  },
+  {
+    "sceneId": "20-walk1",
+    "fromFrame": 25789,
+    "toFrame": 26057,
+    "text": "Vì nums hai chỉ có một số, ta dùng A bằng hai; B bằng một và ba."
+  },
+  {
+    "sceneId": "20-walk1",
+    "fromFrame": 26057,
+    "toFrame": 26216,
+    "text": "Tổng ba phần tử nên leftSize bằng hai."
+  },
+  {
+    "sceneId": "20-walk1",
+    "fromFrame": 26216,
+    "toFrame": 26517,
+    "text": "Ban đầu i bằng không, j bằng hai; khi ấy BL bằng ba lớn hơn AR bằng hai."
+  },
+  {
+    "sceneId": "20-walk1",
+    "fromFrame": 26517,
+    "toFrame": 26605,
+    "text": "Cần dịch i sang phải."
+  },
+  {
+    "sceneId": "20-walk1",
+    "fromFrame": 26605,
+    "toFrame": 26756,
+    "text": "Ở bước sau i bằng một và j bằng một."
+  },
+  {
+    "sceneId": "20-walk1",
+    "fromFrame": 26756,
+    "toFrame": 26982,
+    "text": "AL bằng hai, AR dương vô cực, BL bằng một, BR bằng ba."
+  },
+  {
+    "sceneId": "20-walk1",
+    "fromFrame": 26982,
+    "toFrame": 27091,
+    "text": "Cả hai điều kiện đều đúng."
+  },
+  {
+    "sceneId": "20-walk1",
+    "fromFrame": 27091,
+    "toFrame": 27286,
+    "text": "Tổng lẻ, lấy max của hai và một, kết quả hai."
+  },
+  {
+    "sceneId": "21-walk2",
+    "fromFrame": 27288,
+    "toFrame": 27530,
+    "text": "Với ví dụ chính thức hai, A gồm một và hai, B gồm ba và bốn."
+  },
+  {
+    "sceneId": "21-walk2",
+    "fromFrame": 27530,
+    "toFrame": 27667,
+    "text": "Tổng bốn số nên leftSize bằng hai."
+  },
+  {
+    "sceneId": "21-walk2",
+    "fromFrame": 27667,
+    "toFrame": 27816,
+    "text": "Lần thử đầu i bằng một và j bằng một."
+  },
+  {
+    "sceneId": "21-walk2",
+    "fromFrame": 27816,
+    "toFrame": 28018,
+    "text": "AL bằng một, AR bằng hai, BL bằng ba, BR bằng bốn."
+  },
+  {
+    "sceneId": "21-walk2",
+    "fromFrame": 28018,
+    "toFrame": 28179,
+    "text": "BL lớn hơn AR, nên cần dịch i sang phải."
+  },
+  {
+    "sceneId": "21-walk2",
+    "fromFrame": 28179,
+    "toFrame": 28344,
+    "text": "Lần tiếp theo i bằng hai và j bằng không."
+  },
+  {
+    "sceneId": "21-walk2",
+    "fromFrame": 28344,
+    "toFrame": 28598,
+    "text": "AL bằng hai, AR là dương vô cực, BL là âm vô cực và BR bằng ba."
+  },
+  {
+    "sceneId": "21-walk2",
+    "fromFrame": 28598,
+    "toFrame": 28667,
+    "text": "Điều kiện hợp lệ."
+  },
+  {
+    "sceneId": "21-walk2",
+    "fromFrame": 28667,
+    "toFrame": 28996,
+    "text": "Tổng chẵn nên lấy max trái là hai, min phải là ba, trung bình bằng hai phẩy năm."
+  },
+  {
+    "sceneId": "22-empty",
+    "fromFrame": 28998,
+    "toFrame": 29266,
+    "text": "Hãy kiểm tra trường hợp được đề cho phép nhưng không xuất hiện trong hai ví dụ chính thức."
+  },
+  {
+    "sceneId": "22-empty",
+    "fromFrame": 29266,
+    "toFrame": 29370,
+    "text": "Mảng A trống, mảng B chỉ có số năm."
+  },
+  {
+    "sceneId": "22-empty",
+    "fromFrame": 29370,
+    "toFrame": 29519,
+    "text": "Tìm kiếm trên A chỉ có một lựa chọn: i bằng không."
+  },
+  {
+    "sceneId": "22-empty",
+    "fromFrame": 29519,
+    "toFrame": 29656,
+    "text": "Tổng một số nên leftSize bằng một, j bằng một."
+  },
+  {
+    "sceneId": "22-empty",
+    "fromFrame": 29656,
+    "toFrame": 29811,
+    "text": "Các giá trị AL và AR lần lượt là âm và dương vô cực."
+  },
+  {
+    "sceneId": "22-empty",
+    "fromFrame": 29811,
+    "toFrame": 29969,
+    "text": "Đường cắt hợp lệ ngay, và max phía trái chính là năm."
+  },
+  {
+    "sceneId": "22-empty",
+    "fromFrame": 29969,
+    "toFrame": 30226,
+    "text": "Mảng rỗng không đòi thêm một thuật toán khác; bốn giá trị biên đã xử lý tình huống đó."
+  },
+  {
+    "sceneId": "22-empty",
+    "fromFrame": 30226,
+    "toFrame": 30392,
+    "text": "Đây là lợi ích của việc thiết kế điều kiện tổng quát."
+  },
+  {
+    "sceneId": "23-duplicates",
+    "fromFrame": 30394,
+    "toFrame": 30570,
+    "text": "Bây giờ, nếu cả hai mảng có những giá trị bằng nhau thì sao?"
+  },
+  {
+    "sceneId": "23-duplicates",
+    "fromFrame": 30570,
+    "toFrame": 30667,
+    "text": "Ví dụ hai mảng đều chứa hai, hai."
+  },
+  {
+    "sceneId": "23-duplicates",
+    "fromFrame": 30667,
+    "toFrame": 30939,
+    "text": "Đường cắt vẫn hợp lệ vì hai điều kiện dùng nhỏ hơn hoặc bằng, không phải nhỏ hơn nghiêm ngặt."
+  },
+  {
+    "sceneId": "23-duplicates",
+    "fromFrame": 30939,
+    "toFrame": 30986,
+    "text": "Median bằng hai."
+  },
+  {
+    "sceneId": "23-duplicates",
+    "fromFrame": 30986,
+    "toFrame": 31243,
+    "text": "Với giá trị âm cực tiểu và dương cực đại theo giới hạn đề, trung vị của hai số là không."
+  },
+  {
+    "sceneId": "23-duplicates",
+    "fromFrame": 31243,
+    "toFrame": 31582,
+    "text": "Cả hai ví dụ này nhắc chúng ta: các phép so sánh phải phản ánh đúng tính chất cho phép bằng nhau, và phải xét số âm."
+  },
+  {
+    "sceneId": "23-duplicates",
+    "fromFrame": 31582,
+    "toFrame": 31732,
+    "text": "Một bài test tốt tìm điểm dễ quên của giả thuyết."
+  },
+  {
+    "sceneId": "24-pseudocode",
+    "fromFrame": 31734,
+    "toFrame": 31925,
+    "text": "Trước khi viết Python, chúng ta nói lại thuật toán bằng lời."
+  },
+  {
+    "sceneId": "24-pseudocode",
+    "fromFrame": 31925,
+    "toFrame": 32043,
+    "text": "Bước một, đảm bảo A là mảng ngắn hơn."
+  },
+  {
+    "sceneId": "24-pseudocode",
+    "fromFrame": 32043,
+    "toFrame": 32343,
+    "text": "Bước hai, tính số phần tử phải nằm ở phía trái và đặt khoảng tìm kiếm i từ không đến độ dài A."
+  },
+  {
+    "sceneId": "24-pseudocode",
+    "fromFrame": 32343,
+    "toFrame": 32620,
+    "text": "Bước ba, ở mỗi lần thử lấy i chính giữa, tính j rồi đọc bốn số biên với vô cực nếu cần."
+  },
+  {
+    "sceneId": "24-pseudocode",
+    "fromFrame": 32620,
+    "toFrame": 32827,
+    "text": "Bước bốn, nếu hai điều kiện chéo đều đúng, tính trung vị và dừng."
+  },
+  {
+    "sceneId": "24-pseudocode",
+    "fromFrame": 32827,
+    "toFrame": 33028,
+    "text": "Nếu AL lớn hơn BR, cắt A sang trái; ngược lại, cắt A sang phải."
+  },
+  {
+    "sceneId": "24-pseudocode",
+    "fromFrame": 33028,
+    "toFrame": 33185,
+    "text": "Quy trình này phải rõ trước khi code xuất hiện."
+  },
+  {
+    "sceneId": "25-python1",
+    "fromFrame": 33187,
+    "toFrame": 33270,
+    "text": "Bây giờ mới đến Python ba."
+  },
+  {
+    "sceneId": "25-python1",
+    "fromFrame": 33270,
+    "toFrame": 33443,
+    "text": "Ta nhận hai mảng và đổi chỗ biến nếu mảng đầu dài hơn."
+  },
+  {
+    "sceneId": "25-python1",
+    "fromFrame": 33443,
+    "toFrame": 33841,
+    "text": "Lấy m và n là độ dài của A và B. left_size bằng tổng cộng một rồi chia nguyên cho hai, cách này tự xử lý trường hợp tổng lẻ."
+  },
+  {
+    "sceneId": "25-python1",
+    "fromFrame": 33841,
+    "toFrame": 33934,
+    "text": "Đặt lo bằng không, hi bằng m."
+  },
+  {
+    "sceneId": "25-python1",
+    "fromFrame": 33934,
+    "toFrame": 34178,
+    "text": "Trong vòng lặp, i là trung điểm của khoảng tìm kiếm, j bằng left_size trừ i."
+  },
+  {
+    "sceneId": "25-python1",
+    "fromFrame": 34178,
+    "toFrame": 34483,
+    "text": "Chúng ta không lặp trên từng phần tử; chúng ta chỉ thay đổi số phần tử đứng bên trái đường cắt."
+  },
+  {
+    "sceneId": "25-python1",
+    "fromFrame": 34483,
+    "toFrame": 34667,
+    "text": "Mỗi biến trong code đều đã có ý nghĩa từ phần hình ảnh."
+  },
+  {
+    "sceneId": "26-python2",
+    "fromFrame": 34669,
+    "toFrame": 35003,
+    "text": "Trong thân vòng lặp, bốn biến a_left, a_right, b_left, b_right chỉ là các phần tử ở sát đường cắt."
+  },
+  {
+    "sceneId": "26-python2",
+    "fromFrame": 35003,
+    "toFrame": 35157,
+    "text": "Khi cắt ra ngoài biên, dùng vô cực tương ứng."
+  },
+  {
+    "sceneId": "26-python2",
+    "fromFrame": 35157,
+    "toFrame": 35437,
+    "text": "Nếu a_left không vượt b_right và b_left không vượt a_right, ta đã tìm đúng vị trí."
+  },
+  {
+    "sceneId": "26-python2",
+    "fromFrame": 35437,
+    "toFrame": 35591,
+    "text": "Nếu tổng lẻ, trả về max của hai giá trị trái."
+  },
+  {
+    "sceneId": "26-python2",
+    "fromFrame": 35591,
+    "toFrame": 35782,
+    "text": "Nếu tổng chẵn, lấy trung bình giữa max trái và min phải."
+  },
+  {
+    "sceneId": "26-python2",
+    "fromFrame": 35782,
+    "toFrame": 36038,
+    "text": "Nếu chưa hợp lệ, so a_left với b_right để biết cần dịch trái hay dịch phải."
+  },
+  {
+    "sceneId": "26-python2",
+    "fromFrame": 36038,
+    "toFrame": 36235,
+    "text": "Không có một bước nào cần sao chép hay sort lại dữ liệu."
+  },
+  {
+    "sceneId": "27-narrated-trace",
+    "fromFrame": 36237,
+    "toFrame": 36435,
+    "text": "Hãy tưởng tượng đang chạy trình gỡ lỗi tại ví dụ thứ hai."
+  },
+  {
+    "sceneId": "27-narrated-trace",
+    "fromFrame": 36435,
+    "toFrame": 36570,
+    "text": "Ban đầu lo không, hi hai, i một, j một."
+  },
+  {
+    "sceneId": "27-narrated-trace",
+    "fromFrame": 36570,
+    "toFrame": 36775,
+    "text": "Dòng kiểm tra chéo cho thấy BL bằng ba lớn hơn AR bằng hai."
+  },
+  {
+    "sceneId": "27-narrated-trace",
+    "fromFrame": 36775,
+    "toFrame": 36942,
+    "text": "Nhánh dịch phải chạy, làm lo từ không thành hai."
+  },
+  {
+    "sceneId": "27-narrated-trace",
+    "fromFrame": 36942,
+    "toFrame": 37112,
+    "text": "Vòng lặp tiếp theo tính i bằng hai, j bằng không."
+  },
+  {
+    "sceneId": "27-narrated-trace",
+    "fromFrame": 37112,
+    "toFrame": 37313,
+    "text": "Chúng ta đọc AL hai, AR dương vô cực, BL âm vô cực, BR ba."
+  },
+  {
+    "sceneId": "27-narrated-trace",
+    "fromFrame": 37313,
+    "toFrame": 37407,
+    "text": "Hai bất đẳng thức đều đúng."
+  },
+  {
+    "sceneId": "27-narrated-trace",
+    "fromFrame": 37407,
+    "toFrame": 37591,
+    "text": "Đến dòng kiểm tra tổng chẵn, hàm trả về hai phẩy năm."
+  },
+  {
+    "sceneId": "27-narrated-trace",
+    "fromFrame": 37591,
+    "toFrame": 37859,
+    "text": "Đó là một chuỗi trạng thái thật của code, không phải hoạt cảnh tưởng tượng."
+  },
+  {
+    "sceneId": "28-complexity",
+    "fromFrame": 37861,
+    "toFrame": 37940,
+    "text": "Giờ hãy đánh giá hiệu quả."
+  },
+  {
+    "sceneId": "28-complexity",
+    "fromFrame": 37940,
+    "toFrame": 38248,
+    "text": "Vì i chỉ nằm từ không đến độ dài của mảng ngắn hơn, mỗi phép so sánh loại bỏ khoảng một nửa lựa chọn,"
+  },
+  {
+    "sceneId": "28-complexity",
+    "fromFrame": 38248,
+    "toFrame": 38391,
+    "text": "số vòng lặp tăng theo logarit độ dài mảng ngắn."
+  },
+  {
+    "sceneId": "28-complexity",
+    "fromFrame": 38391,
+    "toFrame": 38753,
+    "text": "Mỗi vòng chỉ đọc bốn giá trị và thực hiện một lượng tính toán cố định, nên thời gian là O của logarit min m n cộng một."
+  },
+  {
+    "sceneId": "28-complexity",
+    "fromFrame": 38753,
+    "toFrame": 38896,
+    "text": "Nó nằm trong yêu cầu O logarit m cộng n của đề."
+  },
+  {
+    "sceneId": "28-complexity",
+    "fromFrame": 38896,
+    "toFrame": 39085,
+    "text": "Bộ nhớ phụ chỉ gồm vài biến và bốn giá trị biên nên O của một."
+  },
+  {
+    "sceneId": "28-complexity",
+    "fromFrame": 39085,
+    "toFrame": 39284,
+    "text": "Đừng nhầm O logarit số phần tử với O logarit giá trị số nguyên."
+  },
+  {
+    "sceneId": "29-lessons",
+    "fromFrame": 39286,
+    "toFrame": 39365,
+    "text": "Nhìn lại toàn bộ hành trình."
+  },
+  {
+    "sceneId": "29-lessons",
+    "fromFrame": 39365,
+    "toFrame": 39606,
+    "text": "Ban đầu chúng ta nghĩ phải gộp hai mảng, nhưng thực tế chỉ cần tìm biên giữa hai nửa."
+  },
+  {
+    "sceneId": "29-lessons",
+    "fromFrame": 39606,
+    "toFrame": 39787,
+    "text": "Chúng ta thay một tác vụ lớn bằng một điều kiện kiểm tra bốn số."
+  },
+  {
+    "sceneId": "29-lessons",
+    "fromFrame": 39787,
+    "toFrame": 39943,
+    "text": "Chúng ta tận dụng thứ tự có sẵn thay vì làm lại từ đầu."
+  },
+  {
+    "sceneId": "29-lessons",
+    "fromFrame": 39943,
+    "toFrame": 40181,
+    "text": "Và chúng ta dùng các trường hợp mảng rỗng, số trùng, tổng chẵn hay lẻ để kiểm chứng."
+  },
+  {
+    "sceneId": "29-lessons",
+    "fromFrame": 40181,
+    "toFrame": 40509,
+    "text": "Đây là những thói quen áp dụng được khi tìm dữ liệu trong hệ thống, chọn một ngưỡng phân chia hoặc tối ưu quy trình."
+  },
+  {
+    "sceneId": "29-lessons",
+    "fromFrame": 40509,
+    "toFrame": 40680,
+    "text": "Giá trị lớn nhất của tập này không nằm ở việc nhớ i hay j."
+  },
+  {
+    "sceneId": "30-practice",
+    "fromFrame": 40682,
+    "toFrame": 40772,
+    "text": "Để luyện tiếp, hãy thử ba bài."
+  },
+  {
+    "sceneId": "30-practice",
+    "fromFrame": 40772,
+    "toFrame": 41134,
+    "text": "Bài ba mươi lăm, Search Insert Position, giúp bạn nhận ra binary search có thể tìm vị trí chèn chứ không chỉ tìm giá trị."
+  },
+  {
+    "sceneId": "30-practice",
+    "fromFrame": 41134,
+    "toFrame": 41475,
+    "text": "Bài ba mươi bốn, Find First and Last Position of Element, luyện cách xác định ranh giới đúng khi có giá trị trùng."
+  },
+  {
+    "sceneId": "30-practice",
+    "fromFrame": 41475,
+    "toFrame": 41780,
+    "text": "Bài ba trăm bảy mươi tám, Kth Smallest Element in a Sorted Matrix, mở rộng tư duy tìm phần tử theo thứ"
+  },
+  {
+    "sceneId": "30-practice",
+    "fromFrame": 41780,
+    "toFrame": 41873,
+    "text": "hạng mà không cần sort toàn bộ."
+  },
+  {
+    "sceneId": "30-practice",
+    "fromFrame": 41873,
+    "toFrame": 42219,
+    "text": "Với mỗi bài, hãy tự đặt câu hỏi: điều kiện nào là đúng, và một phép kiểm tra cho phép loại bỏ những lựa chọn nào?"
+  },
+  {
+    "sceneId": "31-outro",
+    "fromFrame": 42221,
+    "toFrame": 42508,
+    "text": "Kết thúc bài số bốn, ta đã biến một bài Hard thành một chuỗi câu hỏi nhỏ và kiểm chứng được."
+  },
+  {
+    "sceneId": "31-outro",
+    "fromFrame": 42508,
+    "toFrame": 42820,
+    "text": "Nếu lần sau bạn quên code Python, điều đó không sao; hãy thử vẽ hai đường cắt, đặt bốn số ở biên, tự"
+  },
+  {
+    "sceneId": "31-outro",
+    "fromFrame": 42820,
+    "toFrame": 42948,
+    "text": "chứng minh điều kiện hợp lệ rồi viết lại."
+  },
+  {
+    "sceneId": "31-outro",
+    "fromFrame": 42948,
+    "toFrame": 43182,
+    "text": "Đó là học để giải quyết vấn đề thật, chứ không phải thuộc lòng câu trả lời."
+  },
+  {
+    "sceneId": "31-outro",
+    "fromFrame": 43182,
+    "toFrame": 43291,
+    "text": "Cảm ơn bạn đã học cùng Kieu Studio."
+  },
+  {
+    "sceneId": "31-outro",
+    "fromFrame": 43291,
+    "toFrame": 43473,
+    "text": "Hẹn gặp ở bài thực hành tiếp theo của The Art of Coding."
+  }
+]
