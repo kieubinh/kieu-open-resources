@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>12 mẫu tư duy giải thuật toán — Kieu Studio</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root { --navy: #0b2554; --blue: #0070f3; --cyan: #00c8ff; --ink: #1d2433; --muted: #5a6478; --line: #dbe4f3; --soft: #f3f7fd; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif; color: var(--ink); font-size: 10.5pt; line-height: 1.45; }
+  .page { width: 210mm; height: 297mm; padding: 16mm 15mm 14mm; position: relative; page-break-after: always; overflow: hidden; }
+  .page:last-child { page-break-after: auto; }
+  .foot { position: absolute; left: 15mm; right: 15mm; bottom: 8mm; display: flex; justify-content: space-between; font-size: 8pt; color: var(--muted); border-top: 1px solid var(--line); padding-top: 3mm; }
+  h1 { font-size: 30pt; line-height: 1.12; color: var(--navy); margin: 0 0 4mm; letter-spacing: -0.5px; }
+  h2 { font-size: 16pt; color: var(--navy); margin: 0 0 4mm; }
+  h3 { font-size: 12.5pt; color: var(--navy); margin: 0; }
+  p { margin: 0 0 2.5mm; }
+  .accent { color: var(--blue); }
+  .brand { display: flex; align-items: center; gap: 3mm; font-weight: 700; color: var(--navy); letter-spacing: 1px; }
+  .brand img { width: 11mm; height: 11mm; }
+
+  .cover { background: linear-gradient(160deg, #ffffff 0%, #ffffff 45%, #dceeff 100%); }
+  .cover .hero { margin-top: 40mm; }
+  .cover .lead { font-size: 13pt; color: var(--muted); max-width: 150mm; }
+  .chips { display: flex; flex-wrap: wrap; gap: 2mm; margin: 8mm 0 10mm; max-width: 170mm; }
+  .chip { border: 1px solid var(--line); background: #fff; border-radius: 99px; padding: 1.2mm 3.5mm; font-size: 9pt; color: var(--navy); }
+  .howto { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; margin-top: 4mm; }
+  .howto div { background: #fff; border: 1px solid var(--line); border-radius: 3mm; padding: 4mm; font-size: 9.5pt; }
+  .howto b { display: block; color: var(--blue); font-size: 18pt; margin-bottom: 1mm; }
+  .author { position: absolute; left: 15mm; bottom: 22mm; font-size: 9.5pt; color: var(--muted); }
+
+  .card { border: 1px solid var(--line); border-radius: 3mm; padding: 3.5mm 5mm; margin-bottom: 3.5mm; }
+  .card header { display: flex; align-items: baseline; gap: 3mm; margin-bottom: 2mm; }
+  .num { font-weight: 800; color: #fff; background: var(--blue); border-radius: 2mm; padding: 0.4mm 2.2mm; font-size: 10pt; }
+  .grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 4mm; }
+  .label { font-size: 8pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--muted); margin-top: 1.5mm; }
+  pre { margin: 0; background: var(--soft); border-radius: 2mm; padding: 2.5mm 3mm; font: 8.2pt/1.36 Menlo, "SF Mono", Consolas, monospace; color: #13203a; white-space: pre; }
+  .practice { font-size: 9pt; color: var(--muted); margin-top: 1.5mm; }
+  .practice b { color: var(--navy); }
+
+  .steps { counter-reset: s; margin: 0 0 5mm; padding: 0; list-style: none; }
+  .steps li { counter-increment: s; position: relative; padding-left: 10mm; margin-bottom: 3mm; }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 7mm; height: 7mm; border-radius: 50%; background: var(--navy); color: #fff; font-weight: 700; text-align: center; line-height: 7mm; font-size: 9pt; }
+  .prompt { background: var(--soft); border-left: 3px solid var(--cyan); padding: 3mm 4mm; margin-bottom: 3mm; font-size: 9.5pt; }
+  .prompt b { color: var(--navy); }
+  table { width: 100%; border-collapse: collapse; font-size: 9.5pt; margin-bottom: 6mm; }
+  th, td { text-align: left; padding: 2mm 3mm; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-size: 8.5pt; text-transform: uppercase; letter-spacing: 0.5px; }
+  .cta { background: var(--navy); color: #fff; border-radius: 4mm; padding: 7mm 8mm; }
+  .cta h2 { color: #fff; }
+  .cta a { color: var(--cyan); font-weight: 700; text-decoration: none; }
+  .cta .row { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; margin-top: 4mm; }
+</style>
+</head>
+<body>
+
+<!-- Trang 1: bìa -->
+<section class="page cover">
+  <div class="brand"><img src="kieu-studio-mark.png" alt="">KIEU STUDIO</div>
+  <div class="hero">
+    <h1>12 mẫu tư duy<br><span class="accent">giải thuật toán</span></h1>
+    <p class="lead">Cheatsheet tiếng Việt: nhận ra bài thuộc dạng nào, nhớ khung code Python 3, và luyện cùng AI mà không học vẹt.</p>
+    <div class="chips">
+      <span class="chip">Hash Map</span><span class="chip">Two Pointers</span><span class="chip">Sliding Window</span><span class="chip">Prefix Sum</span>
+      <span class="chip">Binary Search</span><span class="chip">Monotonic Stack</span><span class="chip">BFS</span><span class="chip">Backtracking</span>
+      <span class="chip">Heap / Top-K</span><span class="chip">Quy hoạch động</span><span class="chip">Khoảng &amp; Tham lam</span><span class="chip">Union-Find</span>
+    </div>
+    <h2>Dùng tài liệu này thế nào?</h2>
+    <div class="howto">
+      <div><b>1</b>Đọc đề, <strong>chưa code</strong>. Dò mục "Dấu hiệu" để đoán bài thuộc mẫu nào.</div>
+      <div><b>2</b>Tự viết lại khung code từ trí nhớ, rồi mới so với khung trong tài liệu.</div>
+      <div><b>3</b>Làm bài luyện theo thứ tự dễ → khó. Kẹt quá 25 phút thì dùng prompt ở trang 6.</div>
+    </div>
+  </div>
+  <div class="author">Biên soạn: Anthony Kieu · Kieu Studio · kieu.app<br>Miễn phí, được chia sẻ lại nếu giữ nguyên nguồn.</div>
+  <div class="foot"><span>Kieu Studio — AI &amp; Lập trình thực chiến</span><span>1</span></div>
+</section>
+
+<!-- Trang 2 -->
+<section class="page">
+  <div class="card">
+    <header><span class="num">01</span><h3>Hash Map — đổi bộ nhớ lấy thời gian</h3></header>
+    <div class="grid">
+      <div>
+        <div class="label">Dấu hiệu</div>
+        <p>"Có cặp/phần tử nào thoả…", cần tra cứu nhanh "đã gặp chưa", đếm tần suất, gom nhóm.</p>
+        <div class="label">Ý tưởng</div>
+        <p>Thay vòng lặp thứ hai bằng một lần tra cứu O(1) trong dict/set.</p>
+        <div class="label">Độ phức tạp</div>
+        <p>Thời gian O(n), bộ nhớ O(n).</p>
+      </div>
+<pre>def two_sum(nums, target):
+    pos = {}                     # giá trị -> chỉ số
+    for i, x in enumerate(nums):
+        if target - x in pos:
+            return [pos[target - x], i]
+        pos[x] = i</pre>
+    </div>
+    <div class="practice"><b>Luyện:</b> LeetCode 1 Two Sum · 49 Group Anagrams · 128 Longest Consecutive Sequence</div>
+  </div>
+
+  <div class="card">
+    <header><span class="num">02</span><h3>Two Pointers — hai đầu tiến lại gần nhau</h3></header>
+    <div class="grid">
+      <div>
+        <div class="label">Dấu hiệu</div>
+        <p>Mảng đã sắp xếp (hoặc sắp xếp được), tìm cặp/bộ ba, so sánh hai đầu, đảo chuỗi.</p>
+        <div class="label">Ý tưởng</div>
+        <p>Mỗi bước loại bỏ được một đầu chắc chắn không cho kết quả tốt hơn.</p>
+        <div class="label">Độ phức tạp</div>
+        <p>Thời gian O(n), bộ nhớ O(1).</p>
+      </div>
+<pre>def max_area(h):
+    l, r, best = 0, len(h) - 1, 0
+    while l &lt; r:
+        best = max(best, min(h[l], h[r]) * (r - l))
+        if h[l] &lt; h[r]:
+            l += 1               # cột thấp giới hạn diện tích
+        else:
+            r -= 1
+    return best</pre>
+    </div>
+    <div class="practice"><b>Luyện:</b> 167 Two Sum II · 11 Container With Most Water · 15 3Sum · 42 Trapping Rain Water</div>
+  </div>
+
+  <div class="card">
+    <header><span class="num">03</span><h3>Sliding Window — cửa sổ co giãn</h3></header>
+    <div class="grid">
+      <div>
+        <div class="label">Dấu hiệu</div>
+        <p>"Chuỗi con / mảng con liên tiếp dài nhất / ngắn nhất thoả điều kiện…"</p>
+        <div class="label">Ý tưởng</div>
+        <p>Mở rộng bên phải; khi cửa sổ vi phạm điều kiện thì thu hẹp bên trái.</p>
+        <div class="label">Độ phức tạp</div>
+        <p>Thời gian O(n), bộ nhớ O(số ký tự khác nhau).</p>
+      </div>
+<pre>def longest_unique(s):
+    last, left, best = {}, 0, 0
+    for right, ch in enumerate(s):
+        if last.get(ch, -1) &gt;= left:
+            left = last[ch] + 1  # nhảy qua ký tự trùng
+        last[ch] = right
+        best = max(best, right - left + 1)
+    return best</pre>
+    </div>
+    <div class="practice"><b>Luyện:</b> 3 Longest Substring Without Repeating Characters · 209 Minimum Size Subarray Sum · 76 Minimum Window Substring</div>
+  </div>
+  <div class="foot"><span>Kieu Studio — 12 mẫu tư duy giải thuật toán</span><span>2</span></div>
+</section>
+
+<!-- Trang 3 -->
+<section class="page">
+  <div class="card">
+    <header><span class="num">04</span><h3>Prefix Sum — tổng dồn để trả lời nhanh</h3></header>
+    <div class="grid">
+      <div>
+        <div class="label">Dấu hiệu</div>
+        <p>"Tổng của đoạn [i, j]", "có bao nhiêu mảng con có tổng bằng k" (kể cả số âm).</p>
+        <div class="label">Ý tưởng</div>
+        <p>sum(i..j) = P[j] − P[i−1]. Kết hợp Hash Map để đếm các P đã gặp.</p>
+        <div class="label">Độ phức tạp</div>
+        <p>Thời gian O(n), bộ nhớ O(n).</p>
+      </div>
+<pre>def subarray_sum(nums, k):
+    count, s, ans = {0: 1}, 0, 0
+    for x in nums:
+        s += x
+        ans += count.get(s - k, 0)
+        count[s] = count.get(s, 0) + 1
+    return ans</pre>
+    </div>
+    <div class="practice"><b>Luyện:</b> 303 Range Sum Query – Immutable · 560 Subarray Sum Equals K · 238 Product of Array Except Self</div>
+  </div>
+
+  <div class="card">
+    <header><span class="num">05</span><h3>Binary Search — tìm vị trí "đúng" đầu tiên</h3></header>
+    <div class="grid">
+      <div>
+        <div class="label">Dấu hiệu</div>
+        <p>Dữ liệu sắp xếp, hoặc câu hỏi kiểu "giá trị nhỏ nhất sao cho … vẫn làm được" (tìm kiếm trên đáp án).</p>
+        <div class="label">Ý tưởng</div>
+        <p>Viết hàm ok(x) có dạng Sai…Sai Đúng…Đúng, rồi tìm chữ Đúng đầu tiên.</p>
+        <div class="label">Độ phức tạp</div>
+        <p>O(log M) lần gọi ok(x).</p>
+      </div>
+<pre>def first_true(lo, hi, ok):
+    while lo &lt; hi:
+        mid = (lo + hi) // 2
+        if ok(mid):
+            hi = mid             # mid có thể là đáp án
+        else:
+            lo = mid + 1
+    return lo
+
+# Koko: tốc độ ăn nhỏ nhất kịp trong h giờ
+# first_true(1, max(piles),
+#   lambda k: sum((p + k - 1) // k for p in piles) &lt;= h)</pre>
+    </div>
+    <div class="practice"><b>Luyện:</b> 704 Binary Search · 33 Search in Rotated Sorted Array · 875 Koko Eating Bananas · 4 Median of Two Sorted Arrays</div>
+  </div>
+
+  <div class="card">
+    <header><span class="num">06</span><h3>Monotonic Stack — "phần tử lớn hơn tiếp theo"</h3></header>
+    <div class="grid">
+      <div>
+        <div class="label">Dấu hiệu</div>
+        <p>"Bao lâu nữa thì gặp giá trị lớn/nhỏ hơn", ngoặc hợp lệ, hình chữ nhật lớn nhất.</p>
+        <div class="label">Ý tưởng</div>
+        <p>Ngăn xếp giữ các chỉ số "đang chờ câu trả lời". Phần tử mới giải quyết những phần tử nhỏ hơn nó.</p>
+        <div class="label">Độ phức tạp</div>
+        <p>O(n): mỗi phần tử vào và ra ngăn xếp đúng một lần.</p>
+      </div>
+<pre>def daily_temps(t):
+    ans, st = [0] * len(t), []
+    for i, x in enumerate(t):
+        while st and t[st[-1]] &lt; x:
+            j = st.pop()
+            ans[j] = i - j
+        st.append(i)
+    return ans</pre>
+    </div>
+    <div class="practice"><b>Luyện:</b> 20 Valid Parentheses · 739 Daily Temperatures · 84 Largest Rectangle in Histogram</div>
+  </div>
+  <div class="foot"><span>Kieu Studio — 12 mẫu tư duy giải thuật toán</span><span>3</span></div>
+</section>
+
+<!-- Trang 4 -->
+<section class="page">
+  <div class="card">
+    <header><span class="num">07</span><h3>BFS — đường ngắn nhất theo số bước</h3></header>
+    <div class="grid">
+      <div>
+        <div class="label">Dấu hiệu</div>
+        <p>"Ít bước nhất", lan theo từng lớp (cây theo tầng, lưới, cam thối lan).</p>
+        <div class="label">Ý tưởng</div>
+        <p>Hàng đợi xử lý hết lớp hiện tại rồi mới sang lớp tiếp theo; đánh dấu đã thăm khi đưa vào hàng đợi.</p>
+        <div class="label">Độ phức tạp</div>
+        <p>O(V + E).</p>
+      </div>
+<pre>from collections import deque
+
+def bfs(start, goal, nbrs):
+    q, seen, steps = deque([start]), {start}, 0
+    while q:
+        for _ in range(len(q)):   # một lớp
+            u = q.popleft()
+            if u == goal:
+                return steps
+            for v in nbrs(u):
+                if v not in seen:
+                    seen.add(v)
+                    q.append(v)
+        steps += 1
+    return -1</pre>
+    </div>
+    <div class="practice"><b>Luyện:</b> 102 Binary Tree Level Order Traversal · 200 Number of Islands · 994 Rotting Oranges · 127 Word Ladder</div>
+  </div>
+
+  <div class="card">
+    <header><span class="num">08</span><h3>DFS / Backtracking — thử, đi sâu, quay lui</h3></header>
+    <div class="grid">
+      <div>
+        <div class="label">Dấu hiệu</div>
+        <p>"Liệt kê tất cả" tập con, hoán vị, tổ hợp; tìm đường trong lưới.</p>
+        <div class="label">Ý tưởng</div>
+        <p>Chọn → đệ quy → bỏ chọn. Cắt nhánh sớm khi chắc chắn không ra kết quả.</p>
+        <div class="label">Độ phức tạp</div>
+        <p>Tập con: O(n · 2ⁿ).</p>
+      </div>
+<pre>def subsets(nums):
+    res = []
+    def bt(start, path):
+        res.append(path[:])
+        for i in range(start, len(nums)):
+            path.append(nums[i])     # chọn
+            bt(i + 1, path)          # đi sâu
+            path.pop()               # quay lui
+    bt(0, [])
+    return res</pre>
+    </div>
+    <div class="practice"><b>Luyện:</b> 78 Subsets · 46 Permutations · 39 Combination Sum · 79 Word Search</div>
+  </div>
+
+  <div class="card">
+    <header><span class="num">09</span><h3>Heap / Top-K — giữ lại K phần tử tốt nhất</h3></header>
+    <div class="grid">
+      <div>
+        <div class="label">Dấu hiệu</div>
+        <p>"K lớn nhất / nhỏ nhất / thường gặp nhất", trộn nhiều danh sách đã sắp xếp.</p>
+        <div class="label">Ý tưởng</div>
+        <p>Min-heap kích thước k: phần tử nhỏ nhất trong heap chính là phần tử lớn thứ k.</p>
+        <div class="label">Độ phức tạp</div>
+        <p>O(n log k), bộ nhớ O(k).</p>
+      </div>
+<pre>import heapq
+
+def kth_largest(nums, k):
+    h = []
+    for x in nums:
+        heapq.heappush(h, x)
+        if len(h) &gt; k:
+            heapq.heappop(h)     # bỏ phần tử nhỏ nhất
+    return h[0]</pre>
+    </div>
+    <div class="practice"><b>Luyện:</b> 215 Kth Largest Element in an Array · 347 Top K Frequent Elements · 23 Merge k Sorted Lists</div>
+  </div>
+  <div class="foot"><span>Kieu Studio — 12 mẫu tư duy giải thuật toán</span><span>4</span></div>
+</section>
+
+<!-- Trang 5 -->
+<section class="page">
+  <div class="card">
+    <header><span class="num">10</span><h3>Quy hoạch động — bài lớn từ bài nhỏ</h3></header>
+    <div class="grid">
+      <div>
+        <div class="label">Dấu hiệu</div>
+        <p>"Số cách", "nhỏ nhất / lớn nhất", lựa chọn ở bước này ảnh hưởng bước sau, bài con lặp lại.</p>
+        <div class="label">Ý tưởng</div>
+        <p>Định nghĩa dp[trạng thái], viết công thức chuyển, chọn thứ tự tính sao cho bài con có trước.</p>
+        <div class="label">Độ phức tạp</div>
+        <p>Số trạng thái × chi phí mỗi lần chuyển. Coin Change: O(amount · số loại xu).</p>
+      </div>
+<pre>from math import inf
+
+def coin_change(coins, amount):
+    dp = [0] + [inf] * amount    # dp[a]: số xu ít nhất
+    for a in range(1, amount + 1):
+        for c in coins:
+            if c &lt;= a:
+                dp[a] = min(dp[a], dp[a - c] + 1)
+    return dp[amount] if dp[amount] &lt; inf else -1</pre>
+    </div>
+    <div class="practice"><b>Luyện:</b> 70 Climbing Stairs · 198 House Robber · 322 Coin Change · 1143 Longest Common Subsequence · 10 Regular Expression Matching · 44 Wildcard Matching</div>
+  </div>
+
+  <div class="card">
+    <header><span class="num">11</span><h3>Khoảng &amp; Tham lam — sắp xếp rồi quét</h3></header>
+    <div class="grid">
+      <div>
+        <div class="label">Dấu hiệu</div>
+        <p>Danh sách [bắt đầu, kết thúc]: gộp, đếm chồng lấn, xếp lịch; "bỏ ít nhất bao nhiêu".</p>
+        <div class="label">Ý tưởng</div>
+        <p>Sắp xếp theo điểm đầu (hoặc điểm cuối), rồi quyết định tại chỗ với khoảng gần nhất.</p>
+        <div class="label">Độ phức tạp</div>
+        <p>O(n log n) cho bước sắp xếp.</p>
+      </div>
+<pre>def merge(iv):
+    iv.sort()
+    out = [iv[0][:]]
+    for s, e in iv[1:]:
+        if s &lt;= out[-1][1]:          # chồng lấn
+            out[-1][1] = max(out[-1][1], e)
+        else:
+            out.append([s, e])
+    return out</pre>
+    </div>
+    <div class="practice"><b>Luyện:</b> 56 Merge Intervals · 435 Non-overlapping Intervals · 55 Jump Game</div>
+  </div>
+
+  <div class="card">
+    <header><span class="num">12</span><h3>Union-Find — gom nhóm các phần tử liên thông</h3></header>
+    <div class="grid">
+      <div>
+        <div class="label">Dấu hiệu</div>
+        <p>"Có bao nhiêu nhóm", "thêm cạnh này có tạo chu trình không".</p>
+        <div class="label">Ý tưởng</div>
+        <p>Mỗi nhóm có một đại diện; gộp hai nhóm bằng cách nối đại diện.</p>
+        <div class="label">Độ phức tạp</div>
+        <p>Nén đường đi: O(log n) mỗi thao tác (khấu hao); thêm gộp theo hạng thì gần như O(1).</p>
+      </div>
+<pre>parent = list(range(n))
+
+def find(x):
+    while parent[x] != x:
+        parent[x] = parent[parent[x]]   # nén đường đi
+        x = parent[x]
+    return x
+
+def union(a, b):
+    ra, rb = find(a), find(b)
+    if ra == rb:
+        return False             # đã cùng nhóm → chu trình
+    parent[ra] = rb
+    return True</pre>
+    </div>
+    <div class="practice"><b>Luyện:</b> 547 Number of Provinces · 684 Redundant Connection · 207 Course Schedule (tô-pô)</div>
+  </div>
+  <div class="foot"><span>Kieu Studio — 12 mẫu tư duy giải thuật toán</span><span>5</span></div>
+</section>
+
+<!-- Trang 6: luyện cùng AI -->
+<section class="page">
+  <h2>Luyện cùng AI mà không học vẹt</h2>
+  <p>AI giải hộ bạn trong 3 giây, nhưng như vậy bạn không học được gì. Hãy dùng AI như một người hướng dẫn: gợi ý từng chút, bắt bạn tự giải thích.</p>
+  <ol class="steps">
+    <li><strong>Tự làm 20–25 phút trước.</strong> Viết ra: bài thuộc mẫu nào, vì sao, và một ví dụ nhỏ tự tạo.</li>
+    <li><strong>Xin gợi ý, không xin lời giải.</strong> Mỗi lần chỉ hỏi một gợi ý.</li>
+    <li><strong>Tự viết code</strong>, rồi nhờ AI tìm trường hợp biên làm code sai.</li>
+    <li><strong>Giải thích lại cho AI</strong> như đang dạy người khác. AI chấm xem bạn hiểu đúng chưa.</li>
+    <li><strong>Làm lại sau 3 ngày</strong>, không xem bài cũ.</li>
+  </ol>
+
+  <div class="prompt"><b>Prompt 1 — Gợi ý từng bước</b><br>Mình đang giải LeetCode {số}. Đừng đưa lời giải hay code. Hãy cho mình đúng MỘT gợi ý nhỏ nhất để đi tiếp. Mình sẽ hỏi tiếp nếu vẫn kẹt.</div>
+  <div class="prompt"><b>Prompt 2 — Nhận dạng mẫu</b><br>Đây là đề bài: {dán đề}. Mình nghĩ nó thuộc mẫu {tên mẫu} vì {lý do}. Lập luận của mình đúng hay sai ở đâu? Chưa cần nói mẫu đúng là gì.</div>
+  <div class="prompt"><b>Prompt 3 — Tìm trường hợp biên</b><br>Đây là code của mình: {code}. Đừng sửa code. Hãy liệt kê 5 input có khả năng làm code sai (mảng rỗng, phần tử trùng, số âm, giá trị lớn…) và để mình tự chạy thử.</div>
+  <div class="prompt"><b>Prompt 4 — Kiểm tra mức hiểu</b><br>Mình sẽ giải thích lời giải bằng lời của mình: {giải thích}. Hãy hỏi mình 3 câu để kiểm tra mình hiểu thật hay chỉ nhớ. Sau đó chấm điểm 1–10 và chỉ ra chỗ còn mơ hồ.</div>
+
+  <h2 style="margin-top:6mm">Lộ trình 4 tuần gợi ý</h2>
+  <table>
+    <tr><th>Tuần</th><th>Mẫu</th><th>Mục tiêu</th></tr>
+    <tr><td>1</td><td>01 Hash Map · 02 Two Pointers · 03 Sliding Window</td><td>Nhận dạng được mẫu trong 2 phút đầu</td></tr>
+    <tr><td>2</td><td>04 Prefix Sum · 05 Binary Search · 06 Monotonic Stack</td><td>Tự viết template không cần nhìn</td></tr>
+    <tr><td>3</td><td>07 BFS · 08 Backtracking · 09 Heap</td><td>Giải bài Medium trong 30 phút</td></tr>
+    <tr><td>4</td><td>10 Quy hoạch động · 11 Khoảng · 12 Union-Find</td><td>Giải thích lời giải trong 3 phút như khi phỏng vấn</td></tr>
+  </table>
+  <div class="foot"><span>Kieu Studio — 12 mẫu tư duy giải thuật toán</span><span>6</span></div>
+</section>
+
+<!-- Trang 7: CTA -->
+<section class="page">
+  <h2>Học tiếp cùng Kieu Studio &amp; Kieu Academy</h2>
+  <p>Mỗi mẫu trong tài liệu này đều có (hoặc sắp có) một video giải thích từng bước bằng tiếng Việt trên kênh Kieu Studio: đề bài, ví dụ, gợi ý, 10 giây để bạn tự nghĩ, rồi mới tới lời giải.</p>
+  <div class="cta" style="margin-top:8mm">
+    <h2>Muốn học có lộ trình và có người kèm?</h2>
+    <p>Kieu Academy dạy lập trình và AI theo hướng thực hành: từ tư duy giải bài tới dùng AI để xây công cụ thật cho công việc.</p>
+    <div class="row">
+      <div>
+        <div class="label" style="color:#9fb6dd">Khoá học &amp; workshop</div>
+        <a href="https://kieu.app/teaching?utm_source=cheatsheet&amp;utm_medium=pdf&amp;utm_campaign=12-mau-tu-duy">kieu.app/teaching</a>
+      </div>
+      <div>
+        <div class="label" style="color:#9fb6dd">Video miễn phí mỗi tuần</div>
+        <a href="https://www.youtube.com/@kieugroup?sub_confirmation=1">youtube.com/@kieugroup</a>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top:8mm; color: var(--muted); font-size: 9pt;">Số bài LeetCode được trích để luyện tập; đề bài thuộc về LeetCode. Code mẫu trong tài liệu do Kieu Studio viết và đã chạy thử với các ví dụ trong đề.</p>
+  <div class="foot"><span>Kieu Studio — Explore Ideas. Build Solutions. Share Knowledge.</span><span>7</span></div>
+</section>
+
+</body>
+</html>
