@@ -20,3 +20,15 @@ __pycache__/
 *.egg-info/
 dist/
 build/
+
+# Founder/presenter portraits are never committed (kieu-github-video / kieu-leetcode-video)
+**/public/brand/*
+!**/public/brand/.gitkeep
+
+# GitHub Radar generated artefacts (rebuilt by npm run timeline:preview / render scripts)
+**/public/lipsync/*
+!**/public/lipsync/.gitkeep
+examples/github-trending-*/src/envelope.json
+examples/github-trending-*/src/mouth.json
+examples/github-trending-*/src/timeline.json
+examples/github-trending-*/src/captions.json
