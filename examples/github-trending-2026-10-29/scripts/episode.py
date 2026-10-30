@@ -178,3 +178,9 @@ EPISODE = os.environ.get('KIEU_EPISODE', 'gr01').lower()
 if EPISODE not in EPISODES:
     raise SystemExit(f'KIEU_EPISODE must be one of {sorted(EPISODES)}')
 S = EPISODES[EPISODE]   # exactly one repo per video
+
+# One-minute cuts (KIEU_FORMAT=short): same repos, same visuals/numbers, shorter narration. See scripts/shorts.py.
+from shorts import make_shorts  # noqa: E402
+SHORTS = make_shorts(EPISODES, sc)
+if os.environ.get('KIEU_FORMAT', 'full').lower() == 'short':
+    S = SHORTS[EPISODE]

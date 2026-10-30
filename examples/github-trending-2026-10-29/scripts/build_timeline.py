@@ -61,8 +61,9 @@ def make(preview=True):
     duration = at / FPS
     lo, hi = RUNTIME_MIN_MAX_SECONDS
     if not lo <= duration <= hi:
-        raise RuntimeError(f'Target runtime {lo // 60}–{hi // 60} min violated: {duration:.1f}s')
+        raise RuntimeError(f'Target runtime {lo}–{hi}s violated: {duration:.1f}s')
     (ROOT / 'src/timeline.json').write_text(json.dumps(rows, ensure_ascii=False, indent=2) + '\n')
+    (ROOT / f'output/{OUT_PREFIX}_timeline.json').write_text(json.dumps(rows, ensure_ascii=False, indent=2) + '\n')   # per-cut copy: lip-sync reads this, not the shared src/ file
     (ROOT / 'src/captions.json').write_text(json.dumps(cues, ensure_ascii=False, indent=2) + '\n')
     name = 'REVIEW_ESTIMATED' if preview else 'VOICESTUDIO_ESTIMATED'
     (ROOT / f'output/{OUT_PREFIX}_{name}.srt').write_text('\n'.join(subs), encoding='utf-8')

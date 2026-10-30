@@ -1,6 +1,6 @@
 ---
 name: kieu-github-video
-description: Produce and QA Kieu Studio "GitHub Radar" videos, ONE GitHub repository per video, about fast-growing useful repos - verified star-growth numbers, why the author built it, the concrete problem, how it works, how to use it, why it matters, caveats and application ideas - with local VoiceStudio narration at 1.0x, the circular speaking avatar, Remotion and a publishing checklist. Use for new episodes or revisions of the Kieu Studio GitHub Radar series.
+description: Produce and QA Kieu Studio "GitHub Radar" videos, ONE GitHub repository per video, about fast-growing useful repos - verified star-growth numbers, why the author built it, the concrete problem, how it works, how to use it, why it matters, caveats and application ideas - with local VoiceStudio narration at 1.0x, the circular speaking avatar (drawn or SadTalker lip-sync), Remotion, a one-minute vertical 9:16 YouTube Short per episode, thumbnails, and (only when the owner asks) YouTube upload, publish and playlist steps. Use for new episodes, Shorts, thumbnails or publishing of the Kieu Studio GitHub Radar series.
 ---
 
 # Kieu Studio - GitHub Radar Video Factory
@@ -38,12 +38,39 @@ Help viewers **decide whether a tool deserves their time**, not hype it. Star co
 9b. **Render and QA.** Remotion 1920×1080 30 fps. The Remotion `Folder` name may contain only `a-z A-Z 0-9 -` (a name with spaces/dashes like "Kieu Studio — X" throws at bundle time). Check: duration 2–8 min at 1.0x (target 3–5), `lipsync_mouth_track` PASS, stills of closed / mid / wide-open / spread mouth, audio present in every non-silent scene, captions generated from the same timeline (estimated until aligned to real audio), no black tail, avatar visible and circular in the corner for the whole video, contact sheets of every scene type, listen to opening, each repo's `how` and `value` scene, and the ending.
 10. **Release gate.** Publish-ready only after VoiceStudio audio, full visual inspection, source facts re-checked on the publish date (numbers go stale quickly), human editorial approval, title/thumbnail/description. Otherwise `REVIEW ONLY` with blockers listed. Source commits and YouTube publishing are separate actions.
 
+## Thumbnails and publishing to YouTube (only on the owner's request)
+Read `references/youtube-publish.md` before touching YouTube. Summary:
+- Each full video needs a 1280x720 thumbnail (`assets/thumb.tsx` + `assets/thumb-index.ts`, a separate Remotion entry), a title <= 100 chars (hook question + fix + `| GitHub Radar #N`), a description with real chapters (`scripts/youtube_chapters.py`), caveat, data sources with the snapshot date, AI disclosure and hashtags, and 9-11 tags. Keep them in `docs/YOUTUBE_METADATA.md`.
+- **Upload means Private.** Making it public, and creating or filling a playlist, are separate explicit requests. Always declare **altered or synthetic content: Yes** (AI voice and avatar) and "not made for kids". Studio pre-selects Public at the visibility step: click Private before Save.
+- The Chrome bridge moves at most 10 MB per `file_upload` call: `scripts/split_for_upload.sh` splits the MP4, the parts are collected in the Studio page and re-assembled there (recipe in the reference). Verify the summed bytes equal the file.
+- Playlist: `GitHub Radar · Tiếng Việt`, public, oldest first, language Tiếng Việt; add every episode and Short.
+- After any publish, tell the owner what was not verified (audio not listened to, numbers not re-checked on the publish date).
+
+## One-minute vertical Short (9:16) for YouTube Shorts
+Every episode also gets a Short: `KIEU_FORMAT=short` (owner request 2026-10-30: vertical 9:16, at most 60 s).
+- **Cut, do not squeeze.** Seven beats: intro (hook question + repo), growth, why (carries the problem), how, usage, value (caveat stays), outro (closes the hook). `problem` and `ideas` are dropped. Visuals, chart points, steps, commands and the caveat are taken from the full episode's scenes by id (`scripts/shorts.py`), so a number cannot differ between the video and its Short. Only the narration is rewritten, shorter.
+- **Budget.** Narrator 03 at 1.0x speaks about 2.9 words/s (English product names are slow): about 150-160 words, 0.4 s tails. Dates stay on screen (the growth note), not in the narration. Always measure the real WAVs; `build_timeline.py` refuses more than 60 s.
+- **Canvas.** `GitHubRadarShort` composition, 1080x1920, `src/GitHubRadarShort.tsx` + `src/artV.tsx`. Shorts UI safe zone: content inside x 40..960 (right buttons) and above y 1575 (title/channel overlay). Body text >= 27 px, captions 38 px, phone-sized. The 190 px avatar (same ring) sits bottom-right of the safe zone (`right: 120, bottom: 345`); captions end above it.
+- **Commands.** `KIEU_FORMAT=short KIEU_EPISODE=gr01 npm run voice:generate`, then `npm run render:release` and `npm run qa` (outputs `GR01_SHORT_*`, composition `GitHubRadarShort`). SadTalker: `npm run lipsync` after `build_timeline.py` (face file `public/lipsync/gr01_short.mp4`; narration is built from `output/<PREFIX>_timeline.json`, so it does not depend on the shared `src/` files). Audit: `audit_episode.py --episode <ep>/scripts/episode.py --short`.
+- **Never** present a Short as publish-ready: same release gate as the full video. Upload a Short like a full video (reference), then add it to the playlist.
+- Example length check from GR01-GR03: 158-160 words gave 54-59 s with 0.4 s tails; 183+ words overran 60 s.
+
+## Operating lessons (learned building GR01-GR03)
+- **Compute is the bottleneck.** VoiceStudio takes ~1-2 min per scene; SadTalker on MPS needs about 30-40 s of compute per second of video (a 4.5 min episode is 2-3 h, a 1 min Short ~40 min). Run the long jobs in the background, sequentially (voice and SadTalker together slow each other down), and let them resume: finished WAVs and SadTalker chunks are cached by hash.
+- **SadTalker crashes on a sub-second last chunk** (`IndexError` in `generate_blink_seq_randomly`) when the narration length is 30 s x N + under ~1 s. `kieu-studio/studio/avatar.py` pads any chunk shorter than `MIN_CHUNK_SECONDS = 4` with silence and trims the video back (a local patch to kieu-studio; keep it, and re-apply it if the file is replaced). Pad with `-t max(chunk, 4)`, not `-t chunk`, or the pad is cut off again.
+- **Shared generated files.** `src/timeline.json`, `captions.json`, `envelope.json`, `mouth.json` belong to one episode and one format at a time. Never rebuild them for another episode while a render or QA that reads them is running; `make_lipsync.py` reads `output/<PREFIX>_timeline.json` instead, so SadTalker may run while you work on `src/`.
+- **Background waits.** `until ! pgrep -f "<name>"` matches its own shell command line and never ends; wait on a log line, a file, or `pgrep -x`.
+- **Chrome bridge limits** and Studio defaults: see the YouTube reference.
+- **Re-check after every format change**: render one still per scene type for every episode (contact sheet), not only the first.
+
 ## Project structure (copy `examples/github-trending-2026-10-29/`)
 - `scripts/episode.py` - `EPISODES = {gr01: [...9 scenes], gr02, gr03}`, selected with `KIEU_EPISODE` (`Scene(id, phase, title, lines, script, mode, repo, beat, data)`); `scripts/config.py` - voice, speed (`KIEU_VIDEO_SPEED`, default 1.0), runtime bounds, output prefix.
+- `scripts/shorts.py` (one-minute cuts built from the full scenes), `src/GitHubRadarShort.tsx` + `src/artV.tsx` (9:16 layout).
 - `scripts/build_timeline.py [--preview]`, `scripts/make_envelope.py [--preview]`, `scripts/voicestudio.py --check|--voices|--synthesize [--only ids]`, `scripts/qa.py`.
 - `src/GitHubRadar.tsx` (modes: intro=RadarIntro, growth1=GrowthChart, story=StoryArt, flow=FlowDiagram, usage=UsageScene, value=ValueScale, ideas=IdeaTiles, outro=OutroScene), `src/art.tsx` (hand-drawn SVG icon set + per-repo illustrations), `src/theme.ts`, `src/SpeakingAvatar.tsx`, `src/root.tsx`, `src/index.ts`.
 - `docs/SOURCE_MANIFEST.json`, `docs/QA_REPORT.md`, `docs/YOUTUBE_METADATA.md`, `tests/test_episode.py`.
-- Skill scripts: `scripts/audit_episode.py --episode <ep>/scripts/episode.py` (structure audit), `scripts/prepare_avatar.py`, `assets/SpeakingAvatar.tsx`.
+- `src/thumb.tsx`, `src/thumb-index.ts` (thumbnails).
+- Skill scripts: `scripts/audit_episode.py --episode <ep>/scripts/episode.py [--short]` (structure audit), `scripts/prepare_avatar.py`, `scripts/make_lipsync.py`, `scripts/youtube_chapters.py`, `scripts/split_for_upload.sh`; `assets/SpeakingAvatar.tsx` (props `diameter`, `right`, `bottom` for the Shorts safe zone), `assets/thumb.tsx`, `assets/thumb-index.ts`; `references/youtube-publish.md`.
 
 ```bash
 npm install
@@ -55,7 +82,7 @@ npm run render:release            # candidate MP4, not approved
 ```
 
 ## How to invoke
-"Use the kieu-github-video skill to pick one fast-growing useful GitHub repo and build a Vietnamese GitHub Radar video about only that repo, with growth numbers, why-built, problem, how it works, usage, value, caveats and ideas."
+"Use the kieu-github-video skill to pick one fast-growing useful GitHub repo and build a Vietnamese GitHub Radar video about only that repo, with growth numbers, why-built, problem, how it works, usage, value, caveats and ideas." Then, only if asked: "make the 9:16 one-minute Short", "make the thumbnail and upload it Private", "make it public and add it to the GitHub Radar playlist".
 
 ## Fail-closed checks
 - Any figure without a source and snapshot date is omitted, not guessed. Trending-reported ≠ independently verified.
@@ -64,4 +91,6 @@ npm run render:release            # candidate MP4, not approved
 - Narration speed other than 1.0x without a user request fails.
 - Missing avatar image, or an avatar outside the bottom-right 220 px circle spec, fails QA.
 - Missing VoiceStudio audio means not publish-ready; an unreachable endpoint is BLOCKED, not a pass.
+- A Short over 60 s, outside the 1080x1920 safe zone (x 40..960, y < 1575), with different numbers from its full episode, or without the caveat fails.
+- Uploading, publishing and playlists happen only on the owner's explicit request; uploads are Private until told otherwise; AI-content disclosure is always Yes.
 - Anything not actually run is reported as NOT RUN.

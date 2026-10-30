@@ -16,7 +16,7 @@
     "render:release": ".venv/bin/python scripts/render.py --release",
     "qa": ".venv/bin/python scripts/qa.py",
     "test": ".venv/bin/python -m unittest discover -s tests -p 'test_*.py' -v",
-    "lipsync": ".venv/bin/python ../../skills/kieu-github-video/scripts/make_lipsync.py --project . --episode ${KIEU_EPISODE:-gr01}"
+    "lipsync": ".venv/bin/python ../../skills/kieu-github-video/scripts/make_lipsync.py --project ."
   },
   "dependencies": {
     "remotion": "^4.0.0",

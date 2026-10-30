@@ -3,7 +3,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
-from episode import S, EPISODES  # noqa: E402
+from episode import S, EPISODES, SHORTS  # noqa: E402
 import config  # noqa: E402
 
 BEATS = ['intro', 'growth', 'why', 'problem', 'how', 'usage', 'value', 'ideas', 'outro']
@@ -110,6 +110,76 @@ class Gates(unittest.TestCase):
         import re
         name = re.search(r'<Folder name="([^"]+)"', (ROOT / 'src/root.tsx').read_text()).group(1)
         self.assertRegex(name, r'^[A-Za-z0-9-]+$')
+
+
+SHORT_BEATS = ['intro', 'growth', 'why', 'how', 'usage', 'value', 'outro']
+
+
+class ShortCuts(unittest.TestCase):
+    """One-minute vertical (1080x1920) YouTube Shorts: same repo, same numbers, shorter story."""
+
+    def test_skill_short_audit_passes(self):
+        audit = ROOT.parents[1] / 'skills/kieu-github-video/scripts/audit_episode.py'
+        r = subprocess.run([sys.executable, str(audit), '--episode', str(ROOT / 'scripts/episode.py'), '--short'], capture_output=True, text=True)
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+
+    def test_shape_and_one_repo(self):
+        self.assertEqual(sorted(SHORTS), ['gr01', 'gr02', 'gr03'])
+        for name, scenes in SHORTS.items():
+            self.assertEqual([s.beat for s in scenes], SHORT_BEATS, name)
+            self.assertEqual({s.repo for s in scenes}, {EPISODES[name][0].repo})
+            full_ids = {s.id for s in EPISODES[name]}
+            self.assertFalse(full_ids & {s.id for s in scenes}, 'short scenes need their own WAV names')
+
+    def test_numbers_and_caveat_come_from_the_full_episode(self):
+        for name, scenes in SHORTS.items():
+            full = {s.beat: s for s in EPISODES[name]}
+            for s in scenes:
+                self.assertEqual((s.mode, s.lines, s.data), (full[s.beat].mode, full[s.beat].lines, full[s.beat].data), s.id)
+            value = next(s for s in scenes if s.beat == 'value')
+            self.assertGreater(len(value.lines), value.data['caveat_from'])
+            self.assertIn('?', scenes[0].script)           # the short opens on a hook question
+
+    def test_fits_one_minute(self):
+        from shorts import SHORT_WORDS
+        for name, scenes in SHORTS.items():
+            words = sum(len(s.script.split()) for s in scenes)
+            self.assertTrue(SHORT_WORDS[0] <= words <= SHORT_WORDS[1], f'{name}: {words} words')
+
+    def test_vertical_composition_and_shorts_safe_zone(self):
+        root = (ROOT / 'src/root.tsx').read_text()
+        self.assertIn('id="GitHubRadarShort"', root); self.assertIn('width={1080} height={1920}', root)
+        tsx = (ROOT / 'src/GitHubRadarShort.tsx').read_text()
+        self.assertIn('AV_RIGHT = 120, AV_BOTTOM = 345', tsx)      # clear of the Shorts buttons and title overlay
+        self.assertIn('Y_CAPTION = 1205', tsx)
+        art = (ROOT / 'src/artV.tsx').read_text()
+        self.assertIn('VW = 920', art)                              # content stays inside x 40..960
+
+    def test_short_config_switches_composition_and_names(self):
+        import os
+        env = dict(os.environ, KIEU_FORMAT='short', KIEU_EPISODE='gr02')
+        out = subprocess.run([sys.executable, '-c', 'import sys; sys.path.insert(0, "scripts"); import config as c; '
+                              'print(c.COMPOSITION, c.OUT_PREFIX, c.FACE_NAME, c.RUNTIME_MIN_MAX_SECONDS)'],
+                             cwd=ROOT, env=env, capture_output=True, text=True).stdout.split()
+        self.assertEqual(out[:3], ['GitHubRadarShort', 'GR02_SHORT', 'gr02_short'])
+
+
+class SkillBundle(unittest.TestCase):
+    """The skill folder must carry everything a future episode, Short, thumbnail or upload needs."""
+    SKILL = ROOT.parents[1] / 'skills/kieu-github-video'
+
+    def test_assets_match_the_reference_project(self):
+        for name in ('SpeakingAvatar.tsx', 'thumb.tsx', 'thumb-index.ts'):
+            self.assertEqual((self.SKILL / 'assets' / name).read_text(), (ROOT / 'src' / name).read_text(), name)
+
+    def test_publishing_helpers_exist(self):
+        import os
+        for rel in ('references/youtube-publish.md', 'scripts/youtube_chapters.py', 'scripts/split_for_upload.sh', 'scripts/make_lipsync.py'):
+            self.assertTrue((self.SKILL / rel).is_file(), rel)
+        self.assertTrue(os.access(self.SKILL / 'scripts/split_for_upload.sh', os.X_OK))
+        text = (self.SKILL / 'SKILL.md').read_text()
+        for needle in ('references/youtube-publish.md', 'Upload means Private', 'MIN_CHUNK_SECONDS', 'KIEU_FORMAT=short'):
+            self.assertIn(needle, text)
 
 
 if __name__ == '__main__':

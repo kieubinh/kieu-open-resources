@@ -10,8 +10,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 EPISODE = os.environ.get('KIEU_EPISODE', 'gr01').lower()   # one repo per video: gr01 | gr02 | gr03
 AUDIO_SLUG = 'github-radar-voicestudio'       # public/audio/<AUDIO_SLUG>/<scene id>.wav (scene ids are unique per repo)
-OUT_PREFIX = EPISODE.upper()                  # output/<OUT_PREFIX>_*.srt|json|mp4
-COMPOSITION = 'GitHubRadar'
+FORMAT = os.environ.get('KIEU_FORMAT', 'full').lower()   # full | short (one-minute cut, scripts/shorts.py)
+SHORT = FORMAT == 'short'
+OUT_PREFIX = EPISODE.upper() + ('_SHORT' if SHORT else '')   # output/<OUT_PREFIX>_*.srt|json|mp4
+COMPOSITION = 'GitHubRadarShort' if SHORT else 'GitHubRadar'   # short = 1080x1920 (9:16) for YouTube Shorts
+FACE_NAME = EPISODE + ('_short' if SHORT else '')            # public/lipsync/<FACE_NAME>.mp4
 SNAPSHOT_DATE = '2026-10-29'
 
 AUDIO_DIR = ROOT / 'public' / 'audio' / AUDIO_SLUG
@@ -23,8 +26,8 @@ AUDIO_URL = f'audio/{AUDIO_SLUG}'
 # Voice: Narrator 03 (27ad8d83) must still be listed by VoiceStudio --voices; override via env.
 DEFAULT_VOICE = '27ad8d83'
 VIDEO_SPEED = float(os.environ.get('KIEU_VIDEO_SPEED', '1.0'))
-RUNTIME_MIN_MAX_SECONDS = (2 * 60, 8 * 60)    # one repo per video at 1.0x: about 3-5 minutes
-TAIL_SECONDS = 0.6
+RUNTIME_MIN_MAX_SECONDS = (30, 60) if SHORT else (2 * 60, 8 * 60)   # full: one repo at 1.0x is 3-5 min; short: at most one minute
+TAIL_SECONDS = 0.4 if SHORT else 0.6
 
 # Avatar (owner-approved defaults at 1920x1080): 220 px circle, 64 px margins, 4 px ring.
 AVATAR_FILE = 'brand/kieu-avatar.png'        # relative to public/, produced by prepare_avatar.py
