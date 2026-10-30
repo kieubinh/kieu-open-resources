@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Render a photoreal lip-synced face for a whole video with the local SadTalker install (kieu-studio).
 
-Usage: make_lipsync.py --project <episode dir> --episode gr01 [--studio <kieu-studio repo>]
+Usage: make_lipsync.py --project <episode dir> [--episode gr01] [--studio <kieu-studio repo>]   (KIEU_EPISODE / KIEU_FORMAT pick the cut)
 
-1. Reads <project>/src/timeline.json (the voiced release timeline) and joins the per-scene narration WAVs into ONE
+1. Reads <project>/output/<PREFIX>_timeline.json (the voiced release timeline written by build_timeline.py; falls back to src/timeline.json) and joins the per-scene narration WAVs into ONE
    narration track whose length equals the video (each scene padded with silence to its timeline length).
 2. Calls kieu-studio's resumable chunked SadTalker worker (tools/avatar_render.py, 30 s chunks, MPS) on it.
 3. Writes <project>/public/lipsync/<episode>.mp4 (256x256, 25 fps, silent, git-ignored). The Remotion avatar plays it
@@ -29,8 +29,13 @@ def find_studio(arg: str | None) -> Path:
     raise SystemExit('kieu-studio checkout not found: pass --studio or set KIEU_STUDIO_REPO')
 
 
-def build_narration(project: Path, audio_dir: Path, out: Path) -> float:
-    timeline = json.loads((project / 'src' / 'timeline.json').read_text())
+def config_face_name(project: Path) -> str:
+    sys.path.insert(0, str(project / 'scripts')); import config  # noqa: E402
+    return config.FACE_NAME
+
+
+def build_narration(project: Path, audio_dir: Path, out: Path, timeline_file: Path | None = None) -> float:
+    timeline = json.loads((timeline_file or project / 'src' / 'timeline.json').read_text())
     parts, total = [], 0.0
     with tempfile.TemporaryDirectory() as tmp:
         for row in timeline:
@@ -50,7 +55,7 @@ def build_narration(project: Path, audio_dir: Path, out: Path) -> float:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--project', required=True); ap.add_argument('--episode', required=True)
+    ap.add_argument('--project', required=True); ap.add_argument('--episode', help='default: scripts/config.py FACE_NAME (gr01, or gr01_short with KIEU_FORMAT=short)')
     ap.add_argument('--audio-dir', help='default: <project>/public/audio/<slug>, found from scripts/config.py')
     ap.add_argument('--studio')
     a = ap.parse_args()
@@ -59,12 +64,16 @@ def main():
     if audio_dir is None:
         sys.path.insert(0, str(project / 'scripts')); import config  # noqa: E402
         audio_dir = config.AUDIO_DIR
+    episode = a.episode or config_face_name(project)
     py = studio / 'tools' / 'sadtalker-local' / '.venv' / 'bin' / 'python'
     if not py.is_file():
         raise SystemExit('SadTalker venv missing: ' + str(py))
     out_dir = project / 'public' / 'lipsync'; out_dir.mkdir(parents=True, exist_ok=True)
-    narration = out_dir / f'{a.episode}_narration.wav'; face = out_dir / f'{a.episode}.mp4'
-    seconds = build_narration(project, audio_dir, narration)
+    narration = out_dir / f'{episode}_narration.wav'; face = out_dir / f'{episode}.mp4'
+    # the per-cut copy written by build_timeline.py (output/<OUT_PREFIX>_timeline.json) keeps this independent of the shared src/ files
+    sys.path.insert(0, str(project / 'scripts')); import config  # noqa: E402
+    own = project / 'output' / f'{config.OUT_PREFIX}_timeline.json'
+    seconds = build_narration(project, audio_dir, narration, own if own.is_file() else None)
     print(f'narration {seconds:.1f}s -> {narration}', flush=True)
     r = subprocess.run([str(py), str(studio / 'tools' / 'avatar_render.py'), str(narration), str(face)], cwd=studio)
     if r.returncode:

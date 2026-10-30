@@ -48,7 +48,9 @@ const Mouth: React.FC<{o: number; s: number; a: MouthAnchor}> = ({o, s, a}) => {
 
 export const SpeakingAvatar: React.FC<{
   levels: number[]; mouthO?: number[]; mouthS?: number[]; anchor?: MouthAnchor; faceVideo?: string | null; src?: string; mouthlessSrc?: string; diameter?: number;
-}> = ({levels, mouthO, mouthS, anchor, faceVideo, src = 'brand/kieu-avatar.png', mouthlessSrc = 'brand/kieu-avatar-nomouth.png', diameter = D}) => {
+  /** Margins in px of the final frame; default is the approved 16:9 spot scaled with `diameter`. Vertical 9:16 shorts pass their own safe-zone margins. */
+  right?: number; bottom?: number;
+}> = ({levels, mouthO, mouthS, anchor, faceVideo, src = 'brand/kieu-avatar.png', mouthlessSrc = 'brand/kieu-avatar-nomouth.png', diameter = D, right, bottom}) => {
   const frame = useCurrentFrame();
   const at = (arr: number[] | undefined, f: number) => (arr ? arr[Math.max(0, Math.min(arr.length - 1, f))] ?? 0 : 0);
   const level = at(levels, frame);
@@ -62,7 +64,7 @@ export const SpeakingAvatar: React.FC<{
     return Math.max(0.12, Math.min(1, l * w * 1.15 + (speaking ? 0.08 : 0)));
   });
   return (
-    <div style={{position: 'absolute', right: RIGHT * k, bottom: BOTTOM * k, width: D * k, height: D * k, zIndex: 20}}>
+    <div style={{position: 'absolute', right: right ?? RIGHT * k, bottom: bottom ?? BOTTOM * k, width: D * k, height: D * k, zIndex: 20}}>
       {[{o: 16, a: slow}, {o: 34, a: at(levels, frame - 10) * 0.7}].map((h, i) => (
         <div key={i} style={{
           position: 'absolute', inset: -h.o * k, borderRadius: '50%', border: `${2 * k}px solid ${CYAN}`,

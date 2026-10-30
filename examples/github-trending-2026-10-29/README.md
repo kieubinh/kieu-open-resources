@@ -23,6 +23,14 @@ npm run render:release          # real WAV timeline + measured envelope -> outpu
 npm run qa
 ```
 
+## One-minute vertical Short (9:16)
+```bash
+export KIEU_FORMAT=short KIEU_EPISODE=gr01     # gr01 | gr02 | gr03; unset KIEU_FORMAT for the full video
+npm run voice:generate && npm run render:release && npm run qa   # -> output/GR01_SHORT_VOICESTUDIO_CANDIDATE[_SADTALKER].mp4 (1080x1920, <= 60 s)
+npm run lipsync                                                   # optional SadTalker face -> public/lipsync/gr01_short.mp4
+```
+Same repo, numbers and caveat as the full video (`scripts/shorts.py` reuses the full scenes' visuals); shorter narration, seven beats. Layout stays inside the YouTube Shorts safe zone (x 40..960, y < 1575).
+
 ## Speaking avatar
 Small circle at the bottom-right (220 px, 64 px margins, 4 px cyan ring) with a halo and a five-bar equalizer that follow the loudness of the narration actually heard. It is audio-reactive, not lip-synced. Image from `skills/kieu-github-video/scripts/prepare_avatar.py` (the approved Kieu Studio avatar, or `--image <portrait>`). `public/brand/*` is git-ignored: never commit a founder portrait to this public repository.
 
