@@ -1,0 +1,130 @@
+{
+  "episodes": {
+    "gr01": "cloudflare/security-audit-skill",
+    "gr02": "pbakaus/impeccable",
+    "gr03": "thedotmack/claude-mem"
+  },
+  "rule": "One GitHub repository per video.",
+  "episode": "GitHub Radar GR01-GR03",
+  "snapshot_date": "2026-10-29",
+  "language": "vi",
+  "method": "Totals and metadata from the GitHub REST API (gh api repos/<repo>) on the snapshot date; growth windows (this week, 30 days, today) from github.com/trending?since=weekly|monthly|daily on the same date. The stargazers endpoint returned 404 in this environment, so star history was NOT reconstructed independently; growth figures are as reported by the Trending pages and are not the live GitHub rate.",
+  "selection_criteria": [
+    "identifiable owner",
+    "explicit licence",
+    "README explains how it works",
+    "recent commits",
+    "listed on GitHub Trending (week and/or month)"
+  ],
+  "repos": [
+    {
+      "full_name": "cloudflare/security-audit-skill",
+      "url": "https://github.com/cloudflare/security-audit-skill",
+      "owner_type": "Organization",
+      "license": "MIT",
+      "created": "2026-06-18",
+      "last_push": "2026-09-14",
+      "stars_total": 52530,
+      "stars_week": 16002,
+      "stars_month": 28617,
+      "forks": 3365,
+      "derived": {
+        "stars_30_days_ago": 23913,
+        "growth_factor_30d": 2.2,
+        "avg_stars_per_day_30d": 954,
+        "stars_7_days_ago": 36528,
+        "avg_per_day_first_23_days": 548,
+        "avg_per_day_last_7_days": 2286,
+        "seconds_per_star_last_7_days": 38
+      },
+      "sources": [
+        "https://github.com/cloudflare/security-audit-skill (README)",
+        "https://blog.cloudflare.com/build-your-own-vulnerability-harness"
+      ],
+      "claims_from_authors": [
+        "original skill about 450 lines on one repo",
+        "one run found roughly half of the vulnerabilities that repeated runs found in total (README)"
+      ],
+      "caveats": [
+        "needs OS-enforced sandbox for target-controlled builds/tests",
+        "multi-agent runs cost tokens",
+        "audit only code you are authorised to test"
+      ]
+    },
+    {
+      "full_name": "pbakaus/impeccable",
+      "url": "https://github.com/pbakaus/impeccable",
+      "owner_type": "User",
+      "license": "Apache-2.0",
+      "created": "2025-11-16",
+      "last_push": "2026-10-29",
+      "stars_total": 94784,
+      "stars_week": 7283,
+      "stars_month": 19821,
+      "forks": 5593,
+      "derived": {
+        "stars_30_days_ago": 74963,
+        "growth_pct_30d": 26.4,
+        "avg_stars_per_day_30d": 661,
+        "stars_7_days_ago": 87501,
+        "avg_per_day_first_23_days": 545,
+        "avg_per_day_last_7_days": 1040,
+        "seconds_per_star_last_7_days": 83
+      },
+      "sources": [
+        "https://github.com/pbakaus/impeccable (README)",
+        "https://impeccable.style/docs"
+      ],
+      "claims_from_authors": [
+        "24 commands",
+        "62 deterministic detector rules, no LLM or API key",
+        "started from Anthropic's frontend-design skill"
+      ],
+      "caveats": [
+        "installed command hooks run even if the model's own commands are denied (README)",
+        "anonymous telemetry; opt-out via npx impeccable telemetry off, DO_NOT_TRACK=1 or config",
+        "live mode edits a local checkout only"
+      ]
+    },
+    {
+      "full_name": "thedotmack/claude-mem",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "owner_type": "User",
+      "license": "Apache-2.0",
+      "created": "2025-08-31",
+      "last_push": "2026-10-29",
+      "stars_total": 104433,
+      "stars_week": null,
+      "stars_today": 459,
+      "stars_month": 9592,
+      "forks": 9217,
+      "derived": {
+        "stars_30_days_ago": 94841,
+        "growth_pct_30d": 10.1,
+        "avg_stars_per_day_30d": 320,
+        "seconds_per_star_30_day_avg": 270
+      },
+      "sources": [
+        "https://github.com/thedotmack/claude-mem (README)",
+        "https://docs.claude-mem.ai/"
+      ],
+      "claims_from_authors": [
+        "~10x token savings from the 3-layer search workflow (README estimate)",
+        "search results ~50-100 tokens each; full observations ~500-1,000 tokens each"
+      ],
+      "caveats": [
+        "installer may offer a browser sign-in with a 30 day trial for the hosted observer; skip with an explicit --provider or CLAUDE_MEM_ONLINE_OPTIN=false",
+        "hooks record tool-usage observations; review what is stored and use <private> tags",
+        "Node.js 20+"
+      ]
+    }
+  ],
+  "weekly_trending_snapshot_rank_note": "security-audit-skill had the largest weekly gain among the repos listed on the weekly Trending page fetched on the snapshot date.",
+  "not_selected_note": "Several other fast-growing repositories were skipped because their owner, licence or README did not meet the selection criteria above or the claims could not be checked in time; no judgement about them is implied.",
+  "licensing": {
+    "official_images_included": false,
+    "note": "No third-party screenshots or logos are redistributed; only short paraphrases and command lines from the READMEs."
+  },
+  "narration_disclosure": "Narration is a local synthetic voice (VoiceStudio Narrator 03) and the presenter avatar is AI-generated.",
+  "derived_note": "Piecewise rates are arithmetic on two Trending windows (7 and 30 days); they assume the windows are rolling and are labelled as derived on screen. Per-day curves between the three points are straight lines, not daily data."
+}
