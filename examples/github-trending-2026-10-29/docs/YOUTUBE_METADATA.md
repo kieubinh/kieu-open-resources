@@ -4,7 +4,7 @@ Thumbnails: `npx remotion still src/thumb-index.ts Thumb out.png --props=...` (s
 
 Upload settings used in YouTube Studio: not made for kids, no age restriction, **altered or synthetic content = Yes** (AI voice and avatar), visibility Private. Studio defaults the visibility radio to Public, so select Private before saving.
 
-Playlist (Public, oldest first, Vietnamese): **GitHub Radar · Tiếng Việt** with GR01, GR02, GR03; Studio: https://studio.youtube.com/playlist/PLKlBjj04ymF4/videos. Add each new episode and its Short to it.
+Playlist (Public, oldest first, Vietnamese): **GitHub Radar · Tiếng Việt** with GR01, GR02, GR03; Studio: https://studio.youtube.com/playlist/PLKlBjj04ymF4/videos. Add each new episode and its Short to it. All three Shorts were added on 2026-10-31 (6 videos in total).
 
 ## GR01 · https://youtu.be/WAJluVd6cq0 (Public since 2026-10-30)
 **Title:** AI báo 20 lỗ hổng: bao nhiêu cái là thật? Skill bảo mật của Cloudflare | GitHub Radar #1
@@ -125,3 +125,9 @@ Kieu Studio: https://kieu.app
 
 #GitHubRadar #ClaudeMem #ClaudeCode #AIAgent #KieuStudio
 ```
+
+## Shorts (9:16, uploaded Private 2026-10-31, then set Public on the owner request)
+- **GR01 Short** (0:58, https://youtube.com/shorts/hOk_-FMpPc8): `AI báo 20 lỗ hổng, bao nhiêu cái là thật? Skill bảo mật Cloudflare #Shorts` - links to the full video https://youtu.be/WAJluVd6cq0.
+- **GR02 Short** (1:00, https://youtube.com/shorts/3JMwpbAGGGM): `Trang web AI làm sao cứ giống nhau? Impeccable trị thế nào #Shorts` - links to https://youtu.be/TvnWZfB09Oo.
+- **GR03 Short** (0:55, https://youtube.com/shorts/Xg2h0qIdqLg, Public on the owner request, 2026-10-31): `Agent quên sạch mỗi sáng? claude-mem cho AI trí nhớ #Shorts` - links to https://youtu.be/9XZYEgfhKl4.
+Both: not made for kids, AI content = Yes, tags include `shorts`; description = hook + full-video link + repo + caveat + data sources (29/10/2026) + AI note + hashtags.
