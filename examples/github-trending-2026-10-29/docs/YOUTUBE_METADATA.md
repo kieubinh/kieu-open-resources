@@ -131,3 +131,13 @@ Kieu Studio: https://kieu.app
 - **GR02 Short** (1:00, https://youtube.com/shorts/3JMwpbAGGGM): `Trang web AI làm sao cứ giống nhau? Impeccable trị thế nào #Shorts` - links to https://youtu.be/TvnWZfB09Oo.
 - **GR03 Short** (0:55, https://youtube.com/shorts/Xg2h0qIdqLg, Public on the owner request, 2026-10-31): `Agent quên sạch mỗi sáng? claude-mem cho AI trí nhớ #Shorts` - links to https://youtu.be/9XZYEgfhKl4.
 Both: not made for kids, AI content = Yes, tags include `shorts`; description = hook + full-video link + repo + caveat + data sources (29/10/2026) + AI note + hashtags.
+
+## Cheat sheets (2026-10-31)
+One-page A4 PDFs hosted in the public repo (PR #11): `https://github.com/kieubinh/kieu-open-resources/blob/main/docs/cheatsheets/github-radar/GR0N_<repo>_cheatsheet_{vi,en}.pdf`. The three Vietnamese Shorts carry `📄 Cheat sheet PDF (1 trang A4): <vi link>` in the description (after the repo line) and a first comment from @kieugroup with the same link. English Shorts get the `_en` link in the description and the first comment when they are uploaded.
+
+## English Shorts (2026-10-31, Public)
+Playlist **GitHub Radar · English** (Public, oldest first, language English): https://studio.youtube.com/playlist/PLTKmMJT0F_I0/videos. Cut with `KIEU_FORMAT=short KIEU_LANG=en`, English B voice (about 2.0 words/s, so 90-103 words per Short).
+- **GR01 EN** (0:57, https://youtube.com/shorts/tD7p_2IwWMI): `Your AI found 20 vulnerabilities: how many are real? Cloudflare's security skill #Shorts` - links to https://youtu.be/WAJluVd6cq0.
+- **GR02 EN** (0:58, https://youtube.com/shorts/Gb1UDta1FeM): `Why does every AI-made web page look the same? How Impeccable fixes it #Shorts` - links to https://youtu.be/TvnWZfB09Oo.
+- **GR03 EN** (0:58, https://youtube.com/shorts/POgLkE-YGzo): `Your AI agent forgets everything each morning? claude-mem gives it memory #Shorts` - links to https://youtu.be/9XZYEgfhKl4.
+Each: not made for kids, AI content = Yes, language English, `_en` cheat sheet link in the description plus a first comment from @kieugroup. Studio's upload tool can report "never delivered" even though the file went through: check the Shorts list before retrying (a stray draft was left once).
