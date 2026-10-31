@@ -7,8 +7,12 @@ import {Icon, IconG} from './art';
  * the YouTube Shorts UI (right 120 px, bottom 345 px). Text is sized for a phone: body >= 28 px, labels >= 24 px.
  */
 export const VW = 920, VH = 740;
+export type Lang = 'vi' | 'en';
+const langOf = (data: any): Lang => (data && data.lang === 'en' ? 'en' : 'vi');
+/** Static strings of the illustrations: Vietnamese by default, English for KIEU_LANG=en. */
+const pick = (lang: Lang, vi: string, en: string) => (lang === 'en' ? en : vi);
 
-type P = {p: number; col: string};
+type P = {p: number; col: string; lang: Lang};
 const Svg: React.FC<{children: React.ReactNode; h?: number}> = ({children, h = VH}) => (
   <svg width={VW} height={h} viewBox={`0 0 ${VW} ${h}`} style={{display: 'block', fontFamily: sans}}>{children}</svg>
 );
@@ -65,6 +69,7 @@ export const IntroV: React.FC<{data: any; p: number}> = ({data, p}) => {
 
 /* ───────────── growth: honest 2–3 point chart + rate cards ───────────── */
 export const GrowthV: React.FC<{data: any; note: string; p: number}> = ({data, note, p}) => {
+  const lang = langOf(data); const nf = (n: number) => (lang === 'en' ? Math.round(n).toLocaleString('en-US') : fmt(n));
   const col = accent(data.color); const pts = data.pts as [string, number][];
   const X0 = 110, X1 = 790, Y0 = 296, H = 138; const max = data.total * 1.06;
   const days = pts.length === 3 ? [30, 7, 0] : [30, 0];
@@ -80,8 +85,8 @@ export const GrowthV: React.FC<{data: any; note: string; p: number}> = ({data, n
       <svg width={VW} height={348} viewBox={`0 0 ${VW} 348`} style={{fontFamily: sans}}>
         <defs><linearGradient id="arv" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor={col} stopOpacity="0.45" /><stop offset="100%" stopColor={col} stopOpacity="0.02" /></linearGradient>
           <clipPath id="revealv"><rect x="0" y="0" width={X0 + (X1 - X0) * draw + 40} height="348" /></clipPath></defs>
-        <T x={32} y={44} size={28} color={C.muted}>Số sao tích lũy</T>
-        <T x={32} y={112} size={72} color={C.white} weight={900}>{fmt(total)}</T>
+        <T x={32} y={44} size={28} color={C.muted}>{pick(lang, 'Số sao tích lũy', 'Stars so far')}</T>
+        <T x={32} y={112} size={72} color={C.white} weight={900}>{nf(total)}</T>
         <g transform={`translate(${VW - 90},50) scale(${star})`}><IconG name="star" size={58} color={col} sw={2} /></g>
         <line x1={X0} x2={X1} y1={Y0} y2={Y0} stroke={C.border} strokeWidth={2} />
         <T x={X0 - 14} y={Y0 + 8} size={22} color={C.muted} anchor="end">0</T>
@@ -90,7 +95,7 @@ export const GrowthV: React.FC<{data: any; note: string; p: number}> = ({data, n
           const at = i / (xs.length - 1);
           return <g key={i} opacity={i === 0 ? 1 : clamp((draw - at + 0.08) / 0.08)}>
             <circle cx={x} cy={ys[i]} r={12} fill={C.bg} stroke={col} strokeWidth={5} />
-            <T x={x} y={ys[i] - 24} size={31} color={C.white} anchor="middle" weight={800}>{fmt(pts[i][1])}</T>
+            <T x={x} y={ys[i] - 24} size={31} color={C.white} anchor="middle" weight={800}>{nf(pts[i][1])}</T>
             <T x={x} y={Y0 + 36} size={25} color={C.muted} anchor="middle">{pts[i][0]}</T>
           </g>;
         })}
@@ -99,18 +104,18 @@ export const GrowthV: React.FC<{data: any; note: string; p: number}> = ({data, n
           const mx = (xs[i] + xs[i + 1]) / 2, my = Y0 - 14;
           return <g key={i} opacity={a} transform={`translate(0,${(1 - a) * 12})`}>
             <rect x={mx - 140} y={my - 40} width={280} height={46} rx={23} fill={i ? col : C.border} />
-            <T x={mx} y={my - 7} size={25} color={i ? C.bg : C.white} anchor="middle" weight={800}>≈ {fmt(r)} sao / ngày</T>
+            <T x={mx} y={my - 7} size={25} color={i ? C.bg : C.white} anchor="middle" weight={800}>≈ {nf(r)} {pick(lang, 'sao / ngày', 'stars / day')}</T>
           </g>;
         })}
       </svg>
     </div>
     <div style={{...box, marginTop: 14, padding: '16px 28px', borderLeft: `10px solid ${col}`, opacity: seg(p, 0.5, 0.65)}}>
-      <div style={{fontSize: 26, color: C.muted}}>Cứ khoảng</div>
+      <div style={{fontSize: 26, color: C.muted}}>{pick(lang, 'Cứ khoảng', 'About every')}</div>
       <div style={{fontSize: 70, fontWeight: 900, color: col, lineHeight: 1.05}}>{data.tick.replace('≈ ', '')}</div>
-      <div style={{fontSize: 25, color: C.muted, marginTop: 4}}>có thêm một sao · {data.tick_basis}</div>
+      <div style={{fontSize: 25, color: C.muted, marginTop: 4}}>{pick(lang, 'có thêm một sao · ', 'one more star · ')}{data.tick_basis}</div>
     </div>
     <div style={{display: 'flex', gap: 14, marginTop: 14}}>
-      {[['30 ngày', '+' + fmt(data.month)], data.week != null ? ['7 ngày', '+' + fmt(data.week)] : ['Hôm nay', '+' + fmt(data.today)]].map(([l, v], i) => (
+      {[[pick(lang, '30 ngày', '30 days'), '+' + nf(data.month)], data.week != null ? [pick(lang, '7 ngày', '7 days'), '+' + nf(data.week)] : [pick(lang, 'Hôm nay', 'Today'), '+' + nf(data.today)]].map(([l, v], i) => (
         <div key={l} style={{...box, flex: 1, padding: '10px 18px', textAlign: 'center', opacity: seg(p, 0.62 + i * 0.08, 0.78 + i * 0.08)}}>
           <div style={{fontSize: 25, color: C.muted}}>{l}</div><div style={{fontSize: 48, fontWeight: 900, color: col, lineHeight: 1.1}}>{v}</div></div>))}
     </div>
@@ -143,25 +148,25 @@ export const FlowV: React.FC<{data: any; note?: string; p: number}> = ({data, no
 };
 
 /* ───────────── story illustrations (why) ───────────── */
-const ArtCtxV: React.FC<P> = ({p, col}) => {
+const ArtCtxV: React.FC<P> = ({p, col, lang}) => {
   const fill = seg(p, 0.1, 0.62); const cols = 12, rows = 5, total = cols * rows; const scanned = Math.floor(seg(p, 0.1, 0.62) * 22);
   const full = fill > 0.97;
   return <Svg>
     <rect x={0} y={0} width={VW} height={292} rx={32} fill={C.panel} stroke={full ? C.red : C.border} strokeWidth={4} />
-    <T x={36} y={56} size={30} color={C.muted}>Ngữ cảnh của agent</T>
+    <T x={36} y={56} size={30} color={C.muted}>{pick(lang, 'Ngữ cảnh của agent', "The agent's context")}</T>
     <rect x={36} y={78} width={848} height={44} rx={22} fill={C.deep} stroke={C.border} />
     <rect x={36} y={78} width={Math.max(0, 848 * fill)} height={44} rx={22} fill={full ? C.red : col} />
     <T x={460} y={110} size={28} color={C.white} anchor="middle" weight={800}>{Math.round(fill * 100)}%</T>
     <Robot x={44} y={150} size={118} color={col} />
-    <g opacity={seg(p, 0.25, 0.4)}><rect x={190} y={176} width={330} height={68} rx={34} fill={C.deep} stroke={col} strokeWidth={3} /><T x={355} y={221} size={30} anchor="middle" color={C.white}>1 giả thuyết / lúc</T></g>
-    {full && <g transform={`translate(0,${Math.sin(p * 50) * 3})`}><rect x={560} y={176} width={320} height={68} rx={34} fill={C.red} /><T x={720} y={221} size={30} anchor="middle" color={C.bg} weight={900}>Ngữ cảnh đầy</T></g>}
-    <T x={460} y={352} size={30} color={C.muted} anchor="middle">Một repo thật</T>
+    <g opacity={seg(p, 0.25, 0.4)}><rect x={190} y={176} width={330} height={68} rx={34} fill={C.deep} stroke={col} strokeWidth={3} /><T x={355} y={221} size={30} anchor="middle" color={C.white}>{pick(lang, '1 giả thuyết / lúc', '1 hypothesis at a time')}</T></g>
+    {full && <g transform={`translate(0,${Math.sin(p * 50) * 3})`}><rect x={560} y={176} width={320} height={68} rx={34} fill={C.red} /><T x={720} y={221} size={30} anchor="middle" color={C.bg} weight={900}>{pick(lang, 'Ngữ cảnh đầy', 'Context full')}</T></g>}
+    <T x={460} y={352} size={30} color={C.muted} anchor="middle">{pick(lang, 'Một repo thật', 'A real repo')}</T>
     {Array.from({length: total}).map((_, i) => {
       const cx = 16 + (i % cols) * 74, cy = 376 + Math.floor(i / cols) * 58; const on = i < scanned;
       return <rect key={i} x={cx} y={cy} width={62} height={46} rx={10} fill={on ? col : C.dim} opacity={on ? 1 : 0.9} />;
     })}
     {(() => { const i = Math.min(scanned, total - 1); return <IconG name="search" x={16 + (i % cols) * 74 + 10} y={376 + Math.floor(i / cols) * 58 + 2} size={44} color={C.white} sw={2.4} />; })()}
-    <T x={460} y={700} size={34} color={C.white} anchor="middle" weight={700} opacity={seg(p, 0.68, 0.82)}>Mới đọc được một phần nhỏ</T>
+    <T x={460} y={700} size={34} color={C.white} anchor="middle" weight={700} opacity={seg(p, 0.68, 0.82)}>{pick(lang, 'Mới đọc được một phần nhỏ', 'Only a small part read')}</T>
   </Svg>;
 };
 
@@ -172,11 +177,12 @@ const MiniUiV: React.FC<{x: number; y: number; a: number}> = ({x, y, a}) => (
     <rect x={22} y={86} width={44} height={44} rx={12} fill="#c4b5fd" /><rect x={80} y={90} width={150} height={14} rx={7} fill="#1f2937" /><rect x={80} y={112} width={110} height={10} rx={5} fill="#9ca3af" />
     <rect x={22} y={140} width={336} height={38} rx={12} fill="#ffffff" /><rect x={34} y={150} width={140} height={10} rx={5} fill="#9ca3af" /><rect x={200} y={148} width={140} height={22} rx={11} fill="#e0e7ff" /><rect x={212} y={154} width={90} height={10} rx={5} fill="#a5b4fc" />
   </g>);
-const ArtSlopV: React.FC<P> = ({p, col}) => {
-  const tells = ['Inter cho mọi thứ', 'Gradient tím → xanh', 'Thẻ lồng trong thẻ', 'Chữ xám trên nền màu', 'Ô icon trên mỗi tiêu đề'];
+const ArtSlopV: React.FC<P> = ({p, col, lang}) => {
+  const tells = lang === 'en' ? ['Inter for everything', 'Purple → blue gradient', 'Cards inside cards', 'Grey text on colour', 'Icon box above every heading']
+    : ['Inter cho mọi thứ', 'Gradient tím → xanh', 'Thẻ lồng trong thẻ', 'Chữ xám trên nền màu', 'Ô icon trên mỗi tiêu đề'];
   return <Svg>
     {[0, 1, 2, 3].map((i) => <MiniUiV key={i} x={(i % 2) * 472} y={Math.floor(i / 2) * 238} a={stagger(p, i, 0.06, 0.14)} />)}
-    <T x={460} y={500} size={31} color={C.white} weight={700} anchor="middle" opacity={seg(p, 0.45, 0.6)}>Bốn trang, bốn dự án… giống hệt nhau?</T>
+    <T x={460} y={500} size={31} color={C.white} weight={700} anchor="middle" opacity={seg(p, 0.45, 0.6)}>{pick(lang, 'Bốn trang, bốn dự án… giống hệt nhau?', 'Four pages, four projects… all identical?')}</T>
     {tells.map((t, i) => { const a = seg(p, 0.5 + i * 0.08, 0.62 + i * 0.08);
       const x = (i % 2) * 472, y = 522 + Math.floor(i / 2) * 74;
       return <g key={t} opacity={a} transform={`translate(${(1 - a) * 30},0)`}>
@@ -186,23 +192,23 @@ const ArtSlopV: React.FC<P> = ({p, col}) => {
   </Svg>;
 };
 
-const ArtAmnesiaV: React.FC<P> = ({p, col}) => <Svg>
+const ArtAmnesiaV: React.FC<P> = ({p, col, lang}) => <Svg>
   {[0, 1, 2].map((i) => { const a = stagger(p, i, 0.2, 0.25); const y = i * 215;
     return <g key={i} opacity={a} transform={`translate(0,${(1 - a) * 24})`}>
       <rect x={0} y={y} width={VW} height={190} rx={32} fill={C.panel} stroke={C.border} strokeWidth={3} />
-      <IconG name="calendar" x={30} y={y + 22} size={44} color={C.muted} /><T x={86} y={y + 56} size={31} color={C.muted}>Phiên {i + 1}</T>
+      <IconG name="calendar" x={30} y={y + 22} size={44} color={C.muted} /><T x={86} y={y + 56} size={31} color={C.muted}>{pick(lang, 'Phiên ', 'Session ')}{i + 1}</T>
       <Robot x={50} y={y + 70} size={100} color={col} />
       <rect x={250} y={y + 36} width={640} height={118} rx={30} fill={C.deep} stroke={C.red} strokeWidth={3} />
-      <T x={570} y={y + 108} size={36} anchor="middle" color={C.white}>Dự án này cấu trúc thế nào?</T>
+      <T x={570} y={y + 108} size={36} anchor="middle" color={C.white}>{pick(lang, 'Dự án này cấu trúc thế nào?', 'How is this project structured?')}</T>
       {i < 2 && <g opacity={seg(p, 0.2 + i * 0.25, 0.32 + i * 0.25)}><circle cx={460} cy={y + 203} r={24} fill={C.bg} stroke={C.red} strokeWidth={3} /><IconG name="repeat" x={440} y={y + 183} size={40} color={C.red} sw={2.2} /></g>}
     </g>; })}
-  <T x={460} y={688} size={32} color={C.white} anchor="middle" weight={700} opacity={seg(p, 0.75, 0.9)}>Đóng phiên là quên sạch.</T>
-  <T x={460} y={728} size={32} color={C.white} anchor="middle" weight={700} opacity={seg(p, 0.78, 0.92)}>Mỗi sáng lại giải thích từ đầu.</T>
+  <T x={460} y={688} size={32} color={C.white} anchor="middle" weight={700} opacity={seg(p, 0.75, 0.9)}>{pick(lang, 'Đóng phiên là quên sạch.', 'Close the session, forget everything.')}</T>
+  <T x={460} y={728} size={32} color={C.white} anchor="middle" weight={700} opacity={seg(p, 0.78, 0.92)}>{pick(lang, 'Mỗi sáng lại giải thích từ đầu.', 'Every morning, explain it all again.')}</T>
 </Svg>;
 
 export const StoryV: React.FC<{data: any; p: number}> = ({data, p}) => {
-  const col = accent(data.color); const k = data.art;
-  return k === 'ctx' ? <ArtCtxV p={p} col={col} /> : k === 'slop' ? <ArtSlopV p={p} col={col} /> : <ArtAmnesiaV p={p} col={col} />;
+  const col = accent(data.color); const k = data.art; const lang = langOf(data);
+  return k === 'ctx' ? <ArtCtxV p={p} col={col} lang={lang} /> : k === 'slop' ? <ArtSlopV p={p} col={col} lang={lang} /> : <ArtAmnesiaV p={p} col={col} lang={lang} />;
 };
 
 /* ───────────── usage: terminal + compact result ───────────── */
@@ -211,11 +217,11 @@ const Verdict: React.FC<{x: number; y: number; icon: string; label: string; colo
     <rect x={x} y={y} width={w} height={58} rx={29} fill={C.deep} stroke={color} strokeWidth={3} />
     <IconG name={icon} x={x + 14} y={y + 12} size={34} color={color} sw={2.4} /><T x={x + 58} y={y + 39} size={25} color={color} mono weight={800}>{label}</T>
   </g>);
-const ResultV: React.FC<{kind: string; p: number; col: string}> = ({kind, p, col}) => {
+const ResultV: React.FC<{kind: string; p: number; col: string; lang: Lang}> = ({kind, p, col, lang}) => {
   if (kind === 'ledger') {
     const n = Math.floor(seg(p, 0.35, 0.85) * 40);
     return <Svg h={250}>
-      <T x={0} y={28} size={27} color={C.muted}>Sổ coverage: phần đã được xem</T>
+      <T x={0} y={28} size={27} color={C.muted}>{pick(lang, 'Sổ coverage: phần đã được xem', 'Coverage ledger: what has been read')}</T>
       {Array.from({length: 60}).map((_, i) => <rect key={i} x={(i % 20) * 46} y={46 + Math.floor(i / 20) * 40} width={38} height={32} rx={8} fill={i < n * 1.5 ? col : C.dim} />)}
       <Verdict x={0} y={180} icon="check" label="confirmed" color={C.green} a={seg(p, 0.55, 0.7)} w={270} />
       <Verdict x={282} y={180} icon="clock" label="needs_validation" color={C.amber} a={seg(p, 0.65, 0.8)} w={350} />
@@ -229,14 +235,14 @@ const ResultV: React.FC<{kind: string; p: number; col: string}> = ({kind, p, col
       {[['P0', 360, 120, C.red, 0.5], ['P1', 70, 20, C.amber, 0.6], ['P2', 300, 20, C.blue, 0.7]].map(([l, x, y, c, s]) => (
         <g key={l as string} opacity={a(s as number)}><circle cx={(x as number) + 20} cy={(y as number) + 20} r={30} fill={c as string} /><T x={(x as number) + 20} y={(y as number) + 30} size={25} color={C.bg} weight={900} anchor="middle">{l as string}</T></g>))}
       <T x={500} y={80} size={31} color={C.white} weight={700} opacity={a(0.75)}>critique:</T>
-      <T x={500} y={122} size={29} color={C.white} weight={600} opacity={a(0.75)}>xếp hạng việc cần sửa</T>
-      <T x={500} y={160} size={29} color={C.white} weight={600} opacity={a(0.75)}>trước</T>
-      <T x={500} y={208} size={25} color={C.muted} opacity={a(0.8)}>P0 chặn phát hành → P3 đánh bóng</T>
+      <T x={500} y={122} size={29} color={C.white} weight={600} opacity={a(0.75)}>{pick(lang, 'xếp hạng việc cần sửa', 'ranks what to fix')}</T>
+      <T x={500} y={160} size={29} color={C.white} weight={600} opacity={a(0.75)}>{pick(lang, 'trước', 'first')}</T>
+      <T x={500} y={208} size={25} color={C.muted} opacity={a(0.8)}>{pick(lang, 'P0 chặn phát hành → P3 đánh bóng', 'P0 blocks release → P3 polish')}</T>
     </Svg>;
   }
-  const items = [['doc', 'Cấu trúc dự án'], ['check', 'Quyết định đã chốt'], ['bug', 'Lỗi đã sửa']];
+  const items = lang === 'en' ? [['doc', 'Project structure'], ['check', 'Decisions made'], ['bug', 'Bugs already fixed']] : [['doc', 'Cấu trúc dự án'], ['check', 'Quyết định đã chốt'], ['bug', 'Lỗi đã sửa']];
   return <Svg h={250}>
-    <g opacity={seg(p, 0.35, 0.5)}><Robot x={0} y={0} size={80} color={col} /><T x={96} y={52} size={32} weight={800}>Phiên mới · đã nhớ:</T></g>
+    <g opacity={seg(p, 0.35, 0.5)}><Robot x={0} y={0} size={80} color={col} /><T x={96} y={52} size={32} weight={800}>{pick(lang, 'Phiên mới · đã nhớ:', 'New session · remembered:')}</T></g>
     {items.map(([ic, t], i) => { const a = seg(p, 0.5 + i * 0.12, 0.62 + i * 0.12);
       return <g key={t} opacity={a} transform={`translate(${(1 - a) * 30},0)`}><rect x={0} y={90 + i * 54} width={620} height={46} rx={23} fill={C.deep} stroke={C.border} /><IconG name={ic} x={14} y={95 + i * 54} size={36} color={col} sw={2.2} /><T x={64} y={124 + i * 54} size={28}>{t}</T></g>; })}
   </Svg>;
@@ -261,7 +267,7 @@ export const UsageV: React.FC<{data: any; line: string; p: number}> = ({data, li
       </div>
     </div>
     <div style={{marginTop: 12, fontSize: 28, color: C.amber, lineHeight: 1.28}}>{data.note}</div>
-    <div style={{marginTop: 14}}><ResultV kind={data.art} p={p} col={col} /></div>
+    <div style={{marginTop: 14}}><ResultV kind={data.art} p={p} col={col} lang={langOf(data)} /></div>
     {line ? <div style={{display: 'none'}}>{line}</div> : null}
   </div>;
 };
@@ -286,8 +292,8 @@ export const ValueV: React.FC<{data: any; caveat: string; p: number}> = ({data, 
       <circle cx={cx} cy={cy} r={13} fill={col} />
       <circle cx={cx - L * Math.cos(rad)} cy={lY} r={11} fill={col} /><circle cx={cx + L * Math.cos(rad)} cy={rY} r={11} fill={C.amber} />
     </svg>
-    {panel('CÁI ĐƯỢC', pros, col, 0.25, false)}
-    {panel('CÁI GIÁ', cons, C.amber, 0.35, true)}
+    {panel(pick(langOf(data), 'CÁI ĐƯỢC', 'THE GAINS'), pros, col, 0.25, false)}
+    {panel(pick(langOf(data), 'CÁI GIÁ', 'THE COST'), cons, C.amber, 0.35, true)}
     <div style={{display: 'flex', gap: 14, alignItems: 'flex-start', marginTop: 12, padding: '14px 22px', borderRadius: 26, background: '#2a2a22', border: `2px solid ${C.amber}`, opacity: seg(p, 0.75, 0.9)}}>
       <Icon name="warn" size={40} color={C.amber} sw={2.2} /><div style={{fontSize: 27, color: C.amber, fontWeight: 600, lineHeight: 1.3}}>{caveat}</div>
     </div>

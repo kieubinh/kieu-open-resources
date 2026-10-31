@@ -180,7 +180,8 @@ if EPISODE not in EPISODES:
 S = EPISODES[EPISODE]   # exactly one repo per video
 
 # One-minute cuts (KIEU_FORMAT=short): same repos, same visuals/numbers, shorter narration. See scripts/shorts.py.
-from shorts import make_shorts  # noqa: E402
+from shorts import make_shorts, make_shorts_en  # noqa: E402
 SHORTS = make_shorts(EPISODES, sc)
+SHORTS_EN = make_shorts_en(EPISODES, sc)
 if os.environ.get('KIEU_FORMAT', 'full').lower() == 'short':
-    S = SHORTS[EPISODE]
+    S = (SHORTS_EN if os.environ.get('KIEU_LANG', 'vi').lower() == 'en' else SHORTS)[EPISODE]

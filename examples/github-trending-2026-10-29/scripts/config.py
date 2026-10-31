@@ -12,9 +12,13 @@ EPISODE = os.environ.get('KIEU_EPISODE', 'gr01').lower()   # one repo per video:
 AUDIO_SLUG = 'github-radar-voicestudio'       # public/audio/<AUDIO_SLUG>/<scene id>.wav (scene ids are unique per repo)
 FORMAT = os.environ.get('KIEU_FORMAT', 'full').lower()   # full | short (one-minute cut, scripts/shorts.py)
 SHORT = FORMAT == 'short'
-OUT_PREFIX = EPISODE.upper() + ('_SHORT' if SHORT else '')   # output/<OUT_PREFIX>_*.srt|json|mp4
+LANG = os.environ.get('KIEU_LANG', 'vi').lower()          # vi | en (English exists for the short cut only)
+EN = LANG == 'en'
+if EN and not SHORT:
+    raise SystemExit('KIEU_LANG=en needs KIEU_FORMAT=short')
+OUT_PREFIX = EPISODE.upper() + ('_SHORT' if SHORT else '') + ('_EN' if EN else '')   # output/<OUT_PREFIX>_*.srt|json|mp4
 COMPOSITION = 'GitHubRadarShort' if SHORT else 'GitHubRadar'   # short = 1080x1920 (9:16) for YouTube Shorts
-FACE_NAME = EPISODE + ('_short' if SHORT else '')            # public/lipsync/<FACE_NAME>.mp4
+FACE_NAME = EPISODE + ('_short' if SHORT else '') + ('_en' if EN else '')            # public/lipsync/<FACE_NAME>.mp4
 SNAPSHOT_DATE = '2026-10-29'
 
 AUDIO_DIR = ROOT / 'public' / 'audio' / AUDIO_SLUG
@@ -24,7 +28,7 @@ AUDIO_URL = f'audio/{AUDIO_SLUG}'
 # Narration speed: 1.0x (normal) unless the owner asks otherwise (2026-10-29). Override with KIEU_VIDEO_SPEED;
 # a value other than 1.0 is applied exactly once with FFmpeg atempo after raw synthesis (pitch preserved).
 # Voice: Narrator 03 (27ad8d83) must still be listed by VoiceStudio --voices; override via env.
-DEFAULT_VOICE = '27ad8d83'
+DEFAULT_VOICE = '823d23e3' if EN else '27ad8d83'   # en: Kieu Studio English B (approved for new English videos); vi: Narrator 03
 VIDEO_SPEED = float(os.environ.get('KIEU_VIDEO_SPEED', '1.0'))
 RUNTIME_MIN_MAX_SECONDS = (30, 60) if SHORT else (2 * 60, 8 * 60)   # full: one repo at 1.0x is 3-5 min; short: at most one minute
 TAIL_SECONDS = 0.4 if SHORT else 0.6

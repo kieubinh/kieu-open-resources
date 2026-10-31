@@ -3,7 +3,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
-from episode import S, EPISODES, SHORTS  # noqa: E402
+from episode import S, EPISODES, SHORTS, SHORTS_EN  # noqa: E402
 import config  # noqa: E402
 
 BEATS = ['intro', 'growth', 'why', 'problem', 'how', 'usage', 'value', 'ideas', 'outro']
@@ -162,6 +162,30 @@ class ShortCuts(unittest.TestCase):
                               'print(c.COMPOSITION, c.OUT_PREFIX, c.FACE_NAME, c.RUNTIME_MIN_MAX_SECONDS)'],
                              cwd=ROOT, env=env, capture_output=True, text=True).stdout.split()
         self.assertEqual(out[:3], ['GitHubRadarShort', 'GR02_SHORT', 'gr02_short'])
+
+
+class EnglishShorts(unittest.TestCase):
+    """English cut (KIEU_LANG=en): same repos and numbers, English narration, own WAV names, English B voice."""
+
+    def test_skill_audit_passes_for_english(self):
+        audit = ROOT.parents[1] / 'skills/kieu-github-video/scripts/audit_episode.py'
+        r = subprocess.run([sys.executable, str(audit), '--episode', str(ROOT / 'scripts/episode.py'), '--short', '--lang', 'en'], capture_output=True, text=True)
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+
+    def test_ids_numbers_and_size(self):
+        for name, scenes in SHORTS_EN.items():
+            vi = {s.beat: s for s in SHORTS[name]}
+            self.assertFalse({s.id for s in scenes} & {s.id for s in SHORTS[name]}, 'English WAVs must not reuse Vietnamese names')
+            self.assertEqual([s.beat for s in scenes], SHORT_BEATS)
+            self.assertLessEqual(sum(len(s.script.split()) for s in scenes), 110, name)   # English B speaks ~2.0 words/s
+            self.assertEqual(scenes[1].data['pts'], [[lbl, v] for (_, v), lbl in zip(vi['growth'].data['pts'], [p[0] for p in scenes[1].data['pts']])])
+
+    def test_config_for_english(self):
+        import os
+        env = dict(os.environ, KIEU_FORMAT='short', KIEU_LANG='en', KIEU_EPISODE='gr03')
+        out = subprocess.run([sys.executable, '-c', 'import sys; sys.path.insert(0, "scripts"); import config as c; print(c.OUT_PREFIX, c.FACE_NAME, c.DEFAULT_VOICE, c.VIDEO_SPEED)'],
+                             cwd=ROOT, env=env, capture_output=True, text=True).stdout.split()
+        self.assertEqual(out, ['GR03_SHORT_EN', 'gr03_short_en', '823d23e3', '1.0'])
 
 
 class SkillBundle(unittest.TestCase):
