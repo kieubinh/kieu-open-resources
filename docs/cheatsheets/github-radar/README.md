@@ -73,3 +73,16 @@ One-page A4 cheat sheets for the next two GitHub Radar Shorts. Snapshot 2026-11-
 | GR14 | `NationalSecurityAgency/ghidra` | [GR14_ghidra_cheatsheet.pdf](GR14_ghidra_cheatsheet.pdf) |
 
 Star totals come from the GitHub API; growth from GitHub Trending (Trending-reported, not independently reconstructed): a weekly figure for GR13 and a monthly figure for GR14. Both sheets carry a caveat block.
+
+## GR11-GR14 (Shorts, English)
+
+English one-page A4 cheat sheets for the English versions of GitHub Radar Shorts GR11-GR14. Snapshot 2026-11-01.
+
+| Short | Repo | Cheat sheet |
+| --- | --- | --- |
+| GR11 | `JetBrains/thinkrail` | [GR11_thinkrail_cheatsheet_EN.pdf](GR11_thinkrail_cheatsheet_EN.pdf) |
+| GR12 | `Donchitos/Claude-Code-Game-Studios` | [GR12_Claude-Code-Game-Studios_cheatsheet_EN.pdf](GR12_Claude-Code-Game-Studios_cheatsheet_EN.pdf) |
+| GR13 | `affaan-m/ECC` | [GR13_ECC_cheatsheet_EN.pdf](GR13_ECC_cheatsheet_EN.pdf) |
+| GR14 | `NationalSecurityAgency/ghidra` | [GR14_ghidra_cheatsheet_EN.pdf](GR14_ghidra_cheatsheet_EN.pdf) |
+
+Same numbers as the Vietnamese sheets: star totals from the GitHub API, growth from GitHub Trending (Trending-reported, not independently reconstructed). Every sheet carries a caveat block.
