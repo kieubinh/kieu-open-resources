@@ -4,7 +4,7 @@ from __future__ import annotations
 import argparse, hashlib, json, os, urllib.request, urllib.error
 from pathlib import Path
 import wave
-from episode import S
+from episode import S, AUDIO_SLUG, LANG
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = os.getenv("VOICESTUDIO_BASE", "http://127.0.0.1:3900").rstrip("/")
@@ -17,7 +17,7 @@ def request(path: str, payload=None):
         headers={"Accept": "application/json" if payload is None else "audio/wav",
                  "Content-Type": "application/json"},
         method="POST" if payload else "GET")
-    with urllib.request.urlopen(req, timeout=180 if payload else 15) as r:
+    with urllib.request.urlopen(req, timeout=int(os.environ.get("VOICESTUDIO_TIMEOUT","1800")) if payload else 15) as r:
         raw = r.read()
     return raw if payload else json.loads(raw)
 
@@ -35,11 +35,11 @@ def main():
     if args.voices:
         print(json.dumps(items, ensure_ascii=False, indent=2)); return
     voice=os.environ.get("VOICESTUDIO_VOICE_PROFILE", "").strip()
-    model=os.environ.get("VOICESTUDIO_MODEL", "tts-1")
+    model=os.environ.get("VOICESTUDIO_MODEL", "voxcpm2" if LANG == "en" else "tts-1")
     ids={str(v.get("id", v.get("voice_id"))) for v in items if isinstance(v, dict)}
     if not voice or voice not in ids:
         raise SystemExit("Select a returned VoiceStudio voice with VOICESTUDIO_VOICE_PROFILE")
-    dest=ROOT/"public/audio/ep02-voicestudio"
+    dest=ROOT/"public/audio"/AUDIO_SLUG
     dest.mkdir(parents=True, exist_ok=True)
     for scene in S:
         if scene.silent: continue
@@ -49,8 +49,9 @@ def main():
             ensure_ascii=False,sort_keys=True).encode()).hexdigest()
         if output.is_file() and meta.is_file() and json.loads(meta.read_text()).get("sha256")==digest:
             print("Cached",scene.id); continue
+        extra={"language":"en","seed":20261019} if LANG=="en" else {}  # English B profile
         raw=request("/v1/audio/speech",{"model":model,"voice":voice,
-            "input":scene.script,"response_format":"wav"})
+            "input":scene.script,"response_format":"wav",**extra})
         if raw[:4]!=b"RIFF" or raw[8:12]!=b"WAVE":
             raise RuntimeError(f"{scene.id}: invalid WAV")
         output.write_bytes(raw)

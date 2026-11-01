@@ -1,0 +1,478 @@
+WEBVTT
+
+00:00:00.600 --> 00:00:04.300
+Welcome to Kieu Studio, The Art of Coding.
+
+00:00:04.300 --> 00:00:10.333
+Here, LeetCode is only the practice material.
+What we really train is problem-solving.
+
+00:00:10.333 --> 00:00:18.600
+For every problem we repeat four steps: understand
+the problem, form a hypothesis, test it, and reflect.
+
+00:00:18.600 --> 00:00:27.733
+Today, episode 3 is problem #44, Wildcard Matching. It
+is a Hard problem, but we will take it step by step.
+
+00:00:28.767 --> 00:00:36.433
+We are given a string s and a pattern p. We must
+decide whether the pattern matches the entire string.
+
+00:00:36.433 --> 00:00:40.967
+In the pattern, a question mark
+(?) matches exactly one character.
+
+00:00:40.967 --> 00:00:45.800
+A star (*) matches any sequence of
+characters, including an empty one.
+
+00:00:45.800 --> 00:00:53.500
+A lowercase letter matches only itself. And the match
+must cover the whole string, not just part of it.
+
+00:00:54.533 --> 00:01:00.733
+The input is a string s and a pattern
+p. The output is true or false.
+
+00:01:00.733 --> 00:01:06.667
+Both s and p have length from 0 to
+2000, so either one can be empty.
+
+00:01:06.667 --> 00:01:15.033
+The string s has only lowercase English letters.
+The pattern p has lowercase letters, ? and *.
+
+00:01:15.033 --> 00:01:23.600
+2000 × 2000 = 4 million. Remember this number:
+it tells us which approaches are still usable.
+
+00:01:24.600 --> 00:01:31.333
+According to the LeetCode page on 28
+October 2026, this problem is rated Hard.
+
+00:01:31.333 --> 00:01:40.400
+There are 967,654 accepted submissions, out
+of about 2.9 million submissions in total.
+
+00:01:40.400 --> 00:01:48.167
+The acceptance rate is 33.1%. These are
+submissions, not the number of people who solved it.
+
+00:01:48.167 --> 00:01:54.533
+A Hard problem is not an impossible problem.
+It just needs a good thinking process.
+
+00:01:55.567 --> 00:02:03.333
+Example 1: the string s is
+"aa" and the pattern p is "a".
+
+00:02:03.333 --> 00:02:07.467
+The a in the pattern matches
+the first a in the string.
+
+00:02:07.467 --> 00:02:16.700
+But the string still has one a left, while the pattern has
+ended. A partial match is not enough, so the answer is false.
+
+00:02:16.700 --> 00:02:22.067
+Lesson 1: always check the
+ending condition on both sides.
+
+00:02:23.100 --> 00:02:30.500
+Example 2: the string s is still "aa",
+but the pattern p is a single star.
+
+00:02:30.500 --> 00:02:38.800
+A star stands for any sequence of characters. It
+swallows the first a, then swallows the second a too.
+
+00:02:38.800 --> 00:02:43.667
+The string and the pattern end
+together, so the answer is true.
+
+00:02:43.667 --> 00:02:53.433
+Lesson 2: one symbol can create many choices. A
+star can swallow zero, one, two characters, or more.
+
+00:02:54.433 --> 00:03:02.633
+Example 3: the string s is
+"cb" and the pattern p is "?a".
+
+00:03:02.633 --> 00:03:08.233
+The ? matches exactly one
+character, here the letter c.
+
+00:03:08.233 --> 00:03:16.033
+Next the pattern needs an a, but the string has
+a b. The letters differ, so the answer is false.
+
+00:03:16.033 --> 00:03:24.233
+Lesson 3: without a star, everything is forced into
+line, and one position off ruins the whole match.
+
+00:03:25.267 --> 00:03:34.867
+Three examples, three habits: check the ending condition, find where
+choices appear, and notice when everything is forced into line.
+
+00:03:34.867 --> 00:03:42.000
+We have not written a single line of code, but we
+already know the hard part of the problem is the star.
+
+00:03:43.033 --> 00:03:49.033
+Before seeing the solution, try thinking
+on your own. Here are three hints.
+
+00:03:49.033 --> 00:03:57.867
+Hint 1: the only place with many choices is the star.
+Ask yourself how many characters the star should swallow.
+
+00:03:57.867 --> 00:04:05.933
+Hint 2: shrink the problem. Do the first i characters of
+the string match the first j characters of the pattern?
+
+00:04:05.933 --> 00:04:16.133
+Hint 3: once you have something that works, ask: on a mismatch, do
+we need to go back to every star we passed, or just some of them?
+
+00:04:16.133 --> 00:04:22.067
+Think for the next ten seconds: when you meet
+a star, which choice would you try first?
+
+00:04:32.067 --> 00:04:38.900
+Ten seconds are up. Whether or not you have an
+answer, let us start from the simplest idea.
+
+00:04:38.900 --> 00:04:49.133
+Put a pointer i on the string s and a pointer j on the pattern p.
+The small question is: from positions i and j, does the rest match?
+
+00:04:49.133 --> 00:04:57.200
+If p[j] is a letter or a ?, compare one character,
+then move both pointers forward one step.
+
+00:04:57.200 --> 00:05:04.833
+If p[j] is a *, we have two choices. One is to
+skip the star, which means it swallows nothing.
+
+00:05:04.833 --> 00:05:11.333
+The other is to let the star swallow one more
+character, and keep the star so it can swallow again.
+
+00:05:11.333 --> 00:05:18.933
+When the pattern ends, the string must end too. That
+is exactly the ending condition from our first lesson.
+
+00:05:19.967 --> 00:05:33.667
+Let us run that idea on a small example: s is "aaa" and p
+is "*a*b". The answer is false, so we must try every branch.
+
+00:05:33.667 --> 00:05:43.767
+Each node is a pair of positions (i, j). The left branch
+skips the star. The right branch swallows one more character.
+
+00:05:43.767 --> 00:05:49.533
+When a branch fails, we go back and
+try another one. That is backtracking.
+
+00:05:49.533 --> 00:05:59.033
+Look closely: some pairs (i, j) appear more than once, highlighted
+in yellow. We are solving the same question again and again.
+
+00:05:59.033 --> 00:06:05.267
+The tree makes 20 function calls, but
+there are only 14 different questions.
+
+00:06:06.300 --> 00:06:11.267
+The number of calls grows very quickly
+as the pattern gets more stars.
+
+00:06:11.267 --> 00:06:22.033
+We ran it for real. With a string of 20 a's, a pattern
+with one star needs 62 calls; six stars need 203,078.
+
+00:06:22.033 --> 00:06:29.433
+With lengths up to 2000, trying every
+branch is impossible. We need a better way.
+
+00:06:30.467 --> 00:06:37.467
+Try a faster idea: when we meet a star,
+let it swallow nothing, and never go back.
+
+00:06:37.467 --> 00:06:51.133
+Run it on s = "adceb" and p = "*a*b". The first star swallows
+nothing, a matches a, and the second star also swallows nothing.
+
+00:06:51.133 --> 00:06:58.967
+Now the b in the pattern meets the d in the
+string: a mismatch. This idea concludes false.
+
+00:06:58.967 --> 00:07:06.033
+But the correct answer is true, because the second
+star can swallow d, c and e, and then b matches.
+
+00:07:06.033 --> 00:07:16.633
+The lesson: a good hypothesis can still be wrong. We need a counterexample
+to find out, and the star must get a chance to swallow more.
+
+00:07:17.633 --> 00:07:24.033
+The safe approach: never solve an old
+question again. Store the results in a table.
+
+00:07:24.033 --> 00:07:31.667
+Cell dp[i][j] answers: do the first i characters of
+the string match the first j characters of the pattern?
+
+00:07:31.667 --> 00:07:39.800
+An empty string matches an empty pattern. And an empty
+string only matches a pattern made entirely of stars.
+
+00:07:39.800 --> 00:07:49.000
+If the pattern character is a letter or a ?, the cell is true when
+the characters match and the cell diagonally above-left is true.
+
+00:07:49.000 --> 00:07:58.367
+If it is a *, the cell is true when the cell above is true (swallow
+one more) or the cell to the left is true (swallow nothing).
+
+00:07:58.367 --> 00:08:06.033
+Fill the table for s = "adceb"
+and p = "*a*b", one row at a time.
+
+00:08:06.033 --> 00:08:10.167
+The last cell is true, so the answer is true.
+
+00:08:10.167 --> 00:08:22.467
+Within the problem's limits, the table has over 4 million
+cells, each computed once: time O(m × n), memory O(m × n) too.
+
+00:08:23.467 --> 00:08:32.367
+Look at the table again: each cell only needs the row above
+and the cell beside it. We are remembering more than we need.
+
+00:08:32.367 --> 00:08:41.500
+Think about the star. It can swallow anything. So once a
+segment after a star has matched, everything before it is fine.
+
+00:08:41.500 --> 00:08:48.633
+A segment between two stars should match as early as
+possible, leaving the most characters for what comes next.
+
+00:08:48.633 --> 00:08:57.100
+So on a mismatch, we only need to go back to the most
+recent star. Older stars never need to be retried.
+
+00:08:58.100 --> 00:09:07.567
+Four variables: i on the string, j on the pattern, star for
+the latest star, and mark for how far that star has swallowed.
+
+00:09:07.567 --> 00:09:13.433
+If the characters match or the pattern
+has a ?, move i and j together.
+
+00:09:13.433 --> 00:09:21.533
+If the pattern has a *: remember star and mark, then
+move only j, letting the star swallow nothing first.
+
+00:09:21.533 --> 00:09:32.300
+On a mismatch with a star available: let it swallow one more character.
+Increase mark, set i to mark, and set j right after the star.
+
+00:09:32.300 --> 00:09:37.633
+On a mismatch with no star yet: nothing
+can save it, the answer is false.
+
+00:09:37.633 --> 00:09:46.900
+When the string ends, skip any remaining stars at the end of
+the pattern. The answer is true only if the pattern is used up.
+
+00:09:47.933 --> 00:09:56.967
+Start: j meets the first star. Remember star
+= 0, let it swallow nothing, and move j.
+
+00:09:56.967 --> 00:10:02.867
+The a in the pattern matches the a
+in the string. Both i and j move.
+
+00:10:02.867 --> 00:10:10.533
+The second star: remember star = 2 and
+mark = 1, and again let it swallow nothing.
+
+00:10:10.533 --> 00:10:20.733
+The b in the pattern meets d: a mismatch. The
+second star swallows d, and j goes back to b.
+
+00:10:20.733 --> 00:10:29.367
+Another mismatch with c, so the star swallows c.
+Then a mismatch with e, so the star swallows e.
+
+00:10:29.367 --> 00:10:38.500
+This time b matches b. The string has ended
+and the pattern is used up: the answer is true.
+
+00:10:39.500 --> 00:10:43.633
+Before writing Python,
+describe the logic in words.
+
+00:10:43.633 --> 00:10:54.067
+Loop while the string has characters: match, move on; star,
+remember it; mismatch, go back to the star; no star, return false.
+
+00:10:54.067 --> 00:11:02.167
+After the loop, skip any extra stars at the end of the pattern,
+then check whether j has reached the end of the pattern.
+
+00:11:03.167 --> 00:11:07.867
+Here is the complete Python 3
+solution, only about 20 lines.
+
+00:11:07.867 --> 00:11:15.567
+Setup: i and j are 0, star is -1
+meaning no star yet, and mark is 0.
+
+00:11:15.567 --> 00:11:19.900
+The main loop runs while i is less
+than the length of the string.
+
+00:11:19.900 --> 00:11:28.567
+Branch one: if there is pattern left and the
+characters match, or it is a ?, increase i and j.
+
+00:11:28.567 --> 00:11:35.200
+Branch two: on a star, save
+star and mark, then increase j.
+
+00:11:35.200 --> 00:11:44.800
+Branch three: with a star available, increase mark and
+reset i and j. Last branch: with no star, return false.
+
+00:11:44.800 --> 00:11:53.300
+After the loop, skip the stars at the end of the pattern.
+The answer is true when j has reached the end of the pattern.
+
+00:11:54.333 --> 00:12:05.833
+Let us watch the code run with s = "adceb" and p =
+"*a*b". On the right are the variable values at each line.
+
+00:12:05.833 --> 00:12:11.000
+The line star = j: the
+first star is remembered.
+
+00:12:11.000 --> 00:12:14.733
+The a matches: i and j both increase.
+
+00:12:14.733 --> 00:12:19.400
+The second star is remembered: star = 2.
+
+00:12:19.400 --> 00:12:29.700
+b mismatches d, so the program takes branch
+three: mark increases, i = mark, j = star + 1.
+
+00:12:29.700 --> 00:12:36.100
+Two more mismatches, with c and e:
+the star swallows two more letters.
+
+00:12:36.100 --> 00:12:41.333
+Finally b matches b. i = 5, and the loop ends.
+
+00:12:41.333 --> 00:12:49.700
+The last line: j = 4, exactly the length
+of the pattern. The function returns true.
+
+00:12:50.700 --> 00:12:57.833
+We do not rely on reasoning alone. The three
+official examples give exactly the expected results.
+
+00:12:57.833 --> 00:13:09.400
+We compared it with two independent methods, a
+regex and a DP table, on 173,355 exhaustive cases.
+
+00:13:09.400 --> 00:13:14.200
+Plus 20,000 random cases.
+Not a single mismatch.
+
+00:13:14.200 --> 00:13:21.300
+In the worst case, a string of 2000
+a's, the main loop runs 1,002,001 times.
+
+00:13:21.300 --> 00:13:26.533
+Experiments are strong evidence, but
+they are not a mathematical proof.
+
+00:13:27.567 --> 00:13:30.233
+Let us compare the three approaches.
+
+00:13:30.233 --> 00:13:39.900
+Trying every branch: calls grow very fast with the number of
+stars. Measured: over 203,000 calls for just 20 characters.
+
+00:13:39.900 --> 00:13:52.133
+The DP table: time O(m × n), memory O(m × n). Within the
+problem's limits that is over 4 million cells, which still runs.
+
+00:13:52.133 --> 00:13:59.300
+Two pointers: memory O(1). The
+worst case is still O(m × n).
+
+00:13:59.300 --> 00:14:07.133
+On random data, we measured an average of 0.592 loop
+iterations per character of the string and pattern.
+
+00:14:07.133 --> 00:14:14.833
+No approach is always best. Choose based on the
+limits, the memory, and how easy it is to prove.
+
+00:14:15.867 --> 00:14:21.133
+One: read the requirement carefully,
+especially the ending condition.
+
+00:14:21.133 --> 00:14:26.500
+Two: find where the choices come
+from. In this problem, it is the star.
+
+00:14:26.500 --> 00:14:32.567
+Three: start with something simple and
+correct, then measure why it is slow.
+
+00:14:32.567 --> 00:14:37.767
+Four: if the same question
+repeats, remember the result.
+
+00:14:37.767 --> 00:14:44.867
+Five: find structure that lets you remember
+less, like keeping only the most recent star.
+
+00:14:44.867 --> 00:14:51.367
+Six: always verify with examples,
+counterexamples, and an independent method.
+
+00:14:51.367 --> 00:14:58.167
+These habits work beyond LeetCode: when
+you plan, fix bugs, or design a system.
+
+00:14:59.200 --> 00:15:03.067
+Three problems to keep
+practising, from easy to hard.
+
+00:15:03.067 --> 00:15:11.367
+Problem #392, Is Subsequence, Easy: two pointers
+on two strings, a warm-up for greedy thinking.
+
+00:15:11.367 --> 00:15:19.433
+Problem #72, Edit Distance, Medium: define the table
+cell yourself, and the three choices at each cell.
+
+00:15:19.433 --> 00:15:29.600
+Problem #10, Regular Expression Matching, Hard: there the star
+means something different. Compare it with today's problem.
+
+00:15:29.600 --> 00:15:39.200
+Do not look at code right away. Ask yourself: what is the small
+question, where are the choices, and do you need to remember results?
+
+00:15:40.200 --> 00:15:43.633
+Remember how to think, not just the code.
+
+00:15:43.633 --> 00:15:52.900
+Thank you for watching. See you in the next episode of
+Kieu Studio, The Art of Coding. More resources at kieu.app.

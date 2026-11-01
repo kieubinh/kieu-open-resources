@@ -1,0 +1,62 @@
+{
+  "scene": "23-complexity",
+  "sha256": "b950fa5a3a359580cc7f1078cb06b223ed5d89280eac970edab3fcb9c4109155",
+  "engine": "VoiceStudio local",
+  "base": "http://127.0.0.1:3900",
+  "model": "voxcpm2",
+  "voice": "27ad8d83",
+  "voice_name": "Narrator 03 · Trầm chững chạc (synthetic)",
+  "seed": 20261017,
+  "language": "vi",
+  "speed": 1.0,
+  "speed_applied": "ffmpeg atempo once, pitch preserved",
+  "lead": 0.6,
+  "gap": 0.7,
+  "tail": 1.6,
+  "duration": 38.5,
+  "frames": 1155,
+  "beats": [
+    {
+      "index": 0,
+      "key": "1e9b6741f25998d4aec6eb6edb387cd6e36e6ea964882a218e96c60cc92505b7",
+      "start": 0.6,
+      "end": 2.0005,
+      "peak": 0.7939
+    },
+    {
+      "index": 1,
+      "key": "ff173704f1aa5c06337aac5314847dd355163dfc95418eb42ef37fc2225dda45",
+      "start": 2.7005,
+      "end": 11.007958333333333,
+      "peak": 0.7939
+    },
+    {
+      "index": 2,
+      "key": "ad184e9cef7dff5f9af2a612b128057c4a22b7b53b2da1b93cee11525e9b8612",
+      "start": 11.707958333333334,
+      "end": 19.942604166666666,
+      "peak": 0.7896
+    },
+    {
+      "index": 3,
+      "key": "56aa0e57553f745f9fbc8662b4a7754f5b4bc16544160e1b3d780ebe68891d4b",
+      "start": 20.64260416666667,
+      "end": 25.124604166666668,
+      "peak": 0.7937
+    },
+    {
+      "index": 4,
+      "key": "e3bfe012aaa2bcb0d34a5c6251958c758f065edf33331c27c2617c98c71a0005",
+      "start": 25.824604166666667,
+      "end": 31.466395833333333,
+      "peak": 0.7937
+    },
+    {
+      "index": 5,
+      "key": "51f8f1ea6a76efcc44c143584d45f697461cdcab27af66b83e13ac1acc6fadfe",
+      "start": 32.16639583333333,
+      "end": 36.883541666666666,
+      "peak": 0.7937
+    }
+  ]
+}

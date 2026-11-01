@@ -1,0 +1,41 @@
+{
+  "scene": "13-blowup",
+  "sha256": "8e63e8817547ba7f9dac9930f74a77c2825c7dd31514c228555fa38808514c73",
+  "engine": "VoiceStudio local",
+  "base": "http://127.0.0.1:3900",
+  "model": "voxcpm2",
+  "voice": "27ad8d83",
+  "voice_name": "Narrator 03 · Trầm chững chạc (synthetic)",
+  "seed": 20261017,
+  "language": "vi",
+  "speed": 1.0,
+  "speed_applied": "ffmpeg atempo once, pitch preserved",
+  "lead": 0.6,
+  "gap": 0.7,
+  "tail": 1.6,
+  "duration": 21.333333333333332,
+  "frames": 640,
+  "beats": [
+    {
+      "index": 0,
+      "key": "135154633a9c3fffb93eafff6c987012c92d60b3881e13ba2e26f7562c8940da",
+      "start": 0.6,
+      "end": 3.7237916666666666,
+      "peak": 0.7939
+    },
+    {
+      "index": 1,
+      "key": "e30e177304a31fdd78d605d9c55f97c82e36a9a5f0846425c4efb7549f2eef63",
+      "start": 4.423791666666666,
+      "end": 14.114979166666666,
+      "peak": 0.7942
+    },
+    {
+      "index": 2,
+      "key": "c50a31eeb296f3540a9d051849624051bf06c538993cd748b5923e9dcb59b4ee",
+      "start": 14.814979166666667,
+      "end": 19.7225,
+      "peak": 0.7939
+    }
+  ]
+}

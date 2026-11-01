@@ -1,6 +1,9 @@
 import React from 'react';
 import {AbsoluteFill,Audio,Sequence,interpolate,staticFile,useCurrentFrame} from 'remotion';
 import timeline from './timeline.json';
+import envelope from './envelope.json';
+import anchor from './avatar.mouth.json';
+import {SpeakingAvatar} from './SpeakingAvatar';
 import traces from './traces.json';
 import captions from './captions.json';
 
@@ -11,11 +14,23 @@ const sans='"DejaVu Sans","FreeSans","Segoe UI",Arial,sans-serif';
 const mono='"DejaVu Sans Mono","SFMono-Regular",Consolas,monospace';
 const box:React.CSSProperties={background:C.panel,border:`2px solid ${C.border}`,borderRadius:24,padding:'20px 28px'};
 const getTrace=(s:Scene):Step[]=>((traces as Record<string,Step[]>)[s.trace]||[]);
+// On-screen labels; scripts/build_timeline.py stamps every row with KIEU_LANG.
+const VI={empty:'∅ (mảng rỗng)',range:'Khoảng tìm i',step:'bước',aShort:'A (ngắn)',bLong:'B (dài)',
+ valid:'✓ CẮT HỢP LỆ  ·  MEDIAN',left:'AL > BR  →  DỊCH i SANG TRÁI',right:'BL > AR  →  DỊCH i SANG PHẢI',
+ codeNote:"Mã Python 3 đầy đủ: code/solution.py · ký hiệu inf tương ứng float('inf')",
+ stats:['HARD','46,4%','04/09/2026','Chưa xác minh'],statLabels:['Difficulty / LeetCode','Acceptance / Leetbot','Ngày cập nhật snapshot','Accepted & total submissions'],
+ think:'Tự vẽ hai đường cắt. Bạn sẽ so sánh bốn số nào?',odd:'TỔNG LẺ',even:'TỔNG CHẴN',practice:'Tự xác định điều kiện trước khi code'};
+const EN:typeof VI={empty:'∅ (empty array)',range:'Search range for i',step:'step',aShort:'A (short)',bLong:'B (long)',
+ valid:'✓ VALID SPLIT  ·  MEDIAN',left:'AL > BR  →  MOVE i LEFT',right:'BL > AR  →  MOVE i RIGHT',
+ codeNote:"Full Python 3 code: code/solution.py · inf means float('inf')",
+ stats:['HARD','46.4%','4 Sep 2026','Not verified'],statLabels:['Difficulty / LeetCode','Acceptance / Leetbot','Snapshot date','Accepted & total submissions'],
+ think:'Draw the two split lines yourself. Which four numbers will you compare?',odd:'ODD TOTAL',even:'EVEN TOTAL',practice:'Define the condition yourself before coding'};
+const L=(timeline as Array<{lang?:string}>)[0]?.lang==='en'?EN:VI;
 const clamp=(v:number,a=0,b=1)=>Math.max(a,Math.min(b,v));
 
 function Pills({values,cut,color,reveal}:{values:number[];cut:number;color:string;reveal:number}){
  return <div style={{display:'flex',gap:12,minHeight:104,alignItems:'center'}}>
- {values.length===0&&<div style={{color:C.muted,fontSize:34}}>∅ (mảng rỗng)</div>}
+ {values.length===0&&<div style={{color:C.muted,fontSize:34}}>{L.empty}</div>}
  {values.map((v,k)=><React.Fragment key={k}>
    {k===cut&&<div style={{height:110,width:7,background:C.amber,borderRadius:6,boxShadow:`0 0 26px ${C.amber}`}}/>}
    <div style={{width:105,height:94,display:'grid',placeItems:'center',background:k<cut?`${color}44`:C.deep,
@@ -32,11 +47,11 @@ function Boundary({s,frame}:{s:Scene;frame:number}){
  const main=step as Step;
  return <div style={{...box,padding:42,marginTop:14}}>
   <div style={{display:'flex',justifyContent:'space-between',fontSize:31,color:C.muted,marginBottom:32}}>
-    <span>Khoảng tìm i: [{main.lo}, {main.hi}]</span><b style={{color:C.amber}}>i={main.i} · j={main.j} · bước {choice+1}/{all.length||1}</b>
+    <span>{L.range}: [{main.lo}, {main.hi}]</span><b style={{color:C.amber}}>i={main.i} · j={main.j} · {L.step} {choice+1}/{all.length||1}</b>
   </div>
   <div style={{display:'grid',gridTemplateColumns:'170px 1fr',rowGap:30,alignItems:'center'}}>
-   <b style={{fontSize:39,color:C.blue}}>A (ngắn)</b><Pills values={main.a} cut={main.i} color={C.blue} reveal={p}/>
-   <b style={{fontSize:39,color:C.teal}}>B (dài)</b><Pills values={main.b} cut={main.j} color={C.teal} reveal={p}/>
+   <b style={{fontSize:39,color:C.blue}}>{L.aShort}</b><Pills values={main.a} cut={main.i} color={C.blue} reveal={p}/>
+   <b style={{fontSize:39,color:C.teal}}>{L.bLong}</b><Pills values={main.b} cut={main.j} color={C.teal} reveal={p}/>
   </div>
   <div style={{marginTop:42,display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:16}}>
    {([['AL',main.AL],['AR',main.AR],['BL',main.BL],['BR',main.BR]] as Array<[string,number|string]>).map(([name,v],i)=><div key={name} style={{background:C.deep,border:`2px solid ${C.border}`,borderRadius:16,padding:20,textAlign:'center'}}>
@@ -44,7 +59,7 @@ function Boundary({s,frame}:{s:Scene;frame:number}){
    </div>)}
   </div>
   <div style={{marginTop:24,fontSize:32,color:main.decision==='valid'?C.green:main.decision==='move_left'?C.red:C.amber,fontWeight:800}}>
-    {main.decision==='valid'?`✓ CẮT HỢP LỆ  ·  MEDIAN ${main.median}`:main.decision==='move_left'?'AL > BR  →  DỊCH i SANG TRÁI':'BL > AR  →  DỊCH i SANG PHẢI'}
+    {main.decision==='valid'?`${L.valid} ${main.median}`:main.decision==='move_left'?L.left:L.right}
   </div>
  </div>;
 }
@@ -77,15 +92,15 @@ function CodeVisual({s,frame}:{s:Scene;frame:number}){
     padding:'9px 15px',borderRadius:11,background:active===i?'#1d5871':'transparent',color:active===i?C.teal:C.white,whiteSpace:'pre'}}>
      <span style={{color:C.muted,fontSize:23,width:30}}>{start+i+1}</span>{line}
   </div>)}
-  <div style={{color:C.muted,fontFamily:sans,fontSize:22,marginTop:16}}>Mã Python 3 đầy đủ: code/solution.py · ký hiệu inf tương ứng float('inf')</div>
+  <div style={{color:C.muted,fontFamily:sans,fontSize:22,marginTop:16}}>{L.codeNote}</div>
  </div>;
 }
 function GenericVisual({s,frame}:{s:Scene;frame:number}){
  const progress=frame/Math.max(1,s.frames);
  if(s.mode==='stats')return <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:22,marginTop:25}}>
-    {(['HARD','46,4%','04/09/2026','Chưa xác minh'] as const).map((n,k)=><div key={n} style={{...box,padding:36}}>
+    {L.stats.map((n,k)=><div key={n} style={{...box,padding:36}}>
       <div style={{fontSize:k===3?39:62,fontWeight:850,color:k===0?C.amber:C.teal}}>{n}</div>
-      <div style={{fontSize:27,color:C.muted}}>{['Difficulty / LeetCode','Acceptance / Leetbot','Ngày cập nhật snapshot','Accepted & total submissions'][k]}</div>
+      <div style={{fontSize:27,color:C.muted}}>{L.statLabels[k]}</div>
     </div>)}
    </div>;
  if(s.mode==='ex1'||s.mode==='ex2'||s.mode==='trace'||s.mode==='code_trace'||s.mode==='move_left'||s.mode==='move_right'||s.mode==='edge'||s.mode==='partition'||s.mode==='bounds'||s.mode==='valid'){
@@ -101,16 +116,16 @@ function GenericVisual({s,frame}:{s:Scene;frame:number}){
    return <div style={{height:600,display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column',gap:40}}>
      <div style={{width:315,height:315,borderRadius:'50%',border:`15px solid ${C.teal}`,
        display:'grid',placeItems:'center',fontSize:148,fontWeight:900,color:C.amber}}>{String(remaining).padStart(2,'0')}</div>
-     <div style={{fontSize:36,color:C.white,textAlign:'center'}}>Tự vẽ hai đường cắt. Bạn sẽ so sánh bốn số nào?</div>
+     <div style={{fontSize:36,color:C.white,textAlign:'center'}}>{L.think}</div>
    </div>;
  }
  if(s.mode==='median')return <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:34,marginTop:45}}>
-  {[{t:'TỔNG LẺ',arr:[1,2,3],res:'2.0'},{t:'TỔNG CHẴN',arr:[1,2,3,4],res:'2.5'}].map(item=><div key={item.t} style={{...box,padding:35}}>
+  {[{t:L.odd,arr:[1,2,3],res:'2.0'},{t:L.even,arr:[1,2,3,4],res:'2.5'}].map(item=><div key={item.t} style={{...box,padding:35}}>
       <div style={{fontSize:37,color:C.amber}}>{item.t}</div><div style={{display:'flex',gap:10,margin:'45px 0'}}>{item.arr.map((v,i)=><div key={i} style={{padding:19,background: i===1||item.arr.length===4&&i===2 ? C.teal:C.deep,color:i===1||item.arr.length===4&&i===2?C.bg:C.white,borderRadius:15,fontSize:55,fontWeight:900,flex:1,textAlign:'center'}}>{v}</div>)}</div>
       <div style={{fontSize:57,color:C.teal,fontWeight:900}}>Median = {item.res}</div>
   </div>)}</div>;
  if(s.mode==='practice')return <div style={{display:'flex',gap:30,marginTop:40}}>{s.lines.map((txt,k)=><div key={txt} style={{...box,flex:1,padding:38,display:'flex',flexDirection:'column',gap:45}}>
-   <div style={{fontSize:70,fontWeight:900,color:C.amber}}>0{k+1}</div><div style={{fontSize:33,lineHeight:1.35}}>{txt}</div><div style={{color:C.teal,fontSize:26}}>Tự xác định điều kiện trước khi code</div></div>)}</div>;
+   <div style={{fontSize:70,fontWeight:900,color:C.amber}}>0{k+1}</div><div style={{fontSize:33,lineHeight:1.35}}>{txt}</div><div style={{color:C.teal,fontSize:26}}>{L.practice}</div></div>)}</div>;
  return <div style={{display:'flex',flexDirection:'column',gap:22,marginTop:30}}>{s.lines.map((line,k)=><div key={k} style={{...box,opacity:clamp(progress*7-k*.7),transform:`translateX(${(1-clamp(progress*7-k*.7))*25}px)`,fontSize:35,lineHeight:1.35,display:'flex',alignItems:'center',gap:22,padding:'25px 34px'}}>
    <div style={{width:16,height:16,borderRadius:'50%',background:k%2?C.amber:C.teal,flexShrink:0}}/>{line}</div>)}</div>;
 }
@@ -120,7 +135,7 @@ function Subtitle({s,frame}:{s:Scene;frame:number}){
  const cue=(captions as Array<{sceneId:string;fromFrame:number;toFrame:number;text:string}>).find(
    c=>c.sceneId===s.id&&c.fromFrame<=absolute&&c.toFrame>absolute);
  if(!cue)return null;
- return <div style={{position:'absolute',left:270,right:270,bottom:57,background:'#050e1bdc',borderRadius:12,
+ return <div style={{position:'absolute',left:340,right:340,bottom:57,background:'#050e1bdc',borderRadius:12,
    textAlign:'center',minHeight:54,padding:'14px 22px',fontSize:29,fontWeight:650,lineHeight:1.34}}>{cue.text}</div>;
 }
 function SceneCard({s}:{s:Scene}){
@@ -144,5 +159,5 @@ export function Episode04(){
  const scenes=timeline as Scene[];
  return <AbsoluteFill>{scenes.map(s=><Sequence key={s.id} from={s.fromFrame} durationInFrames={s.frames}>
   <SceneCard s={s}/>{s.audio&&!s.silent&&<Audio src={staticFile(s.audio)}/>}
- </Sequence>)}</AbsoluteFill>;
+ </Sequence>)}{envelope.levels.length>0&&<SpeakingAvatar levels={envelope.levels} mouthO={envelope.mouthO} mouthS={envelope.mouthS} anchor={anchor}/>}</AbsoluteFill>;
 }

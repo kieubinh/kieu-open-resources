@@ -4,7 +4,7 @@ from __future__ import annotations
 import argparse, hashlib, json, os, urllib.request, urllib.error, wave
 from pathlib import Path
 from episode import S
-from config import AUDIO_DIR
+from config import AUDIO_DIR, LANG
 BASE=os.environ.get('VOICESTUDIO_BASE','http://127.0.0.1:3900').rstrip('/')
 
 
@@ -15,7 +15,8 @@ def request(path,payload=None):
         data=json.dumps(payload,ensure_ascii=False).encode('utf-8') if payload is not None else None,
         headers={'Content-Type':'application/json','Accept':'audio/wav' if payload else 'application/json'},
         method='POST' if payload else 'GET')
-    with urllib.request.urlopen(req,timeout=180 if payload else 7) as result:
+    # Reference-conditioned English profiles can take several minutes per long scene on a cold engine.
+    with urllib.request.urlopen(req,timeout=int(os.environ.get('VOICESTUDIO_TIMEOUT','1800')) if payload else 7) as result:
         raw=result.read()
     return raw if payload is not None else json.loads(raw)
 
@@ -33,7 +34,7 @@ def main():
     selected=os.environ.get('VOICESTUDIO_VOICE_PROFILE','').strip()
     ids={str(x.get('id',x.get('voice_id'))) for x in voices if isinstance(x,dict)}
     if not selected or selected not in ids:raise RuntimeError('Set VOICESTUDIO_VOICE_PROFILE to an ID listed by --voices')
-    model=os.environ.get('VOICESTUDIO_MODEL','tts-1')
+    model=os.environ.get('VOICESTUDIO_MODEL','voxcpm2' if LANG=='en' else 'tts-1')
     dest=AUDIO_DIR;dest.mkdir(parents=True,exist_ok=True)
     for scene in S:
         if scene.silent:continue
@@ -41,7 +42,8 @@ def main():
         digest=hashlib.sha256(json.dumps(dict(text=scene.script,voice=selected,model=model),ensure_ascii=False,sort_keys=True).encode()).hexdigest()
         if path.exists() and meta.exists() and json.loads(meta.read_text()).get('sha256')==digest:
             print('cached',scene.id);continue
-        blob=request('/v1/audio/speech',dict(model=model,voice=selected,input=scene.script,response_format='wav'))
+        extra=dict(language='en',seed=20261019) if LANG=='en' else {}  # English B profile (kieu-studio data/brand.yaml)
+        blob=request('/v1/audio/speech',dict(model=model,voice=selected,input=scene.script,response_format='wav',**extra))
         if blob[:4]!=b'RIFF' or blob[8:12]!=b'WAVE':raise RuntimeError(scene.id+': invalid WAV signature')
         path.write_bytes(blob)
         with wave.open(str(path),'rb') as w:

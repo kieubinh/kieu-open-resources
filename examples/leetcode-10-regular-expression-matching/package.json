@@ -10,7 +10,10 @@
     "voice:voices": "python3 scripts/voicestudio.py --voices",
     "voice:generate": "python3 scripts/voicestudio.py --synthesize",
     "render:release": "python3 scripts/build_timeline.py && remotion render src/index.ts EP02-RegularExpression output/EP02_VOICESTUDIO_RELEASE.mp4 --codec=h264",
-    "test": "python3 -m unittest discover -s scripts -p '*test.py' -v"
+    "test": "python3 -m unittest discover -s scripts -p '*test.py' -v",
+    "voice:generate:en": "KIEU_LANG=en VOICESTUDIO_VOICE_PROFILE=823d23e3 python3 scripts/voicestudio.py --synthesize",
+    "render:preview:en": "KIEU_LANG=en python3 scripts/build_timeline.py --preview && remotion render src/index.ts EP02-RegularExpression output/EP02_EN_SILENT_REVIEW.mp4 --codec=h264",
+    "render:release:en": "KIEU_LANG=en python3 scripts/build_timeline.py && remotion render src/index.ts EP02-RegularExpression output/EP02_EN_VOICESTUDIO_RELEASE.mp4 --codec=h264"
   },
   "dependencies": {
     "remotion": "^4.0.0",

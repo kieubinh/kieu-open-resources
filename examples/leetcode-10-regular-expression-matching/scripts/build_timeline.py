@@ -2,9 +2,9 @@
 """Build frame-aligned Remotion timeline. Release requires real VoiceStudio WAVs."""
 import argparse, json, wave
 from pathlib import Path
-from episode import S
+from episode import S, LANG, AUDIO_SLUG
 ROOT=Path(__file__).resolve().parents[1]
-AUDIO=ROOT/"public/audio/ep02-voicestudio"
+AUDIO=ROOT/"public/audio"/AUDIO_SLUG
 FPS=30
 
 def main(preview=False):
@@ -22,10 +22,10 @@ def main(preview=False):
             with wave.open(str(path),"rb") as w:
                 duration=w.getnframes()/w.getframerate()
             frames=max(round(scene.min_seconds*FPS),round((duration+.5)*FPS))
-            audio=f"audio/ep02-voicestudio/{scene.id}.wav"
+            audio=f"audio/{AUDIO_SLUG}/{scene.id}.wav"
         rows.append({"id":scene.id,"phase":scene.phase,"title":scene.title,
             "lines":list(scene.lines),"mode":scene.mode,"silent":scene.silent,
-            "fromFrame":at,"frames":frames,"audio":audio})
+            "fromFrame":at,"frames":frames,"audio":audio,"lang":LANG})
         at+=frames
     dest=ROOT/"src/timeline.json"
     dest.write_text(json.dumps(rows,ensure_ascii=False,indent=2)+"\n")

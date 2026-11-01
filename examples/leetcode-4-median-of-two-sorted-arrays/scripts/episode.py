@@ -178,3 +178,9 @@ sc('31-outro','KIEU STUDIO / THE ART OF CODING','Đừng nhớ code. Hãy nhớ 
  'Bài tập là công cụ, tư duy là kỹ năng mang theo.'],
  '''Kết thúc bài số bốn, ta đã biến một bài Hard thành một chuỗi câu hỏi nhỏ và kiểm chứng được. Nếu lần sau bạn quên code Python, điều đó không sao; hãy thử vẽ hai đường cắt, đặt bốn số ở biên, tự chứng minh điều kiện hợp lệ rồi viết lại. Đó là học để giải quyết vấn đề thật, chứ không phải thuộc lòng câu trả lời. Cảm ơn bạn đã học cùng Kieu Studio. Hẹn gặp ở bài thực hành tiếp theo của The Art of Coding.''',44,'outro'),
 ]
+
+# KIEU_LANG=en swaps in the English edition (same ids, modes, timings and traces).
+import os, sys
+if os.environ.get('KIEU_LANG','vi')=='en':
+    sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))  # audit_episode.py loads this file by path
+    from episode_en import S

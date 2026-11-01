@@ -1,0 +1,34 @@
+{
+  "scene": "08-recap",
+  "sha256": "dfb2641c5246b04f27cb8203f5a4438171896a57ba58053672df7c561c9f8bac",
+  "engine": "VoiceStudio local",
+  "base": "http://127.0.0.1:3900",
+  "model": "voxcpm2",
+  "voice": "27ad8d83",
+  "voice_name": "Narrator 03 · Trầm chững chạc (synthetic)",
+  "seed": 20261017,
+  "language": "vi",
+  "speed": 1.0,
+  "speed_applied": "ffmpeg atempo once, pitch preserved",
+  "lead": 0.6,
+  "gap": 0.7,
+  "tail": 1.6,
+  "duration": 14.566666666666666,
+  "frames": 437,
+  "beats": [
+    {
+      "index": 0,
+      "key": "808dc75971d70b6d35ca85439b3250181a6273e276001d61c708fd09c993fdd8",
+      "start": 0.6,
+      "end": 8.252729166666667,
+      "peak": 0.7939
+    },
+    {
+      "index": 1,
+      "key": "7dc7598df9229d6024487e8b43f3d1f3d8f0b566638b7bd37f759ec614c2f0f5",
+      "start": 8.952729166666666,
+      "end": 12.949583333333333,
+      "peak": 0.7937
+    }
+  ]
+}

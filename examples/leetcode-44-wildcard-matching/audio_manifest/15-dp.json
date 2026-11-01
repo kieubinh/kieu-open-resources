@@ -1,0 +1,76 @@
+{
+  "scene": "15-dp",
+  "sha256": "b0b68fe349e3894bd8099d18de2299334d3df1f370ab4681c5ff56246810a405",
+  "engine": "VoiceStudio local",
+  "base": "http://127.0.0.1:3900",
+  "model": "voxcpm2",
+  "voice": "27ad8d83",
+  "voice_name": "Narrator 03 · Trầm chững chạc (synthetic)",
+  "seed": 20261017,
+  "language": "vi",
+  "speed": 1.0,
+  "speed_applied": "ffmpeg atempo once, pitch preserved",
+  "lead": 0.6,
+  "gap": 0.7,
+  "tail": 1.6,
+  "duration": 51.4,
+  "frames": 1542,
+  "beats": [
+    {
+      "index": 0,
+      "key": "928d6b0464fe59b01b90c088935b86caea593a0589ca278791d2a31493f85dd4",
+      "start": 0.6,
+      "end": 4.772666666666667,
+      "peak": 0.794
+    },
+    {
+      "index": 1,
+      "key": "5110fd95372fbe15f208802e8bd1887ac7ced8c2bea529912e6bd8940e266a42",
+      "start": 5.472666666666667,
+      "end": 10.793416666666667,
+      "peak": 0.7937
+    },
+    {
+      "index": 2,
+      "key": "f18036cd95fabc828578216145680140b7a91332163fa8acf17828797e9ced25",
+      "start": 11.493416666666667,
+      "end": 15.328708333333333,
+      "peak": 0.7941
+    },
+    {
+      "index": 3,
+      "key": "ce8f8385656f05040d3f76addd843842b2ab0747e0dd4d0eb260772ae63f9346",
+      "start": 16.028708333333334,
+      "end": 22.724854166666667,
+      "peak": 0.7938
+    },
+    {
+      "index": 4,
+      "key": "168a2865ec5d610e9d2f3ba817f39f97aa0f4cbafff80a16fb5852b4e6885006",
+      "start": 23.424854166666666,
+      "end": 31.90475,
+      "peak": 0.7941
+    },
+    {
+      "index": 5,
+      "key": "06db21b3ff1635dd314fcccb3173905b2d6c84f11575a62dfb1b02c27df5d9c7",
+      "start": 32.60475,
+      "end": 38.099583333333335,
+      "peak": 0.7938
+    },
+    {
+      "index": 6,
+      "key": "137e49dfbec563c8006383e9b6dc41190af790ad8b7b1f1763991352059dda73",
+      "start": 38.79958333333333,
+      "end": 41.425270833333336,
+      "peak": 0.7937
+    },
+    {
+      "index": 7,
+      "key": "5a7c995ea2e5b116b05e75bd95484babf751a63bb9f76b946af7ddbfef127c45",
+      "start": 42.12527083333333,
+      "end": 49.768479166666665,
+      "peak": 0.7937
+    }
+  ]
+}

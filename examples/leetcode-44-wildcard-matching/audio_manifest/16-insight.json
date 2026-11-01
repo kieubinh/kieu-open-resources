@@ -1,0 +1,48 @@
+{
+  "scene": "16-insight",
+  "sha256": "cc5b6ca2dd696e716dbdded5230cdf03c72de702482e5b9eb0c39532bb34d2d0",
+  "engine": "VoiceStudio local",
+  "base": "http://127.0.0.1:3900",
+  "model": "voxcpm2",
+  "voice": "27ad8d83",
+  "voice_name": "Narrator 03 · Trầm chững chạc (synthetic)",
+  "seed": 20261017,
+  "language": "vi",
+  "speed": 1.0,
+  "speed_applied": "ffmpeg atempo once, pitch preserved",
+  "lead": 0.6,
+  "gap": 0.7,
+  "tail": 1.6,
+  "duration": 29.833333333333332,
+  "frames": 895,
+  "beats": [
+    {
+      "index": 0,
+      "key": "1346fd6085855b1e5e2371d919e928c28613eb12de1cbc7d857eb2baa105ff16",
+      "start": 0.6,
+      "end": 6.0768125,
+      "peak": 0.7941
+    },
+    {
+      "index": 1,
+      "key": "2a04bc51117d439ea9a636824c55efa03315840c64847db78f17f2f3c44a4d76",
+      "start": 6.7768125,
+      "end": 14.870666666666667,
+      "peak": 0.7943
+    },
+    {
+      "index": 2,
+      "key": "19859e68c3c0375cf1ba09a924f4985ea1970bed2ac7e574a2dd6c38dfa5e20c",
+      "start": 15.570666666666666,
+      "end": 21.6208125,
+      "peak": 0.7937
+    },
+    {
+      "index": 3,
+      "key": "57f98e44a73085dd204a66f1cce93dd64bba56dc8b560788c84838914f7c3e04",
+      "start": 22.3208125,
+      "end": 28.2065,
+      "peak": 0.7939
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "scene": "19-pseudocode",
+  "sha256": "bdb2b622ff3c169801cfce6dc4e6db128be6ffd8d33cd31436e1d57484ca31d2",
+  "engine": "VoiceStudio local",
+  "base": "http://127.0.0.1:3900",
+  "model": "voxcpm2",
+  "voice": "823d23e3",
+  "voice_name": "Kieu Studio English B · Warm Low (synthetic)",
+  "seed": 20261019,
+  "language": "en",
+  "speed": 1.0,
+  "speed_applied": "ffmpeg atempo once, pitch preserved",
+  "lead": 0.6,
+  "gap": 0.7,
+  "tail": 1.6,
+  "duration": 23.666666666666668,
+  "frames": 710,
+  "beats": [
+    {
+      "index": 0,
+      "key": "0317f914977a57e5c75d4b2e5fa79db89234a49327cb611a18d26a5f05a43872",
+      "start": 0.6,
+      "end": 4.038916666666666,
+      "peak": 0.7941
+    },
+    {
+      "index": 1,
+      "key": "e86102895c079656e932df78594327138c99982a25007ffe2c8f2305ff9723de",
+      "start": 4.738916666666666,
+      "end": 14.468979166666667,
+      "peak": 0.7937
+    },
+    {
+      "index": 2,
+      "key": "a0637cc0de48e1b124c11e5defba4628f0e745ba8afc48f70bf7c02c78b1f82b",
+      "start": 15.168979166666666,
+      "end": 22.056104166666668,
+      "peak": 0.7937
+    }
+  ]
+}
