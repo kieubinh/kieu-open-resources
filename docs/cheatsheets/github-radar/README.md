@@ -62,3 +62,14 @@ One-page A4 cheat sheets for the next two GitHub Radar Shorts. Snapshot 2026-11-
 | GR12 | `Donchitos/Claude-Code-Game-Studios` | [GR12_Claude-Code-Game-Studios_cheatsheet.pdf](GR12_Claude-Code-Game-Studios_cheatsheet.pdf) |
 
 Star totals come from the GitHub API; growth from GitHub Trending (Trending-reported, not independently reconstructed): a weekly figure for GR11 and a daily figure for GR12. Both sheets carry a caveat block.
+
+## GR13-GR14 (Shorts, Vietnamese)
+
+One-page A4 cheat sheets for the next two GitHub Radar Shorts. Snapshot 2026-11-01.
+
+| Short | Repo | Cheat sheet |
+| --- | --- | --- |
+| GR13 | `affaan-m/ECC` | [GR13_ECC_cheatsheet.pdf](GR13_ECC_cheatsheet.pdf) |
+| GR14 | `NationalSecurityAgency/ghidra` | [GR14_ghidra_cheatsheet.pdf](GR14_ghidra_cheatsheet.pdf) |
+
+Star totals come from the GitHub API; growth from GitHub Trending (Trending-reported, not independently reconstructed): a weekly figure for GR13 and a monthly figure for GR14. Both sheets carry a caveat block.
