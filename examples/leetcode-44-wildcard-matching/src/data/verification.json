@@ -1,0 +1,74 @@
+{
+  "python": "3.9.6",
+  "platform": "macOS-27.0.1",
+  "official": [
+    {
+      "s": "aa",
+      "p": "a",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "s": "aa",
+      "p": "*",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "s": "cb",
+      "p": "?a",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    }
+  ],
+  "edge": {
+    "cases": 16,
+    "failures": []
+  },
+  "exhaustive": {
+    "alphabet_s": "ab",
+    "max_s": 6,
+    "alphabet_p": "ab?*",
+    "max_p": 5,
+    "cases": 173355,
+    "mismatches": 0,
+    "oracles": [
+      "regex fullmatch",
+      "2-D DP table"
+    ]
+  },
+  "random": {
+    "seed": 44,
+    "cases": 20000,
+    "max_s": 40,
+    "max_p": 30,
+    "mismatches": 0,
+    "regex_checked": 14393,
+    "oracles": [
+      "2-D DP table (every case)",
+      "regex fullmatch (patterns with at most 4 star groups)"
+    ]
+  },
+  "worst": {
+    "n": 2000,
+    "s": "'a' × 2000",
+    "p": "'*' + 'a' × 999 + 'b'",
+    "answer": false,
+    "agrees": true,
+    "loop_iterations": 1002001,
+    "seconds": 0.1604,
+    "note": "wall-clock on the machine that ran this script; iterations are exact"
+  },
+  "typical": {
+    "seed": 4402,
+    "cases": 40,
+    "n": 2000,
+    "mean_iterations_per_char": 0.592,
+    "max_iterations_per_char": 1.434
+  },
+  "dp_cells": 4004001,
+  "max_cells_for_constraints": 4004001
+}

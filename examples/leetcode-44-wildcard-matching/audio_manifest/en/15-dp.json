@@ -1,0 +1,76 @@
+{
+  "scene": "15-dp",
+  "sha256": "7d6a39897c309774ffcf806606c256aac07f2015dd68fee5da472f4aebef1708",
+  "engine": "VoiceStudio local",
+  "base": "http://127.0.0.1:3900",
+  "model": "voxcpm2",
+  "voice": "823d23e3",
+  "voice_name": "Kieu Studio English B · Warm Low (synthetic)",
+  "seed": 20261019,
+  "language": "en",
+  "speed": 1.0,
+  "speed_applied": "ffmpeg atempo once, pitch preserved",
+  "lead": 0.6,
+  "gap": 0.7,
+  "tail": 1.6,
+  "duration": 65.83333333333333,
+  "frames": 1975,
+  "beats": [
+    {
+      "index": 0,
+      "key": "059eec4dc829b4f97988202cf199489fb7597578c9e51c69d4ac6a5f19cffdb0",
+      "start": 0.6,
+      "end": 6.288479166666667,
+      "peak": 0.7937
+    },
+    {
+      "index": 1,
+      "key": "6ffd14581ca01840cbae624bbd4994d4902f7fe4ea941daad44801e156c01568",
+      "start": 6.988479166666667,
+      "end": 13.943583333333333,
+      "peak": 0.7938
+    },
+    {
+      "index": 2,
+      "key": "7990ef66a8fb9f02414daea4a28d30944b58bead38f9fbed6a614d876b2e4468",
+      "start": 14.643583333333334,
+      "end": 22.051979166666666,
+      "peak": 0.7937
+    },
+    {
+      "index": 3,
+      "key": "4adfe6e6b01e881a97caf0c1d449f1dadf18d9e955f86b556f237261105ccef4",
+      "start": 22.75197916666667,
+      "end": 31.277979166666668,
+      "peak": 0.7937
+    },
+    {
+      "index": 4,
+      "key": "37557a0f84cc68fdba4c425fcb1651dec77b846c295814549badfa7446eb759c",
+      "start": 31.977979166666668,
+      "end": 40.63435416666667,
+      "peak": 0.7937
+    },
+    {
+      "index": 5,
+      "key": "8d649062a318cad5baef18b2511b1f12e1da9c665faff8836fa8b2d34b656853",
+      "start": 41.334354166666664,
+      "end": 48.31583333333333,
+      "peak": 0.7937
+    },
+    {
+      "index": 6,
+      "key": "80503dd87ea9e31c0b9a9eb05526bab2dd16b537f754a91b45bee7fa48514309",
+      "start": 49.01583333333333,
+      "end": 52.41829166666667,
+      "peak": 0.7939
+    },
+    {
+      "index": 7,
+      "key": "c90e1826b89cc3669c9e232cd459259e6ea3bd7dbe3f19056196587665b254cf",
+      "start": 53.118291666666664,
+      "end": 64.2181875,
+      "peak": 0.794
+    }
+  ]
+}

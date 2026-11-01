@@ -1,0 +1,36 @@
+{
+  "name": "kieu-studio-ep03-wildcard-matching",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Kieu Studio EP03 \u2014 LeetCode #44 Wildcard Matching (Remotion, 1920x1080, 30 fps, VoiceStudio narration)",
+  "scripts": {
+    "data": "python3 scripts/build_trace.py && python3 scripts/run_verification.py",
+    "studio": "python3 scripts/build_timeline.py --preview && remotion studio src/index.ts",
+    "render:preview": "python3 scripts/build_timeline.py --preview && remotion render src/index.ts EP03-WildcardMatching output/EP03_SILENT_REVIEW.mp4 --codec=h264",
+    "voice:check": "python3 scripts/voicestudio.py --check",
+    "voice:voices": "python3 scripts/voicestudio.py --voices",
+    "voice:generate": "python3 scripts/voicestudio.py --synthesize",
+    "voice:verify": "python3 scripts/voicestudio.py --asr-check",
+    "timeline": "python3 scripts/build_timeline.py",
+    "render:review": "python3 scripts/build_timeline.py && remotion render src/index.ts EP03-WildcardMatching output/EP03_VOICESTUDIO_REVIEW.mp4 --codec=h264 --crf=18 --pixel-format=yuv420p",
+    "thumbnail": "remotion still src/index.ts EP03-Thumbnail publish/thumbnail.png",
+    "typecheck": "tsc --noEmit",
+    "test": "python3 -m unittest discover -s scripts -p '*test.py' -v && npm run typecheck",
+    "voice:generate:en": "KIEU_LANG=en VOICESTUDIO_VOICE_PROFILE=823d23e3 python3 scripts/voicestudio.py --synthesize",
+    "render:review:en": "KIEU_LANG=en python3 scripts/build_timeline.py && remotion render src/index.ts EP03-WildcardMatching output/EP03_EN_VOICESTUDIO_REVIEW.mp4 --codec=h264 --crf=18 --pixel-format=yuv420p",
+    "render:thumbnail:en": "KIEU_LANG=en python3 scripts/build_timeline.py && remotion still src/index.ts EP03-Thumbnail output/EP03_EN_thumbnail.png"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.539",
+    "@remotion/fonts": "4.0.539",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "remotion": "4.0.539"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "typescript": "5.9.3"
+  }
+}

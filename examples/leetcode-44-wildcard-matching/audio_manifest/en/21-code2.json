@@ -1,0 +1,76 @@
+{
+  "scene": "21-code2",
+  "sha256": "2957b10c37805069407a022e2a75f31f8018e7309dc20c8a317ff68c19e5159a",
+  "engine": "VoiceStudio local",
+  "base": "http://127.0.0.1:3900",
+  "model": "voxcpm2",
+  "voice": "823d23e3",
+  "voice_name": "Kieu Studio English B · Warm Low (synthetic)",
+  "seed": 20261019,
+  "language": "en",
+  "speed": 1.0,
+  "speed_applied": "ffmpeg atempo once, pitch preserved",
+  "lead": 0.6,
+  "gap": 0.7,
+  "tail": 1.6,
+  "duration": 56.36666666666667,
+  "frames": 1691,
+  "beats": [
+    {
+      "index": 0,
+      "key": "7ddb08ca87e605b5e376c744bed1e7685cd479d696394b3c216f53c23cfd7438",
+      "start": 0.6,
+      "end": 11.386958333333334,
+      "peak": 0.794
+    },
+    {
+      "index": 1,
+      "key": "d807543dd160e6d03a9afed621f9314df09a1c53e5b232162fdf5cac89421800",
+      "start": 12.086958333333333,
+      "end": 16.5816875,
+      "peak": 0.7938
+    },
+    {
+      "index": 2,
+      "key": "83a20826046915098d029aabf7f4acd09408b6a668d479819b99001f4528b8cf",
+      "start": 17.2816875,
+      "end": 20.3160625,
+      "peak": 0.7943
+    },
+    {
+      "index": 3,
+      "key": "0da86a505e7eea4604620f14aa919235cc6de915927fe5de01f68260a96c1be0",
+      "start": 21.0160625,
+      "end": 24.962729166666666,
+      "peak": 0.7943
+    },
+    {
+      "index": 4,
+      "key": "54e21ceed42dc20f56c2bd5cdbec2aa458046198a0485e1b575fe804a77ca59d",
+      "start": 25.662729166666665,
+      "end": 35.2610625,
+      "peak": 0.7938
+    },
+    {
+      "index": 5,
+      "key": "4827c518db0d5cc39a1663d3a729a91ac69783969f1789102a199c51a57ae98f",
+      "start": 35.9610625,
+      "end": 41.67058333333333,
+      "peak": 0.7939
+    },
+    {
+      "index": 6,
+      "key": "b83311b2cd746ce920b002c24a85645270dd4f2b27f7b599d9168409b75c2202",
+      "start": 42.370583333333336,
+      "end": 46.90208333333333,
+      "peak": 0.7943
+    },
+    {
+      "index": 7,
+      "key": "4ff6d8bb35b0ef6e581075b4048fede871a32c8e4b90220bac37ab2e2018e6d1",
+      "start": 47.60208333333333,
+      "end": 54.7581875,
+      "peak": 0.7938
+    }
+  ]
+}

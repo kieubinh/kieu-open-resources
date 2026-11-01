@@ -8,9 +8,13 @@ import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-AUDIO_SLUG = 'leetcode-04-voicestudio'   # public/audio/<AUDIO_SLUG>/<scene id>.wav
-OUT_PREFIX = 'EP04'                       # output/<OUT_PREFIX>_*.srt|png|mp4
-REVIEW_MP4 = 'EP04_MEDIAN_VISUAL_REVIEW_ONLY.mp4'
+LANG = os.environ.get('KIEU_LANG', 'vi')  # 'vi' (default) or 'en'
+if LANG not in ('vi', 'en'):
+    raise RuntimeError(f'KIEU_LANG must be vi or en, not {LANG!r}')
+_EN = LANG == 'en'
+AUDIO_SLUG = 'leetcode-04-voicestudio' + ('-en' if _EN else '')   # public/audio/<AUDIO_SLUG>/<scene id>.wav
+OUT_PREFIX = 'EP04_EN' if _EN else 'EP04'                         # output/<OUT_PREFIX>_*.srt|png|mp4
+REVIEW_MP4 = OUT_PREFIX + '_MEDIAN_VISUAL_REVIEW_ONLY.mp4'
 
 AUDIO_DIR = ROOT / 'public' / 'audio' / AUDIO_SLUG
 AUDIO_URL = f'audio/{AUDIO_SLUG}'          # path relative to Remotion public/

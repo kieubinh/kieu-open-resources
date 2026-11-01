@@ -4,7 +4,7 @@ from __future__ import annotations
 import argparse, json, re, wave, math
 from pathlib import Path
 from episode import S
-from config import ROOT, AUDIO_DIR as AUD, AUDIO_URL, OUT_PREFIX
+from config import ROOT, AUDIO_DIR as AUD, AUDIO_URL, OUT_PREFIX, LANG
 FPS=30
 
 def subunits(text):
@@ -42,7 +42,7 @@ def make(preview=True):
             audio=f'{AUDIO_URL}/{scene.id}.wav'
         rows.append(dict(id=scene.id,phase=scene.phase,title=scene.title,lines=list(scene.lines),
             script=scene.script,fromFrame=at,frames=frames,mode=scene.mode,
-            silent=scene.silent,trace=scene.trace,audio=audio))
+            silent=scene.silent,trace=scene.trace,audio=audio,lang=LANG))
         if scene.script:
             units=subunits(scene.script)
             if units:

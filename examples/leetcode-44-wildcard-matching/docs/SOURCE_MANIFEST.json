@@ -1,0 +1,52 @@
+{
+  "problem": {
+    "number": 44,
+    "title": "Wildcard Matching",
+    "difficulty": "Hard",
+    "source": "https://leetcode.com/problems/wildcard-matching/",
+    "verified_on": "2026-10-28",
+    "official_examples": [
+      {"s": "aa", "p": "a", "output": false},
+      {"s": "aa", "p": "*", "output": true},
+      {"s": "cb", "p": "?a", "output": false}
+    ],
+    "constraints": [
+      "0 <= s.length, p.length <= 2000",
+      "s contains only lowercase English letters",
+      "p contains only lowercase English letters, '?' or '*'"
+    ],
+    "operators": {
+      "?": "matches any single character",
+      "*": "matches any sequence of characters, including the empty sequence"
+    },
+    "match_rule": "the match must cover the entire input string",
+    "required_time_complexity": null
+  },
+  "acceptance_snapshot": {
+    "acceptance_percent": 33.1,
+    "difficulty": "Hard",
+    "accepted_submissions": 967654,
+    "total_submissions": null,
+    "total_submissions_note": "The page shows a rounded total (about 2.9M); no exact total was recorded, so none is shown in the video.",
+    "checked_on": "2026-10-28",
+    "source": "https://leetcode.com/problems/wildcard-matching/",
+    "is_live_leetcode_rate": false,
+    "note": "Snapshot read from the LeetCode problem page on the check date; it changes continuously. These count submissions, not people. The video states this and shows the date."
+  },
+  "educational_answer": {
+    "time_complexity": "O(m*n) worst case (1,002,001 loop iterations measured at n=2000); about 0.6 iterations per text character on 40 seeded random cases",
+    "auxiliary_space": "O(1)",
+    "strategy": "Two pointers; remember only the most recent '*' and the text position it has swallowed up to; on a mismatch, backtrack to that star and let it swallow one more character"
+  },
+  "practice_problems": [
+    {"number": 392, "title": "Is Subsequence", "difficulty": "Easy", "verified_on": "2026-10-28"},
+    {"number": 72, "title": "Edit Distance", "difficulty": "Medium", "verified_on": "2026-10-28"},
+    {"number": 10, "title": "Regular Expression Matching", "difficulty": "Hard", "verified_on": null, "note": "Taken from the EP02 docs in this repository; the LeetCode page could not be fetched in this session. Re-check before publishing."}
+  ],
+  "hints": "The three hints are written by Kieu Studio and are not LeetCode's official hints.",
+  "licensing": {
+    "official_images_included": false,
+    "official_statement_copied_wholesale": false,
+    "brand": "Kieu Studio; LeetCode attribution and third-party rights remain separate"
+  }
+}

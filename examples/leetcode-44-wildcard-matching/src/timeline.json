@@ -1,0 +1,1322 @@
+{
+ "fps": 30,
+ "preview": false,
+ "totalFrames": 23001,
+ "scenes": [
+  {
+   "id": "01-mission",
+   "phase": "KIEU STUDIO · SỨ MỆNH",
+   "title": "LeetCode là bài tập. Tư duy là mục tiêu.",
+   "lines": [
+    "KIEU STUDIO · THE ART OF CODING",
+    "EP03 · LeetCode #44 · Wildcard Matching",
+    "Hiểu → Giả thuyết → Kiểm chứng → Rút kinh nghiệm"
+   ],
+   "mode": "mission",
+   "silent": false,
+   "fromFrame": 0,
+   "frames": 734,
+   "audio": "audio/ep03-voicestudio/01-mission.wav",
+   "beats": [
+    {
+     "text": "Chào mừng bạn đến với Kieu Studio, The Art of Coding.",
+     "startFrame": 18,
+     "endFrame": 137,
+     "audioEndFrame": 116,
+     "cue": null
+    },
+    {
+     "text": "Ở đây, LeetCode chỉ là bài tập luyện. Điều chúng ta thật sự rèn là kỹ năng giải quyết vấn đề.",
+     "startFrame": 137,
+     "endFrame": 318,
+     "audioEndFrame": 297,
+     "cue": null
+    },
+    {
+     "text": "Với mỗi bài toán, ta lặp lại bốn bước: hiểu đề, đặt giả thuyết, kiểm chứng, và rút kinh nghiệm.",
+     "startFrame": 318,
+     "endFrame": 511,
+     "audioEndFrame": 490,
+     "cue": null
+    },
+    {
+     "text": "Tập 3 hôm nay là bài #44, Wildcard Matching. Đây là bài Hard, nhưng ta sẽ đi từng bước.",
+     "startFrame": 511,
+     "endFrame": 721,
+     "audioEndFrame": 685,
+     "cue": null
+    }
+   ]
+  },
+  {
+   "id": "02-problem",
+   "phase": "01 · ĐỌC ĐỀ",
+   "title": "Wildcard Matching",
+   "lines": [
+    "? khớp đúng một ký tự bất kỳ",
+    "* khớp một dãy ký tự bất kỳ, kể cả dãy rỗng",
+    "Khớp phải phủ kín TOÀN BỘ chuỗi"
+   ],
+   "mode": "problem",
+   "silent": false,
+   "fromFrame": 734,
+   "frames": 620,
+   "audio": "audio/ep03-voicestudio/02-problem.wav",
+   "beats": [
+    {
+     "text": "Đề bài cho một chuỗi s và một mẫu p. Ta cần cho biết mẫu có khớp toàn bộ chuỗi hay không.",
+     "startFrame": 18,
+     "endFrame": 199,
+     "audioEndFrame": 178,
+     "cue": null
+    },
+    {
+     "text": "Trong mẫu, dấu hỏi chấm (?) khớp đúng một ký tự bất kỳ.",
+     "startFrame": 199,
+     "endFrame": 305,
+     "audioEndFrame": 284,
+     "cue": null
+    },
+    {
+     "text": "Dấu sao (*) khớp một dãy ký tự bất kỳ, kể cả dãy rỗng.",
+     "startFrame": 305,
+     "endFrame": 421,
+     "audioEndFrame": 400,
+     "cue": null
+    },
+    {
+     "text": "Chữ cái thường chỉ khớp chính nó. Và khớp phải phủ kín toàn bộ chuỗi, không phải chỉ một phần.",
+     "startFrame": 421,
+     "endFrame": 607,
+     "audioEndFrame": 571,
+     "cue": null
+    }
+   ]
+  },
+  {
+   "id": "03-constraints",
+   "phase": "01 · ĐỌC ĐỀ",
+   "title": "Input, Output và Constraints",
+   "lines": [
+    "INPUT: s (chuỗi), p (mẫu)",
+    "OUTPUT: true / false",
+    "0 ≤ s.length, p.length ≤ 2000",
+    "s: chữ cái thường a–z",
+    "p: chữ cái thường, ? và *"
+   ],
+   "mode": "constraints",
+   "silent": false,
+   "fromFrame": 1354,
+   "frames": 744,
+   "audio": "audio/ep03-voicestudio/03-constraints.wav",
+   "beats": [
+    {
+     "text": "Đầu vào là chuỗi s và mẫu p. Đầu ra là một giá trị đúng hoặc sai.",
+     "startFrame": 18,
+     "endFrame": 160,
+     "audioEndFrame": 139,
+     "cue": null
+    },
+    {
+     "text": "Độ dài của s và p đều từ 0 đến 2000, nên cả hai đều có thể rỗng.",
+     "startFrame": 160,
+     "endFrame": 331,
+     "audioEndFrame": 310,
+     "cue": null
+    },
+    {
+     "text": "Chuỗi s chỉ có chữ cái thường tiếng Anh. Mẫu p có chữ cái thường, dấu ? và dấu *.",
+     "startFrame": 331,
+     "endFrame": 524,
+     "audioEndFrame": 503,
+     "cue": null
+    },
+    {
+     "text": "2000 × 2000 = 4 triệu. Hãy nhớ con số này: nó cho biết cách làm nào còn dùng được.",
+     "startFrame": 524,
+     "endFrame": 731,
+     "audioEndFrame": 695,
+     "cue": null
+    }
+   ]
+  },
+  {
+   "id": "04-stats",
+   "phase": "01 · ĐỌC ĐỀ",
+   "title": "Bài này khó đến mức nào?",
+   "lines": [
+    "Hard",
+    "967.654 lượt nộp được chấp nhận",
+    "≈ 2,9 triệu lượt nộp",
+    "33,1% acceptance rate"
+   ],
+   "mode": "stats",
+   "silent": false,
+   "fromFrame": 2098,
+   "frames": 775,
+   "audio": "audio/ep03-voicestudio/04-stats.wav",
+   "beats": [
+    {
+     "text": "Theo trang LeetCode ngày 28/10/2026, bài này được xếp mức Hard.",
+     "startFrame": 18,
+     "endFrame": 215,
+     "audioEndFrame": 194,
+     "cue": null
+    },
+    {
+     "text": "Có 967.654 lượt nộp được chấp nhận, trên tổng khoảng 2,9 triệu lượt nộp.",
+     "startFrame": 215,
+     "endFrame": 405,
+     "audioEndFrame": 384,
+     "cue": null
+    },
+    {
+     "text": "Tỷ lệ chấp nhận là 33,1%. Đây là số lượt nộp bài, không phải số người đã giải được.",
+     "startFrame": 405,
+     "endFrame": 607,
+     "audioEndFrame": 586,
+     "cue": null
+    },
+    {
+     "text": "Bài Hard không phải bài không thể. Nó chỉ cần một quy trình suy nghĩ tốt.",
+     "startFrame": 607,
+     "endFrame": 762,
+     "audioEndFrame": 726,
+     "cue": null
+    }
+   ]
+  },
+  {
+   "id": "05-example1",
+   "phase": "02 · VÍ DỤ CHÍNH THỨC",
+   "title": "Ví dụ 1",
+   "lines": [
+    "s = \"aa\"",
+    "p = \"a\"",
+    "Output: false"
+   ],
+   "mode": "ex1",
+   "silent": false,
+   "fromFrame": 2873,
+   "frames": 603,
+   "audio": "audio/ep03-voicestudio/05-example1.wav",
+   "beats": [
+    {
+     "text": "Ví dụ 1: chuỗi s là \"aa\", mẫu p là \"a\".",
+     "startFrame": 18,
+     "endFrame": 161,
+     "audioEndFrame": 140,
+     "cue": null
+    },
+    {
+     "text": "Chữ a của mẫu khớp với chữ a đầu tiên của chuỗi.",
+     "startFrame": 161,
+     "endFrame": 266,
+     "audioEndFrame": 245,
+     "cue": null
+    },
+    {
+     "text": "Nhưng chuỗi còn dư một chữ a, trong khi mẫu đã hết. Khớp một phần là chưa đủ, nên kết quả là sai (false).",
+     "startFrame": 266,
+     "endFrame": 450,
+     "audioEndFrame": 429,
+     "cue": null
+    },
+    {
+     "text": "Bài học 1: luôn kiểm tra điều kiện kết thúc của cả hai phía.",
+     "startFrame": 450,
+     "endFrame": 591,
+     "audioEndFrame": 555,
+     "cue": null
+    }
+   ]
+  },
+  {
+   "id": "06-example2",
+   "phase": "02 · VÍ DỤ CHÍNH THỨC",
+   "title": "Ví dụ 2",
+   "lines": [
+    "s = \"aa\"",
+    "p = \"*\"",
+    "Output: true"
+   ],
+   "mode": "ex2",
+   "silent": false,
+   "fromFrame": 3476,
+   "frames": 726,
+   "audio": "audio/ep03-voicestudio/06-example2.wav",
+   "beats": [
+    {
+     "text": "Ví dụ 2: chuỗi s vẫn là \"aa\", nhưng mẫu p chỉ có một dấu sao.",
+     "startFrame": 18,
+     "endFrame": 168,
+     "audioEndFrame": 147,
+     "cue": null
+    },
+    {
+     "text": "Dấu sao thay cho bất kỳ dãy ký tự nào. Nó nuốt chữ a đầu tiên, rồi nuốt thêm chữ a thứ hai.",
+     "startFrame": 168,
+     "endFrame": 358,
+     "audioEndFrame": 337,
+     "cue": null
+    },
+    {
+     "text": "Cả chuỗi và mẫu cùng kết thúc, nên kết quả là đúng (true).",
+     "startFrame": 358,
+     "endFrame": 470,
+     "audioEndFrame": 449,
+     "cue": null
+    },
+    {
+     "text": "Bài học 2: một ký hiệu có thể tạo ra nhiều lựa chọn. Dấu sao có thể nuốt không, một, hai ký tự, hoặc nhiều hơn.",
+     "startFrame": 470,
+     "endFrame": 713,
+     "audioEndFrame": 677,
+     "cue": null
+    }
+   ]
+  },
+  {
+   "id": "07-example3",
+   "phase": "02 · VÍ DỤ CHÍNH THỨC",
+   "title": "Ví dụ 3",
+   "lines": [
+    "s = \"cb\"",
+    "p = \"?a\"",
+    "Output: false"
+   ],
+   "mode": "ex3",
+   "silent": false,
+   "fromFrame": 4202,
+   "frames": 722,
+   "audio": "audio/ep03-voicestudio/07-example3.wav",
+   "beats": [
+    {
+     "text": "Ví dụ 3: chuỗi s là \"cb\", mẫu p là \"?a\".",
+     "startFrame": 18,
+     "endFrame": 175,
+     "audioEndFrame": 154,
+     "cue": null
+    },
+    {
+     "text": "Dấu ? khớp đúng một ký tự, ở đây là chữ c.",
+     "startFrame": 175,
+     "endFrame": 304,
+     "audioEndFrame": 283,
+     "cue": null
+    },
+    {
+     "text": "Tiếp theo mẫu cần chữ a, nhưng chuỗi lại là chữ b. Hai chữ khác nhau, nên kết quả là sai (false).",
+     "startFrame": 304,
+     "endFrame": 502,
+     "audioEndFrame": 481,
+     "cue": null
+    },
+    {
+     "text": "Bài học 3: nếu không có dấu sao, mọi thứ bị xếp thẳng hàng, và lệch một vị trí là hỏng cả bài.",
+     "startFrame": 502,
+     "endFrame": 709,
+     "audioEndFrame": 673,
+     "cue": null
+    }
+   ]
+  },
+  {
+   "id": "08-recap",
+   "phase": "02 · VÍ DỤ CHÍNH THỨC",
+   "title": "Ba ví dụ, ba thói quen",
+   "lines": [
+    "Kiểm tra điều kiện kết thúc",
+    "Tìm nơi phát sinh lựa chọn",
+    "Biết khi nào mọi thứ bị ép thẳng hàng"
+   ],
+   "mode": "recap",
+   "silent": false,
+   "fromFrame": 4924,
+   "frames": 437,
+   "audio": "audio/ep03-voicestudio/08-recap.wav",
+   "beats": [
+    {
+     "text": "Ba ví dụ cho ta ba thói quen: kiểm tra điều kiện kết thúc, tìm nơi phát sinh lựa chọn, và nhận ra khi mọi thứ bị ép thẳng hàng.",
+     "startFrame": 18,
+     "endFrame": 269,
+     "audioEndFrame": 248,
+     "cue": null
+    },
+    {
+     "text": "Ta chưa viết dòng code nào, nhưng đã biết chỗ khó của bài nằm ở dấu sao.",
+     "startFrame": 269,
+     "endFrame": 424,
+     "audioEndFrame": 388,
+     "cue": null
+    }
+   ]
+  },
+  {
+   "id": "09-hints",
+   "phase": "03 · TỰ GIẢI",
+   "title": "Ba gợi ý trước khi xem lời giải",
+   "lines": [
+    "GỢI Ý 1 · Nhiều lựa chọn chỉ xuất hiện ở một ký hiệu. Là ký hiệu nào?",
+    "GỢI Ý 2 · Thu nhỏ bài toán: i ký tự đầu của s có khớp j ký tự đầu của p không?",
+    "GỢI Ý 3 · Khi gặp lệch, cần quay lại mọi dấu sao đã qua, hay chỉ một vài?"
+   ],
+   "mode": "hints",
+   "silent": false,
+   "fromFrame": 5361,
+   "frames": 992,
+   "audio": "audio/ep03-voicestudio/09-hints.wav",
+   "beats": [
+    {
+     "text": "Trước khi xem lời giải, hãy thử tự nghĩ. Đây là ba gợi ý.",
+     "startFrame": 18,
+     "endFrame": 146,
+     "audioEndFrame": 125,
+     "cue": null
+    },
+    {
+     "text": "Gợi ý 1: chỗ duy nhất có nhiều lựa chọn là dấu sao. Hãy tự hỏi dấu sao nên nuốt bao nhiêu ký tự.",
+     "startFrame": 146,
+     "endFrame": 364,
+     "audioEndFrame": 343,
+     "cue": null
+    },
+    {
+     "text": "Gợi ý 2: hãy thu nhỏ bài toán. Với i ký tự đầu của chuỗi và j ký tự đầu của mẫu, hai phần đó có khớp nhau không?",
+     "startFrame": 364,
+     "endFrame": 618,
+     "audioEndFrame": 597,
+     "cue": null
+    },
+    {
+     "text": "Gợi ý 3: khi đã có một cách chạy được, hãy hỏi: gặp lệch thì ta cần quay lại mọi dấu sao đã qua, hay chỉ một vài dấu?",
+     "startFrame": 618,
+     "endFrame": 857,
+     "audioEndFrame": 836,
+     "cue": null
+    },
+    {
+     "text": "Hãy tự nghĩ trong mười giây tới: nếu gặp dấu sao, bạn sẽ thử lựa chọn nào trước?",
+     "startFrame": 857,
+     "endFrame": 992,
+     "audioEndFrame": 991,
+     "cue": null
+    }
+   ]
+  },
+  {
+   "id": "10-think",
+   "phase": "03 · TỰ GIẢI",
+   "title": "10 giây · Đến lượt bạn",
+   "lines": [
+    "Nếu gặp dấu *, bạn sẽ thử lựa chọn nào trước?",
+    "s = \"adceb\"   p = \"*a*b\""
+   ],
+   "mode": "think",
+   "silent": true,
+   "fromFrame": 6353,
+   "frames": 300,
+   "audio": "",
+   "beats": []
+  },
+  {
+   "id": "11-rules",
+   "phase": "04 · XÂY DỰNG TƯ DUY",
+   "title": "Bắt đầu từ ý tưởng đơn giản nhất",
+   "lines": [
+    "Chữ cái hoặc ? → so một ký tự, cả hai tiến",
+    "* → nhảy qua, hoặc nuốt thêm một ký tự",
+    "Hết mẫu → chuỗi cũng phải hết"
+   ],
+   "mode": "rules",
+   "silent": false,
+   "fromFrame": 6653,
+   "frames": 1186,
+   "audio": "audio/ep03-voicestudio/11-rules.wav",
+   "beats": [
+    {
+     "text": "Hết mười giây. Dù bạn đã có đáp án hay chưa, ta hãy bắt đầu từ ý tưởng đơn giản nhất.",
+     "startFrame": 0,
+     "endFrame": 177,
+     "audioEndFrame": 156,
+     "cue": null
+    },
+    {
+     "text": "Đặt con trỏ i trên chuỗi s và con trỏ j trên mẫu p. Câu hỏi nhỏ là: từ vị trí i và j, phần còn lại có khớp không?",
+     "startFrame": 177,
+     "endFrame": 435,
+     "audioEndFrame": 414,
+     "cue": 0
+    },
+    {
+     "text": "Nếu p[j] là chữ cái hoặc dấu ?, ta so một ký tự rồi cho cả hai con trỏ tiến lên một bước.",
+     "startFrame": 435,
+     "endFrame": 644,
+     "audioEndFrame": 623,
+     "cue": 1
+    },
+    {
+     "text": "Nếu p[j] là dấu *, ta có hai lựa chọn. Một là nhảy qua dấu sao, tức là cho nó nuốt rỗng.",
+     "startFrame": 644,
+     "endFrame": 846,
+     "audioEndFrame": 825,
+     "cue": 2
+    },
+    {
+     "text": "Hai là cho dấu sao nuốt thêm một ký tự, và giữ nguyên dấu sao để còn nuốt tiếp.",
+     "startFrame": 846,
+     "endFrame": 1004,
+     "audioEndFrame": 983,
+     "cue": 2
+    },
+    {
+     "text": "Hết mẫu thì chuỗi cũng phải hết. Đó chính là điều kiện kết thúc của bài học đầu tiên.",
+     "startFrame": 1004,
+     "endFrame": 1173,
+     "audioEndFrame": 1137,
+     "cue": 3
+    }
+   ]
+  },
+  {
+   "id": "12-tree",
+   "phase": "04 · XÂY DỰNG TƯ DUY",
+   "title": "Thử mọi lựa chọn: cây quyết định",
+   "lines": [
+    "s = \"aaa\"   p = \"*a*b\"   → false",
+    "Nhánh trái: nhảy qua *   ·   Nhánh phải: nuốt thêm một ký tự"
+   ],
+   "mode": "tree",
+   "silent": false,
+   "fromFrame": 7839,
+   "frames": 1050,
+   "audio": "audio/ep03-voicestudio/12-tree.wav",
+   "beats": [
+    {
+     "text": "Hãy chạy ý tưởng đó trên ví dụ nhỏ: s là \"aaa\", p là \"*a*b\". Đáp án là sai, nên ta phải thử hết mọi nhánh.",
+     "startFrame": 18,
+     "endFrame": 313,
+     "audioEndFrame": 292,
+     "cue": null
+    },
+    {
+     "text": "Mỗi nút là một cặp vị trí (i, j). Nhánh bên trái là nhảy qua dấu sao. Nhánh bên phải là nuốt thêm một ký tự.",
+     "startFrame": 313,
+     "endFrame": 536,
+     "audioEndFrame": 515,
+     "cue": null
+    },
+    {
+     "text": "Nhánh nào thất bại thì ta quay lại và thử nhánh khác. Đó là quay lui.",
+     "startFrame": 536,
+     "endFrame": 687,
+     "audioEndFrame": 666,
+     "cue": null
+    },
+    {
+     "text": "Nhìn kỹ: có những cặp (i, j) xuất hiện nhiều lần, được tô vàng. Ta đang giải đi giải lại cùng một câu hỏi.",
+     "startFrame": 687,
+     "endFrame": 899,
+     "audioEndFrame": 878,
+     "cue": null
+    },
+    {
+     "text": "Cây có 20 lần gọi hàm, nhưng chỉ 14 câu hỏi khác nhau.",
+     "startFrame": 899,
+     "endFrame": 1038,
+     "audioEndFrame": 1002,
+     "cue": null
+    }
+   ]
+  },
+  {
+   "id": "13-blowup",
+   "phase": "04 · XÂY DỰNG TƯ DUY",
+   "title": "Vì sao cách này không đủ nhanh?",
+   "lines": [
+    "s = 'a' × 20   p = '*a' × k + 'b'",
+    "k = 1 → 62 lần gọi",
+    "k = 6 → 203.078 lần gọi (đã đo)"
+   ],
+   "mode": "blowup",
+   "silent": false,
+   "fromFrame": 8889,
+   "frames": 640,
+   "audio": "audio/ep03-voicestudio/13-blowup.wav",
+   "beats": [
+    {
+     "text": "Số lần gọi hàm tăng rất nhanh khi mẫu có thêm dấu sao.",
+     "startFrame": 18,
+     "endFrame": 133,
+     "audioEndFrame": 112,
+     "cue": null
+    },
+    {
+     "text": "Chúng tôi đã chạy thật. Với chuỗi 20 chữ a, mẫu có một dấu sao cần 62 lần gọi; sáu dấu sao cần 203.078 lần.",
+     "startFrame": 133,
+     "endFrame": 444,
+     "audioEndFrame": 423,
+     "cue": null
+    },
+    {
+     "text": "Với độ dài tới 2000, thử hết mọi nhánh là không thể. Ta cần cách tốt hơn.",
+     "startFrame": 444,
+     "endFrame": 628,
+     "audioEndFrame": 592,
+     "cue": null
+    }
+   ]
+  },
+  {
+   "id": "14-greedy-fail",
+   "phase": "04 · XÂY DỰNG TƯ DUY",
+   "title": "Ý tưởng tham lam: có đúng không?",
+   "lines": [
+    "s = \"adceb\"   p = \"*a*b\"",
+    "Dấu * chỉ nuốt rỗng, không bao giờ quay lại",
+    "Kết quả: false   ·   Đáp án đúng: true"
+   ],
+   "mode": "greedy_fail",
+   "silent": false,
+   "fromFrame": 9529,
+   "frames": 1106,
+   "audio": "audio/ep03-voicestudio/14-greedy-fail.wav",
+   "beats": [
+    {
+     "text": "Thử một ý tưởng nhanh hơn: gặp dấu sao thì cho nó nuốt rỗng, và không bao giờ quay lại.",
+     "startFrame": 18,
+     "endFrame": 183,
+     "audioEndFrame": 162,
+     "cue": null
+    },
+    {
+     "text": "Chạy trên s là \"adceb\", p là \"*a*b\". Dấu sao đầu nuốt rỗng, chữ a khớp chữ a, dấu sao thứ hai cũng nuốt rỗng.",
+     "startFrame": 183,
+     "endFrame": 487,
+     "audioEndFrame": 466,
+     "cue": null
+    },
+    {
+     "text": "Bây giờ chữ b của mẫu gặp chữ d của chuỗi: lệch. Ý tưởng này kết luận sai.",
+     "startFrame": 487,
+     "endFrame": 654,
+     "audioEndFrame": 633,
+     "cue": null
+    },
+    {
+     "text": "Nhưng đáp án đúng là đúng, vì dấu sao thứ hai có thể nuốt d, c, e rồi chữ b mới khớp.",
+     "startFrame": 654,
+     "endFrame": 832,
+     "audioEndFrame": 811,
+     "cue": null
+    },
+    {
+     "text": "Bài học: một giả thuyết hay vẫn có thể sai. Ta cần phản ví dụ để biết, và dấu sao phải được cho cơ hội nuốt thêm.",
+     "startFrame": 832,
+     "endFrame": 1093,
+     "audioEndFrame": 1057,
+     "cue": null
+    }
+   ]
+  },
+  {
+   "id": "15-dp",
+   "phase": "05 · GHI NHỚ",
+   "title": "Ghi nhớ kết quả: bảng quy hoạch động",
+   "lines": [
+    "dp[i][j] = s[:i] khớp p[:j]",
+    "Chữ cái / ?  →  dp[i-1][j-1] và ký tự khớp",
+    "*  →  dp[i-1][j] hoặc dp[i][j-1]"
+   ],
+   "mode": "dp",
+   "silent": false,
+   "fromFrame": 10635,
+   "frames": 1542,
+   "audio": "audio/ep03-voicestudio/15-dp.wav",
+   "beats": [
+    {
+     "text": "Cách an toàn: đừng giải lại câu hỏi cũ. Hãy lưu kết quả vào một bảng.",
+     "startFrame": 18,
+     "endFrame": 164,
+     "audioEndFrame": 143,
+     "cue": null
+    },
+    {
+     "text": "Ô dp[i][j] trả lời: i ký tự đầu của chuỗi có khớp j ký tự đầu của mẫu hay không?",
+     "startFrame": 164,
+     "endFrame": 345,
+     "audioEndFrame": 324,
+     "cue": null
+    },
+    {
+     "text": "Chuỗi rỗng khớp mẫu rỗng. Và chuỗi rỗng chỉ khớp một mẫu toàn dấu sao.",
+     "startFrame": 345,
+     "endFrame": 481,
+     "audioEndFrame": 460,
+     "cue": null
+    },
+    {
+     "text": "Nếu ký tự mẫu là chữ cái hoặc dấu ?, ô này đúng khi hai ký tự khớp và ô chéo phía trên bên trái đúng.",
+     "startFrame": 481,
+     "endFrame": 703,
+     "audioEndFrame": 682,
+     "cue": null
+    },
+    {
+     "text": "Nếu ký tự mẫu là dấu *, ô này đúng khi ô phía trên đúng, tức là dấu sao nuốt thêm một ký tự, hoặc ô bên trái đúng, tức là nuốt rỗng.",
+     "startFrame": 703,
+     "endFrame": 978,
+     "audioEndFrame": 957,
+     "cue": null
+    },
+    {
+     "text": "Điền bảng cho s là \"adceb\" và p là \"*a*b\", từng hàng một.",
+     "startFrame": 978,
+     "endFrame": 1164,
+     "audioEndFrame": 1143,
+     "cue": null
+    },
+    {
+     "text": "Ô cuối cùng là đúng, vậy đáp án là đúng.",
+     "startFrame": 1164,
+     "endFrame": 1264,
+     "audioEndFrame": 1243,
+     "cue": null
+    },
+    {
+     "text": "Với giới hạn của đề, bảng có hơn 4 triệu ô, mỗi ô tính một lần: thời gian O(m × n), bộ nhớ cũng O(m × n).",
+     "startFrame": 1264,
+     "endFrame": 1529,
+     "audioEndFrame": 1493,
+     "cue": null
+    }
+   ]
+  },
+  {
+   "id": "16-insight",
+   "phase": "06 · TỐI ƯU HÓA",
+   "title": "Có thể nhớ ít hơn không?",
+   "lines": [
+    "Dấu * gần nhất là lựa chọn linh hoạt nhất",
+    "Đoạn giữa hai dấu *: khớp sớm nhất có thể",
+    "Khi lệch: chỉ quay về dấu * gần nhất"
+   ],
+   "mode": "insight",
+   "silent": false,
+   "fromFrame": 12177,
+   "frames": 895,
+   "audio": "audio/ep03-voicestudio/16-insight.wav",
+   "beats": [
+    {
+     "text": "Nhìn lại bảng: mỗi ô chỉ cần hàng phía trên và ô bên cạnh. Ta đang nhớ nhiều hơn mức cần thiết.",
+     "startFrame": 18,
+     "endFrame": 203,
+     "audioEndFrame": 182,
+     "cue": null
+    },
+    {
+     "text": "Hãy nghĩ về dấu sao. Nó nuốt được bất cứ thứ gì. Vì vậy, khi một đoạn phía sau dấu sao đã khớp, mọi thứ phía trước coi như ổn.",
+     "startFrame": 203,
+     "endFrame": 467,
+     "audioEndFrame": 446,
+     "cue": null
+    },
+    {
+     "text": "Đoạn nằm giữa hai dấu sao nên khớp ở vị trí sớm nhất có thể, để chừa lại nhiều ký tự nhất cho phần phía sau.",
+     "startFrame": 467,
+     "endFrame": 670,
+     "audioEndFrame": 649,
+     "cue": null
+    },
+    {
+     "text": "Vì thế, khi gặp lệch, ta chỉ cần quay về dấu sao gần nhất. Các dấu sao cũ hơn không cần thử lại.",
+     "startFrame": 670,
+     "endFrame": 882,
+     "audioEndFrame": 846,
+     "cue": null
+    }
+   ]
+  },
+  {
+   "id": "17-greedy",
+   "phase": "06 · TỐI ƯU HÓA",
+   "title": "Thuật toán hai con trỏ",
+   "lines": [
+    "i · j · star · mark",
+    "Khớp hoặc ? → i, j cùng tiến",
+    "* → ghi nhớ rồi nuốt rỗng",
+    "Lệch + có * → nuốt thêm một ký tự",
+    "Lệch + chưa có * → false"
+   ],
+   "mode": "greedy",
+   "silent": false,
+   "fromFrame": 13072,
+   "frames": 1218,
+   "audio": "audio/ep03-voicestudio/17-greedy.wav",
+   "beats": [
+    {
+     "text": "Ta giữ bốn biến: i trên chuỗi, j trên mẫu, star là vị trí dấu sao gần nhất, và mark là vị trí chuỗi mà dấu sao đã nuốt tới.",
+     "startFrame": 18,
+     "endFrame": 276,
+     "audioEndFrame": 255,
+     "cue": 0
+    },
+    {
+     "text": "Nếu hai ký tự khớp hoặc mẫu là dấu ?, cho i và j cùng tiến.",
+     "startFrame": 276,
+     "endFrame": 423,
+     "audioEndFrame": 402,
+     "cue": 1
+    },
+    {
+     "text": "Nếu mẫu là dấu *: ghi nhớ star và mark, rồi chỉ tiến j, tức là cho dấu sao nuốt rỗng trước.",
+     "startFrame": 423,
+     "endFrame": 630,
+     "audioEndFrame": 609,
+     "cue": 2
+    },
+    {
+     "text": "Nếu lệch mà đã có dấu sao: cho nó nuốt thêm một ký tự. Tăng mark, đặt i bằng mark, và đặt j về ngay sau dấu sao.",
+     "startFrame": 630,
+     "endFrame": 865,
+     "audioEndFrame": 844,
+     "cue": 3
+    },
+    {
+     "text": "Nếu lệch mà chưa có dấu sao nào: không còn cách cứu, kết quả là sai.",
+     "startFrame": 865,
+     "endFrame": 1013,
+     "audioEndFrame": 992,
+     "cue": 4
+    },
+    {
+     "text": "Hết chuỗi thì bỏ qua các dấu sao còn lại ở cuối mẫu. Mẫu phải đi hết thì kết quả mới đúng.",
+     "startFrame": 1013,
+     "endFrame": 1206,
+     "audioEndFrame": 1170,
+     "cue": 5
+    }
+   ]
+  },
+  {
+   "id": "18-trace",
+   "phase": "06 · TỐI ƯU HÓA",
+   "title": "Chạy thử: adceb với *a*b",
+   "lines": [
+    "s = \"adceb\"   p = \"*a*b\"",
+    "Mỗi bước là một sự kiện thật từ lần chạy của solution.py"
+   ],
+   "mode": "trace",
+   "silent": false,
+   "fromFrame": 14290,
+   "frames": 1142,
+   "audio": "audio/ep03-voicestudio/18-trace.wav",
+   "beats": [
+    {
+     "text": "Bắt đầu: j gặp dấu sao đầu tiên. Ghi nhớ star bằng 0, cho nó nuốt rỗng, j tiến lên.",
+     "startFrame": 18,
+     "endFrame": 237,
+     "audioEndFrame": 216,
+     "cue": 0
+    },
+    {
+     "text": "Chữ a của mẫu khớp chữ a của chuỗi. Cả i và j cùng tiến.",
+     "startFrame": 237,
+     "endFrame": 385,
+     "audioEndFrame": 364,
+     "cue": 1
+    },
+    {
+     "text": "Dấu sao thứ hai: ghi nhớ star bằng 2, mark bằng 1, và lại cho nó nuốt rỗng.",
+     "startFrame": 385,
+     "endFrame": 560,
+     "audioEndFrame": 539,
+     "cue": 2
+    },
+    {
+     "text": "Chữ b của mẫu gặp chữ d: lệch. Dấu sao thứ hai nuốt thêm chữ d, và j quay về chữ b.",
+     "startFrame": 560,
+     "endFrame": 752,
+     "audioEndFrame": 731,
+     "cue": 3
+    },
+    {
+     "text": "Lại lệch với chữ c, dấu sao nuốt thêm chữ c. Rồi lệch với chữ e, dấu sao nuốt thêm chữ e.",
+     "startFrame": 752,
+     "endFrame": 951,
+     "audioEndFrame": 930,
+     "cue": 4
+    },
+    {
+     "text": "Lần này chữ b khớp chữ b. Chuỗi đã hết, mẫu cũng đã đi hết: kết quả là đúng.",
+     "startFrame": 951,
+     "endFrame": 1129,
+     "audioEndFrame": 1093,
+     "cue": 6
+    }
+   ]
+  },
+  {
+   "id": "19-pseudocode",
+   "phase": "06 · TỐI ƯU HÓA",
+   "title": "Từ ý tưởng sang giả mã",
+   "lines": [
+    "Lặp khi chuỗi còn ký tự:",
+    "    khớp / ? → tiến i, j",
+    "    * → nhớ vị trí, tiến j",
+    "    lệch + có * → nuốt thêm, quay j",
+    "    lệch + chưa có * → trả về false",
+    "Bỏ các * dư ở cuối mẫu",
+    "Trả về: j đã tới cuối mẫu"
+   ],
+   "mode": "pseudocode",
+   "silent": false,
+   "fromFrame": 15432,
+   "frames": 587,
+   "audio": "audio/ep03-voicestudio/19-pseudocode.wav",
+   "beats": [
+    {
+     "text": "Trước khi viết Python, hãy viết logic bằng lời.",
+     "startFrame": 18,
+     "endFrame": 117,
+     "audioEndFrame": 96,
+     "cue": null
+    },
+    {
+     "text": "Lặp trong khi chuỗi còn ký tự: khớp thì tiến, gặp dấu sao thì ghi nhớ, lệch thì quay về dấu sao, không có dấu sao thì trả về sai.",
+     "startFrame": 117,
+     "endFrame": 387,
+     "audioEndFrame": 366,
+     "cue": null
+    },
+    {
+     "text": "Sau vòng lặp, bỏ qua các dấu sao thừa ở cuối mẫu, rồi kiểm tra j đã tới cuối mẫu chưa.",
+     "startFrame": 387,
+     "endFrame": 575,
+     "audioEndFrame": 539,
+     "cue": null
+    }
+   ]
+  },
+  {
+   "id": "20-code1",
+   "phase": "07 · PYTHON 3",
+   "title": "Python 3: cấu trúc lời giải",
+   "lines": [
+    "scripts/solution.py"
+   ],
+   "mode": "code1",
+   "silent": false,
+   "fromFrame": 16019,
+   "frames": 1178,
+   "audio": "audio/ep03-voicestudio/20-code1.wav",
+   "beats": [
+    {
+     "text": "Đây là lời giải Python 3 hoàn chỉnh, chỉ khoảng 20 dòng.",
+     "startFrame": 18,
+     "endFrame": 132,
+     "audioEndFrame": 111,
+     "cue": [
+      0,
+      21
+     ]
+    },
+    {
+     "text": "Khởi tạo: i và j bằng 0, star bằng -1 nghĩa là chưa có dấu sao, mark bằng 0.",
+     "startFrame": 132,
+     "endFrame": 324,
+     "audioEndFrame": 303,
+     "cue": [
+      2,
+      4
+     ]
+    },
+    {
+     "text": "Vòng lặp chính chạy khi i còn nhỏ hơn độ dài của chuỗi.",
+     "startFrame": 324,
+     "endFrame": 439,
+     "audioEndFrame": 418,
+     "cue": [
+      5,
+      5
+     ]
+    },
+    {
+     "text": "Nhánh một: nếu còn mẫu và ký tự khớp, hoặc là dấu ?, thì tăng i và j.",
+     "startFrame": 439,
+     "endFrame": 614,
+     "audioEndFrame": 593,
+     "cue": [
+      6,
+      8
+     ]
+    },
+    {
+     "text": "Nhánh hai: gặp dấu sao thì lưu star và mark, rồi tăng j.",
+     "startFrame": 614,
+     "endFrame": 749,
+     "audioEndFrame": 728,
+     "cue": [
+      9,
+      12
+     ]
+    },
+    {
+     "text": "Nhánh ba: đã có dấu sao thì tăng mark, đặt lại i và j. Nhánh cuối: chưa có dấu sao thì trả về sai.",
+     "startFrame": 749,
+     "endFrame": 986,
+     "audioEndFrame": 965,
+     "cue": [
+      13,
+      18
+     ]
+    },
+    {
+     "text": "Sau vòng lặp, bỏ các dấu sao ở cuối mẫu. Kết quả đúng khi j đã đến cuối mẫu.",
+     "startFrame": 986,
+     "endFrame": 1166,
+     "audioEndFrame": 1130,
+     "cue": [
+      19,
+      21
+     ]
+    }
+   ]
+  },
+  {
+   "id": "21-code2",
+   "phase": "07 · PYTHON 3",
+   "title": "Chạy code từng dòng",
+   "lines": [
+    "s = \"adceb\"  p = \"*a*b\"",
+    "Highlight và giá trị biến lấy từ lần chạy thật (sys.settrace)"
+   ],
+   "mode": "code2",
+   "silent": false,
+   "fromFrame": 17197,
+   "frames": 1273,
+   "audio": "audio/ep03-voicestudio/21-code2.wav",
+   "beats": [
+    {
+     "text": "Hãy xem code chạy với s là \"adceb\" và p là \"*a*b\". Bên phải là giá trị các biến ở mỗi dòng.",
+     "startFrame": 18,
+     "endFrame": 271,
+     "audioEndFrame": 250,
+     "cue": 0
+    },
+    {
+     "text": "Dòng star gán bằng j: dấu sao đầu tiên được ghi nhớ.",
+     "startFrame": 271,
+     "endFrame": 398,
+     "audioEndFrame": 377,
+     "cue": 6
+    },
+    {
+     "text": "Chữ a khớp: i và j cùng tăng.",
+     "startFrame": 398,
+     "endFrame": 485,
+     "audioEndFrame": 464,
+     "cue": 11
+    },
+    {
+     "text": "Dấu sao thứ hai được ghi nhớ: star bằng 2.",
+     "startFrame": 485,
+     "endFrame": 577,
+     "audioEndFrame": 556,
+     "cue": 16
+    },
+    {
+     "text": "Chữ b lệch với chữ d, nên chương trình vào nhánh thứ ba: mark tăng, i bằng mark, j bằng star cộng một.",
+     "startFrame": 577,
+     "endFrame": 788,
+     "audioEndFrame": 767,
+     "cue": 23
+    },
+    {
+     "text": "Hai lần lệch nữa, với chữ c và chữ e: dấu sao nuốt thêm hai chữ.",
+     "startFrame": 788,
+     "endFrame": 940,
+     "audioEndFrame": 919,
+     "cue": 30
+    },
+    {
+     "text": "Cuối cùng chữ b khớp chữ b. i bằng 5, vòng lặp kết thúc.",
+     "startFrame": 940,
+     "endFrame": 1077,
+     "audioEndFrame": 1056,
+     "cue": 42
+    },
+    {
+     "text": "Dòng cuối: j bằng 4, đúng bằng độ dài mẫu. Hàm trả về true.",
+     "startFrame": 1077,
+     "endFrame": 1261,
+     "audioEndFrame": 1225,
+     "cue": 46
+    }
+   ]
+  },
+  {
+   "id": "22-verify",
+   "phase": "08 · KIỂM CHỨNG",
+   "title": "Kiểm chứng bằng thử nghiệm",
+   "lines": [
+    "3/3 ví dụ chính thức đúng",
+    "173.355 ca vét cạn · 0 sai lệch",
+    "20.000 ca ngẫu nhiên · 0 sai lệch",
+    "Trường hợp xấu nhất: 1.002.001 vòng lặp"
+   ],
+   "mode": "verify",
+   "silent": false,
+   "fromFrame": 18470,
+   "frames": 873,
+   "audio": "audio/ep03-voicestudio/22-verify.wav",
+   "beats": [
+    {
+     "text": "Ta không chỉ tin vào lập luận. Ba ví dụ chính thức cho kết quả đúng như đề.",
+     "startFrame": 18,
+     "endFrame": 169,
+     "audioEndFrame": 148,
+     "cue": null
+    },
+    {
+     "text": "Chúng tôi so sánh lời giải với hai cách độc lập là biểu thức chính quy và bảng quy hoạch động, trên 173.355 ca vét cạn.",
+     "startFrame": 169,
+     "endFrame": 412,
+     "audioEndFrame": 391,
+     "cue": null
+    },
+    {
+     "text": "Cộng thêm 20.000 ca ngẫu nhiên. Không có một sai lệch nào.",
+     "startFrame": 412,
+     "endFrame": 533,
+     "audioEndFrame": 512,
+     "cue": null
+    },
+    {
+     "text": "Trường hợp xấu nhất, chuỗi 2000 chữ a, vòng lặp chính chạy 1.002.001 lần.",
+     "startFrame": 533,
+     "endFrame": 737,
+     "audioEndFrame": 716,
+     "cue": null
+    },
+    {
+     "text": "Thử nghiệm là bằng chứng mạnh, nhưng chưa phải chứng minh toán học.",
+     "startFrame": 737,
+     "endFrame": 861,
+     "audioEndFrame": 825,
+     "cue": null
+    }
+   ]
+  },
+  {
+   "id": "23-complexity",
+   "phase": "08 · KIỂM CHỨNG",
+   "title": "So sánh các cách làm",
+   "lines": [
+    "Thử hết mọi nhánh · hàm mũ · không dùng được",
+    "Bảng quy hoạch động · O(m × n) · bộ nhớ O(m × n)",
+    "Hai con trỏ · O(m × n) tệ nhất · bộ nhớ O(1)"
+   ],
+   "mode": "complexity",
+   "silent": false,
+   "fromFrame": 19343,
+   "frames": 1155,
+   "audio": "audio/ep03-voicestudio/23-complexity.wav",
+   "beats": [
+    {
+     "text": "Hãy so sánh ba cách làm.",
+     "startFrame": 18,
+     "endFrame": 81,
+     "audioEndFrame": 60,
+     "cue": null
+    },
+    {
+     "text": "Thử hết mọi nhánh: số lần gọi tăng rất nhanh theo số dấu sao. Đã đo: hơn 203.000 lần gọi chỉ với chuỗi 20 ký tự.",
+     "startFrame": 81,
+     "endFrame": 351,
+     "audioEndFrame": 330,
+     "cue": null
+    },
+    {
+     "text": "Bảng quy hoạch động: thời gian O(m × n), bộ nhớ O(m × n). Với giới hạn của đề, đó là hơn 4 triệu ô, vẫn chạy được.",
+     "startFrame": 351,
+     "endFrame": 619,
+     "audioEndFrame": 598,
+     "cue": null
+    },
+    {
+     "text": "Hai con trỏ: bộ nhớ O(1). Trường hợp xấu nhất vẫn là O(m × n).",
+     "startFrame": 619,
+     "endFrame": 775,
+     "audioEndFrame": 754,
+     "cue": null
+    },
+    {
+     "text": "Trên dữ liệu ngẫu nhiên, chúng tôi đo trung bình 0,592 vòng lặp cho mỗi ký tự của chuỗi và mẫu.",
+     "startFrame": 775,
+     "endFrame": 965,
+     "audioEndFrame": 944,
+     "cue": null
+    },
+    {
+     "text": "Không có cách nào luôn tốt nhất. Hãy chọn theo giới hạn, bộ nhớ, và độ dễ chứng minh.",
+     "startFrame": 965,
+     "endFrame": 1143,
+     "audioEndFrame": 1107,
+     "cue": null
+    }
+   ]
+  },
+  {
+   "id": "24-lessons",
+   "phase": "09 · TỔNG KẾT",
+   "title": "Bài học giải quyết vấn đề",
+   "lines": [
+    "1 · Đọc kỹ yêu cầu và điều kiện kết thúc",
+    "2 · Tìm nơi sinh ra lựa chọn",
+    "3 · Bắt đầu đơn giản, rồi đo vì sao nó chậm",
+    "4 · Câu hỏi lặp lại → ghi nhớ",
+    "5 · Tìm cấu trúc để nhớ ít hơn",
+    "6 · Kiểm chứng bằng ví dụ và phản ví dụ"
+   ],
+   "mode": "lessons",
+   "silent": false,
+   "fromFrame": 20498,
+   "frames": 1090,
+   "audio": "audio/ep03-voicestudio/24-lessons.wav",
+   "beats": [
+    {
+     "text": "Một: đọc kỹ yêu cầu, đặc biệt là điều kiện kết thúc.",
+     "startFrame": 18,
+     "endFrame": 141,
+     "audioEndFrame": 120,
+     "cue": null
+    },
+    {
+     "text": "Hai: tìm nơi sinh ra lựa chọn. Ở bài này, đó là dấu sao.",
+     "startFrame": 141,
+     "endFrame": 292,
+     "audioEndFrame": 271,
+     "cue": null
+    },
+    {
+     "text": "Ba: bắt đầu bằng cách đơn giản và đúng, rồi đo xem vì sao nó chậm.",
+     "startFrame": 292,
+     "endFrame": 444,
+     "audioEndFrame": 423,
+     "cue": null
+    },
+    {
+     "text": "Bốn: nếu cùng một câu hỏi lặp lại, hãy ghi nhớ kết quả.",
+     "startFrame": 444,
+     "endFrame": 573,
+     "audioEndFrame": 552,
+     "cue": null
+    },
+    {
+     "text": "Năm: tìm cấu trúc để nhớ ít hơn, như chỉ giữ dấu sao gần nhất.",
+     "startFrame": 573,
+     "endFrame": 724,
+     "audioEndFrame": 703,
+     "cue": null
+    },
+    {
+     "text": "Sáu: luôn kiểm chứng bằng ví dụ, phản ví dụ, và một cách làm độc lập.",
+     "startFrame": 724,
+     "endFrame": 881,
+     "audioEndFrame": 860,
+     "cue": null
+    },
+    {
+     "text": "Những thói quen này dùng được ngoài LeetCode: khi lập kế hoạch, sửa lỗi, hay thiết kế một hệ thống.",
+     "startFrame": 881,
+     "endFrame": 1078,
+     "audioEndFrame": 1042,
+     "cue": null
+    }
+   ]
+  },
+  {
+   "id": "25-practice",
+   "phase": "09 · TỔNG KẾT",
+   "title": "Ba bài luyện tập liên quan",
+   "lines": [
+    "#392 · Is Subsequence · Easy",
+    "#72 · Edit Distance · Medium",
+    "#10 · Regular Expression Matching · Hard"
+   ],
+   "mode": "practice",
+   "silent": false,
+   "fromFrame": 21588,
+   "frames": 1044,
+   "audio": "audio/ep03-voicestudio/25-practice.wav",
+   "beats": [
+    {
+     "text": "Ba bài để luyện tiếp, từ dễ đến khó.",
+     "startFrame": 18,
+     "endFrame": 105,
+     "audioEndFrame": 84,
+     "cue": null
+    },
+    {
+     "text": "Bài #392, Is Subsequence, mức Easy: dùng hai con trỏ trên hai chuỗi, một bước khởi động cho tư duy tham lam.",
+     "startFrame": 105,
+     "endFrame": 354,
+     "audioEndFrame": 333,
+     "cue": null
+    },
+    {
+     "text": "Bài #72, Edit Distance, mức Medium: hãy tự định nghĩa ô của bảng và ba lựa chọn ở mỗi ô.",
+     "startFrame": 354,
+     "endFrame": 582,
+     "audioEndFrame": 561,
+     "cue": null
+    },
+    {
+     "text": "Bài #10, Regular Expression Matching, mức Hard: dấu sao ở đó có nghĩa khác. Hãy so sánh với bài hôm nay.",
+     "startFrame": 582,
+     "endFrame": 803,
+     "audioEndFrame": 782,
+     "cue": null
+    },
+    {
+     "text": "Đừng xem code ngay. Hãy tự hỏi: câu hỏi nhỏ là gì, lựa chọn nằm ở đâu, và có cần ghi nhớ không?",
+     "startFrame": 803,
+     "endFrame": 1031,
+     "audioEndFrame": 995,
+     "cue": null
+    }
+   ]
+  },
+  {
+   "id": "26-outro",
+   "phase": "THE ART OF CODING",
+   "title": "Hãy nhớ cách nghĩ, đừng chỉ nhớ code.",
+   "lines": [
+    "Hiểu → Giả thuyết → Kiểm chứng → Rút kinh nghiệm",
+    "KIEU STUDIO · kieu.app"
+   ],
+   "mode": "outro",
+   "silent": false,
+   "fromFrame": 22632,
+   "frames": 369,
+   "audio": "audio/ep03-voicestudio/26-outro.wav",
+   "beats": [
+    {
+     "text": "Hãy nhớ cách nghĩ, đừng chỉ nhớ code.",
+     "startFrame": 18,
+     "endFrame": 103,
+     "audioEndFrame": 82,
+     "cue": null
+    },
+    {
+     "text": "Cảm ơn bạn đã xem. Hẹn gặp lại ở tập tiếp theo của Kieu Studio, The Art of Coding. Thêm tài liệu tại kieu.app.",
+     "startFrame": 103,
+     "endFrame": 356,
+     "audioEndFrame": 320,
+     "cue": null
+    }
+   ]
+  }
+ ]
+}

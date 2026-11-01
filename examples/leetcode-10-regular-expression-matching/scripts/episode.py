@@ -152,3 +152,13 @@ sc("28-outro","THE ART OF CODING","Đừng ghi nhớ code. Hãy ghi nhớ cách 
     "KIEU STUDIO"],
     "Một bài khó sẽ dễ tiếp cận hơn khi ta đặt đúng câu hỏi. Hẹn gặp trong tập tiếp theo của Kieu Studio, The Art of Coding.",10,"outro"),
 ]
+
+# KIEU_LANG=en swaps in the English edition (same ids, modes and timings).
+import os, sys
+LANG = os.environ.get("KIEU_LANG", "vi")
+if LANG not in ("vi", "en"):
+    raise RuntimeError(f"KIEU_LANG must be vi or en, not {LANG!r}")
+AUDIO_SLUG = "ep02-voicestudio" + ("-en" if LANG == "en" else "")
+if LANG == "en":
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from episode_en import S

@@ -1,0 +1,34 @@
+{
+  "scene": "08-recap",
+  "sha256": "d472b5768d520989fee41534cea67420f2c123505b33438704f798ad626cf4f0",
+  "engine": "VoiceStudio local",
+  "base": "http://127.0.0.1:3900",
+  "model": "voxcpm2",
+  "voice": "823d23e3",
+  "voice_name": "Kieu Studio English B · Warm Low (synthetic)",
+  "seed": 20261019,
+  "language": "en",
+  "speed": 1.0,
+  "speed_applied": "ffmpeg atempo once, pitch preserved",
+  "lead": 0.6,
+  "gap": 0.7,
+  "tail": 1.6,
+  "duration": 17.766666666666666,
+  "frames": 533,
+  "beats": [
+    {
+      "index": 0,
+      "key": "79f4a7e11f8f1f4499dd9300260a6be3db1394314183a043d39054a85351191e",
+      "start": 0.6,
+      "end": 9.4919375,
+      "peak": 0.7939
+    },
+    {
+      "index": 1,
+      "key": "37672051189e044d77513a1f60746e20b982c3d3cead0385796f2db141d12b62",
+      "start": 10.1919375,
+      "end": 16.134666666666668,
+      "peak": 0.7941
+    }
+  ]
+}

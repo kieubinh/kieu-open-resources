@@ -1,4 +1,4 @@
-import sys, unittest, json
+import os, sys, unittest, json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'scripts'))
@@ -20,9 +20,10 @@ class TestEpisode(unittest.TestCase):
         self.assertLess(modes.index('think'),modes.index('code1'))
     def test_stats_are_attributed(self):
         stats=next(s for s in S if s.mode=='stats')
-        self.assertIn('46,4%',str(stats.lines))
+        en=os.environ.get('KIEU_LANG','vi')=='en'
+        self.assertIn('46.4%' if en else '46,4%',str(stats.lines))
         self.assertIn('Leetbot',stats.script)
-        self.assertIn('04/09/2026',str(stats.lines))
+        self.assertIn('4 Sep 2026' if en else '04/09/2026',str(stats.lines))
     def test_timeline_frame_gate(self):
         rows=json.loads((ROOT/'src/timeline.json').read_text())
         self.assertEqual(len(rows),len(S))

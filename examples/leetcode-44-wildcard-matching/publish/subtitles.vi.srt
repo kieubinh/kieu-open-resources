@@ -1,0 +1,595 @@
+1
+00:00:00,600 --> 00:00:04,567
+Chào mừng bạn đến với Kieu
+Studio, The Art of Coding.
+
+2
+00:00:04,567 --> 00:00:10,600
+Ở đây, LeetCode chỉ là bài tập luyện. Điều chúng
+ta thật sự rèn là kỹ năng giải quyết vấn đề.
+
+3
+00:00:10,600 --> 00:00:17,033
+Với mỗi bài toán, ta lặp lại bốn bước: hiểu đề,
+đặt giả thuyết, kiểm chứng, và rút kinh nghiệm.
+
+4
+00:00:17,033 --> 00:00:24,033
+Tập 3 hôm nay là bài #44, Wildcard Matching.
+Đây là bài Hard, nhưng ta sẽ đi từng bước.
+
+5
+00:00:25,067 --> 00:00:31,100
+Đề bài cho một chuỗi s và một mẫu p. Ta cần
+cho biết mẫu có khớp toàn bộ chuỗi hay không.
+
+6
+00:00:31,100 --> 00:00:34,633
+Trong mẫu, dấu hỏi chấm (?)
+khớp đúng một ký tự bất kỳ.
+
+7
+00:00:34,633 --> 00:00:38,500
+Dấu sao (*) khớp một dãy ký
+tự bất kỳ, kể cả dãy rỗng.
+
+8
+00:00:38,500 --> 00:00:44,700
+Chữ cái thường chỉ khớp chính nó. Và khớp phải
+phủ kín toàn bộ chuỗi, không phải chỉ một phần.
+
+9
+00:00:45,733 --> 00:00:50,467
+Đầu vào là chuỗi s và mẫu p. Đầu
+ra là một giá trị đúng hoặc sai.
+
+10
+00:00:50,467 --> 00:00:56,167
+Độ dài của s và p đều từ 0 đến
+2000, nên cả hai đều có thể rỗng.
+
+11
+00:00:56,167 --> 00:01:02,600
+Chuỗi s chỉ có chữ cái thường tiếng Anh.
+Mẫu p có chữ cái thường, dấu ? và dấu *.
+
+12
+00:01:02,600 --> 00:01:09,500
+2000 × 2000 = 4 triệu. Hãy nhớ con số này:
+nó cho biết cách làm nào còn dùng được.
+
+13
+00:01:10,533 --> 00:01:17,100
+Theo trang LeetCode ngày 28/10/2026,
+bài này được xếp mức Hard.
+
+14
+00:01:17,100 --> 00:01:23,433
+Có 967.654 lượt nộp được chấp nhận,
+trên tổng khoảng 2,9 triệu lượt nộp.
+
+15
+00:01:23,433 --> 00:01:30,167
+Tỷ lệ chấp nhận là 33,1%. Đây là số lượt
+nộp bài, không phải số người đã giải được.
+
+16
+00:01:30,167 --> 00:01:35,333
+Bài Hard không phải bài không thể. Nó
+chỉ cần một quy trình suy nghĩ tốt.
+
+17
+00:01:36,367 --> 00:01:41,133
+Ví dụ 1: chuỗi s là "aa", mẫu p là "a".
+
+18
+00:01:41,133 --> 00:01:44,633
+Chữ a của mẫu khớp với
+chữ a đầu tiên của chuỗi.
+
+19
+00:01:44,633 --> 00:01:50,767
+Nhưng chuỗi còn dư một chữ a, trong khi mẫu đã hết.
+Khớp một phần là chưa đủ, nên kết quả là sai (false).
+
+20
+00:01:50,767 --> 00:01:55,467
+Bài học 1: luôn kiểm tra điều
+kiện kết thúc của cả hai phía.
+
+21
+00:01:56,467 --> 00:02:01,467
+Ví dụ 2: chuỗi s vẫn là "aa",
+nhưng mẫu p chỉ có một dấu sao.
+
+22
+00:02:01,467 --> 00:02:07,800
+Dấu sao thay cho bất kỳ dãy ký tự nào. Nó nuốt
+chữ a đầu tiên, rồi nuốt thêm chữ a thứ hai.
+
+23
+00:02:07,800 --> 00:02:11,533
+Cả chuỗi và mẫu cùng kết thúc,
+nên kết quả là đúng (true).
+
+24
+00:02:11,533 --> 00:02:19,633
+Bài học 2: một ký hiệu có thể tạo ra nhiều lựa chọn. Dấu
+sao có thể nuốt không, một, hai ký tự, hoặc nhiều hơn.
+
+25
+00:02:20,667 --> 00:02:25,900
+Ví dụ 3: chuỗi s là "cb", mẫu p là "?a".
+
+26
+00:02:25,900 --> 00:02:30,200
+Dấu ? khớp đúng một ký tự, ở đây là chữ c.
+
+27
+00:02:30,200 --> 00:02:36,800
+Tiếp theo mẫu cần chữ a, nhưng chuỗi lại là chữ
+b. Hai chữ khác nhau, nên kết quả là sai (false).
+
+28
+00:02:36,800 --> 00:02:43,700
+Bài học 3: nếu không có dấu sao, mọi thứ bị xếp
+thẳng hàng, và lệch một vị trí là hỏng cả bài.
+
+29
+00:02:44,733 --> 00:02:53,100
+Ba ví dụ cho ta ba thói quen: kiểm tra điều kiện kết thúc, tìm
+nơi phát sinh lựa chọn, và nhận ra khi mọi thứ bị ép thẳng hàng.
+
+30
+00:02:53,100 --> 00:02:58,267
+Ta chưa viết dòng code nào, nhưng đã
+biết chỗ khó của bài nằm ở dấu sao.
+
+31
+00:02:59,300 --> 00:03:03,567
+Trước khi xem lời giải, hãy
+thử tự nghĩ. Đây là ba gợi ý.
+
+32
+00:03:03,567 --> 00:03:10,833
+Gợi ý 1: chỗ duy nhất có nhiều lựa chọn là dấu
+sao. Hãy tự hỏi dấu sao nên nuốt bao nhiêu ký tự.
+
+33
+00:03:10,833 --> 00:03:19,300
+Gợi ý 2: hãy thu nhỏ bài toán. Với i ký tự đầu của chuỗi
+và j ký tự đầu của mẫu, hai phần đó có khớp nhau không?
+
+34
+00:03:19,300 --> 00:03:27,267
+Gợi ý 3: khi đã có một cách chạy được, hãy hỏi: gặp lệch
+thì ta cần quay lại mọi dấu sao đã qua, hay chỉ một vài dấu?
+
+35
+00:03:27,267 --> 00:03:31,767
+Hãy tự nghĩ trong mười giây tới: nếu gặp
+dấu sao, bạn sẽ thử lựa chọn nào trước?
+
+36
+00:03:41,767 --> 00:03:47,667
+Hết mười giây. Dù bạn đã có đáp án hay chưa,
+ta hãy bắt đầu từ ý tưởng đơn giản nhất.
+
+37
+00:03:47,667 --> 00:03:56,267
+Đặt con trỏ i trên chuỗi s và con trỏ j trên mẫu p. Câu
+hỏi nhỏ là: từ vị trí i và j, phần còn lại có khớp không?
+
+38
+00:03:56,267 --> 00:04:03,233
+Nếu p[j] là chữ cái hoặc dấu ?, ta so một ký
+tự rồi cho cả hai con trỏ tiến lên một bước.
+
+39
+00:04:03,233 --> 00:04:09,967
+Nếu p[j] là dấu *, ta có hai lựa chọn. Một
+là nhảy qua dấu sao, tức là cho nó nuốt rỗng.
+
+40
+00:04:09,967 --> 00:04:15,233
+Hai là cho dấu sao nuốt thêm một ký tự,
+và giữ nguyên dấu sao để còn nuốt tiếp.
+
+41
+00:04:15,233 --> 00:04:20,867
+Hết mẫu thì chuỗi cũng phải hết. Đó chính
+là điều kiện kết thúc của bài học đầu tiên.
+
+42
+00:04:21,900 --> 00:04:31,733
+Hãy chạy ý tưởng đó trên ví dụ nhỏ: s là "aaa", p là
+"*a*b". Đáp án là sai, nên ta phải thử hết mọi nhánh.
+
+43
+00:04:31,733 --> 00:04:39,167
+Mỗi nút là một cặp vị trí (i, j). Nhánh bên trái là
+nhảy qua dấu sao. Nhánh bên phải là nuốt thêm một ký tự.
+
+44
+00:04:39,167 --> 00:04:44,200
+Nhánh nào thất bại thì ta quay lại
+và thử nhánh khác. Đó là quay lui.
+
+45
+00:04:44,200 --> 00:04:51,267
+Nhìn kỹ: có những cặp (i, j) xuất hiện nhiều lần, được
+tô vàng. Ta đang giải đi giải lại cùng một câu hỏi.
+
+46
+00:04:51,267 --> 00:04:55,900
+Cây có 20 lần gọi hàm, nhưng
+chỉ 14 câu hỏi khác nhau.
+
+47
+00:04:56,900 --> 00:05:00,733
+Số lần gọi hàm tăng rất nhanh
+khi mẫu có thêm dấu sao.
+
+48
+00:05:00,733 --> 00:05:11,100
+Chúng tôi đã chạy thật. Với chuỗi 20 chữ a, mẫu có một
+dấu sao cần 62 lần gọi; sáu dấu sao cần 203.078 lần.
+
+49
+00:05:11,100 --> 00:05:17,233
+Với độ dài tới 2000, thử hết mọi nhánh
+là không thể. Ta cần cách tốt hơn.
+
+50
+00:05:18,233 --> 00:05:23,733
+Thử một ý tưởng nhanh hơn: gặp dấu sao thì
+cho nó nuốt rỗng, và không bao giờ quay lại.
+
+51
+00:05:23,733 --> 00:05:33,867
+Chạy trên s là "adceb", p là "*a*b". Dấu sao đầu nuốt
+rỗng, chữ a khớp chữ a, dấu sao thứ hai cũng nuốt rỗng.
+
+52
+00:05:33,867 --> 00:05:39,433
+Bây giờ chữ b của mẫu gặp chữ d của
+chuỗi: lệch. Ý tưởng này kết luận sai.
+
+53
+00:05:39,433 --> 00:05:45,367
+Nhưng đáp án đúng là đúng, vì dấu sao thứ
+hai có thể nuốt d, c, e rồi chữ b mới khớp.
+
+54
+00:05:45,367 --> 00:05:54,067
+Bài học: một giả thuyết hay vẫn có thể sai. Ta cần phản
+ví dụ để biết, và dấu sao phải được cho cơ hội nuốt thêm.
+
+55
+00:05:55,100 --> 00:05:59,967
+Cách an toàn: đừng giải lại câu hỏi
+cũ. Hãy lưu kết quả vào một bảng.
+
+56
+00:05:59,967 --> 00:06:06,000
+Ô dp[i][j] trả lời: i ký tự đầu của chuỗi
+có khớp j ký tự đầu của mẫu hay không?
+
+57
+00:06:06,000 --> 00:06:10,533
+Chuỗi rỗng khớp mẫu rỗng. Và chuỗi
+rỗng chỉ khớp một mẫu toàn dấu sao.
+
+58
+00:06:10,533 --> 00:06:17,933
+Nếu ký tự mẫu là chữ cái hoặc dấu ?, ô này đúng khi
+hai ký tự khớp và ô chéo phía trên bên trái đúng.
+
+59
+00:06:17,933 --> 00:06:27,100
+Nếu ký tự mẫu là dấu *, ô này đúng khi ô phía trên đúng, tức là dấu
+sao nuốt thêm một ký tự, hoặc ô bên trái đúng, tức là nuốt rỗng.
+
+60
+00:06:27,100 --> 00:06:33,300
+Điền bảng cho s là "adceb" và
+p là "*a*b", từng hàng một.
+
+61
+00:06:33,300 --> 00:06:36,633
+Ô cuối cùng là đúng, vậy đáp án là đúng.
+
+62
+00:06:36,633 --> 00:06:45,467
+Với giới hạn của đề, bảng có hơn 4 triệu ô, mỗi ô tính
+một lần: thời gian O(m × n), bộ nhớ cũng O(m × n).
+
+63
+00:06:46,500 --> 00:06:52,667
+Nhìn lại bảng: mỗi ô chỉ cần hàng phía trên và
+ô bên cạnh. Ta đang nhớ nhiều hơn mức cần thiết.
+
+64
+00:06:52,667 --> 00:07:01,467
+Hãy nghĩ về dấu sao. Nó nuốt được bất cứ thứ gì. Vì vậy, khi một
+đoạn phía sau dấu sao đã khớp, mọi thứ phía trước coi như ổn.
+
+65
+00:07:01,467 --> 00:07:08,233
+Đoạn nằm giữa hai dấu sao nên khớp ở vị trí sớm nhất
+có thể, để chừa lại nhiều ký tự nhất cho phần phía sau.
+
+66
+00:07:08,233 --> 00:07:15,300
+Vì thế, khi gặp lệch, ta chỉ cần quay về dấu sao
+gần nhất. Các dấu sao cũ hơn không cần thử lại.
+
+67
+00:07:16,333 --> 00:07:24,933
+Ta giữ bốn biến: i trên chuỗi, j trên mẫu, star là vị trí dấu
+sao gần nhất, và mark là vị trí chuỗi mà dấu sao đã nuốt tới.
+
+68
+00:07:24,933 --> 00:07:29,833
+Nếu hai ký tự khớp hoặc mẫu là
+dấu ?, cho i và j cùng tiến.
+
+69
+00:07:29,833 --> 00:07:36,733
+Nếu mẫu là dấu *: ghi nhớ star và mark, rồi
+chỉ tiến j, tức là cho dấu sao nuốt rỗng trước.
+
+70
+00:07:36,733 --> 00:07:44,567
+Nếu lệch mà đã có dấu sao: cho nó nuốt thêm một ký tự.
+Tăng mark, đặt i bằng mark, và đặt j về ngay sau dấu sao.
+
+71
+00:07:44,567 --> 00:07:49,500
+Nếu lệch mà chưa có dấu sao nào:
+không còn cách cứu, kết quả là sai.
+
+72
+00:07:49,500 --> 00:07:55,933
+Hết chuỗi thì bỏ qua các dấu sao còn lại ở
+cuối mẫu. Mẫu phải đi hết thì kết quả mới đúng.
+
+73
+00:07:56,933 --> 00:08:04,233
+Bắt đầu: j gặp dấu sao đầu tiên. Ghi nhớ
+star bằng 0, cho nó nuốt rỗng, j tiến lên.
+
+74
+00:08:04,233 --> 00:08:09,167
+Chữ a của mẫu khớp chữ a của
+chuỗi. Cả i và j cùng tiến.
+
+75
+00:08:09,167 --> 00:08:15,000
+Dấu sao thứ hai: ghi nhớ star bằng 2,
+mark bằng 1, và lại cho nó nuốt rỗng.
+
+76
+00:08:15,000 --> 00:08:21,400
+Chữ b của mẫu gặp chữ d: lệch. Dấu sao thứ
+hai nuốt thêm chữ d, và j quay về chữ b.
+
+77
+00:08:21,400 --> 00:08:28,033
+Lại lệch với chữ c, dấu sao nuốt thêm chữ c.
+Rồi lệch với chữ e, dấu sao nuốt thêm chữ e.
+
+78
+00:08:28,033 --> 00:08:33,967
+Lần này chữ b khớp chữ b. Chuỗi đã hết,
+mẫu cũng đã đi hết: kết quả là đúng.
+
+79
+00:08:35,000 --> 00:08:38,300
+Trước khi viết Python,
+hãy viết logic bằng lời.
+
+80
+00:08:38,300 --> 00:08:47,300
+Lặp trong khi chuỗi còn ký tự: khớp thì tiến, gặp dấu sao thì ghi
+nhớ, lệch thì quay về dấu sao, không có dấu sao thì trả về sai.
+
+81
+00:08:47,300 --> 00:08:53,567
+Sau vòng lặp, bỏ qua các dấu sao thừa ở cuối
+mẫu, rồi kiểm tra j đã tới cuối mẫu chưa.
+
+82
+00:08:54,567 --> 00:08:58,367
+Đây là lời giải Python 3 hoàn
+chỉnh, chỉ khoảng 20 dòng.
+
+83
+00:08:58,367 --> 00:09:04,767
+Khởi tạo: i và j bằng 0, star bằng -1
+nghĩa là chưa có dấu sao, mark bằng 0.
+
+84
+00:09:04,767 --> 00:09:08,600
+Vòng lặp chính chạy khi i
+còn nhỏ hơn độ dài của chuỗi.
+
+85
+00:09:08,600 --> 00:09:14,433
+Nhánh một: nếu còn mẫu và ký tự
+khớp, hoặc là dấu ?, thì tăng i và j.
+
+86
+00:09:14,433 --> 00:09:18,933
+Nhánh hai: gặp dấu sao thì
+lưu star và mark, rồi tăng j.
+
+87
+00:09:18,933 --> 00:09:26,833
+Nhánh ba: đã có dấu sao thì tăng mark, đặt lại i
+và j. Nhánh cuối: chưa có dấu sao thì trả về sai.
+
+88
+00:09:26,833 --> 00:09:32,833
+Sau vòng lặp, bỏ các dấu sao ở cuối
+mẫu. Kết quả đúng khi j đã đến cuối mẫu.
+
+89
+00:09:33,833 --> 00:09:42,267
+Hãy xem code chạy với s là "adceb" và p là
+"*a*b". Bên phải là giá trị các biến ở mỗi dòng.
+
+90
+00:09:42,267 --> 00:09:46,500
+Dòng star gán bằng j: dấu
+sao đầu tiên được ghi nhớ.
+
+91
+00:09:46,500 --> 00:09:49,400
+Chữ a khớp: i và j cùng tăng.
+
+92
+00:09:49,400 --> 00:09:52,467
+Dấu sao thứ hai được ghi nhớ: star bằng 2.
+
+93
+00:09:52,467 --> 00:09:59,500
+Chữ b lệch với chữ d, nên chương trình vào nhánh thứ
+ba: mark tăng, i bằng mark, j bằng star cộng một.
+
+94
+00:09:59,500 --> 00:10:04,567
+Hai lần lệch nữa, với chữ c và
+chữ e: dấu sao nuốt thêm hai chữ.
+
+95
+00:10:04,567 --> 00:10:09,133
+Cuối cùng chữ b khớp chữ b.
+i bằng 5, vòng lặp kết thúc.
+
+96
+00:10:09,133 --> 00:10:15,267
+Dòng cuối: j bằng 4, đúng bằng
+độ dài mẫu. Hàm trả về true.
+
+97
+00:10:16,267 --> 00:10:21,300
+Ta không chỉ tin vào lập luận. Ba ví
+dụ chính thức cho kết quả đúng như đề.
+
+98
+00:10:21,300 --> 00:10:29,400
+Chúng tôi so sánh lời giải với hai cách độc lập là biểu thức
+chính quy và bảng quy hoạch động, trên 173.355 ca vét cạn.
+
+99
+00:10:29,400 --> 00:10:33,433
+Cộng thêm 20.000 ca ngẫu nhiên.
+Không có một sai lệch nào.
+
+100
+00:10:33,433 --> 00:10:40,233
+Trường hợp xấu nhất, chuỗi 2000 chữ
+a, vòng lặp chính chạy 1.002.001 lần.
+
+101
+00:10:40,233 --> 00:10:44,367
+Thử nghiệm là bằng chứng mạnh,
+nhưng chưa phải chứng minh toán học.
+
+102
+00:10:45,367 --> 00:10:47,467
+Hãy so sánh ba cách làm.
+
+103
+00:10:47,467 --> 00:10:56,467
+Thử hết mọi nhánh: số lần gọi tăng rất nhanh theo số dấu
+sao. Đã đo: hơn 203.000 lần gọi chỉ với chuỗi 20 ký tự.
+
+104
+00:10:56,467 --> 00:11:05,400
+Bảng quy hoạch động: thời gian O(m × n), bộ nhớ O(m × n).
+Với giới hạn của đề, đó là hơn 4 triệu ô, vẫn chạy được.
+
+105
+00:11:05,400 --> 00:11:10,600
+Hai con trỏ: bộ nhớ O(1). Trường
+hợp xấu nhất vẫn là O(m × n).
+
+106
+00:11:10,600 --> 00:11:16,933
+Trên dữ liệu ngẫu nhiên, chúng tôi đo trung bình
+0,592 vòng lặp cho mỗi ký tự của chuỗi và mẫu.
+
+107
+00:11:16,933 --> 00:11:22,867
+Không có cách nào luôn tốt nhất. Hãy chọn
+theo giới hạn, bộ nhớ, và độ dễ chứng minh.
+
+108
+00:11:23,867 --> 00:11:27,967
+Một: đọc kỹ yêu cầu, đặc
+biệt là điều kiện kết thúc.
+
+109
+00:11:27,967 --> 00:11:33,000
+Hai: tìm nơi sinh ra lựa chọn.
+Ở bài này, đó là dấu sao.
+
+110
+00:11:33,000 --> 00:11:38,067
+Ba: bắt đầu bằng cách đơn giản và
+đúng, rồi đo xem vì sao nó chậm.
+
+111
+00:11:38,067 --> 00:11:42,367
+Bốn: nếu cùng một câu hỏi
+lặp lại, hãy ghi nhớ kết quả.
+
+112
+00:11:42,367 --> 00:11:47,400
+Năm: tìm cấu trúc để nhớ ít hơn,
+như chỉ giữ dấu sao gần nhất.
+
+113
+00:11:47,400 --> 00:11:52,633
+Sáu: luôn kiểm chứng bằng ví dụ,
+phản ví dụ, và một cách làm độc lập.
+
+114
+00:11:52,633 --> 00:11:59,200
+Những thói quen này dùng được ngoài LeetCode: khi
+lập kế hoạch, sửa lỗi, hay thiết kế một hệ thống.
+
+115
+00:12:00,200 --> 00:12:03,100
+Ba bài để luyện tiếp, từ dễ đến khó.
+
+116
+00:12:03,100 --> 00:12:11,400
+Bài #392, Is Subsequence, mức Easy: dùng hai con trỏ
+trên hai chuỗi, một bước khởi động cho tư duy tham lam.
+
+117
+00:12:11,400 --> 00:12:19,000
+Bài #72, Edit Distance, mức Medium: hãy tự
+định nghĩa ô của bảng và ba lựa chọn ở mỗi ô.
+
+118
+00:12:19,000 --> 00:12:26,367
+Bài #10, Regular Expression Matching, mức Hard: dấu
+sao ở đó có nghĩa khác. Hãy so sánh với bài hôm nay.
+
+119
+00:12:26,367 --> 00:12:33,967
+Đừng xem code ngay. Hãy tự hỏi: câu hỏi nhỏ là
+gì, lựa chọn nằm ở đâu, và có cần ghi nhớ không?
+
+120
+00:12:35,000 --> 00:12:37,833
+Hãy nhớ cách nghĩ, đừng chỉ nhớ code.
+
+121
+00:12:37,833 --> 00:12:46,267
+Cảm ơn bạn đã xem. Hẹn gặp lại ở tập tiếp theo của Kieu
+Studio, The Art of Coding. Thêm tài liệu tại kieu.app.

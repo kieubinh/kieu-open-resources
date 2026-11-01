@@ -1,0 +1,76 @@
+{
+  "scene": "21-code2",
+  "sha256": "e7d018d2ae978adeeb1927ab35468469ab6cf62d102459c1312d5e17d0b2304a",
+  "engine": "VoiceStudio local",
+  "base": "http://127.0.0.1:3900",
+  "model": "voxcpm2",
+  "voice": "27ad8d83",
+  "voice_name": "Narrator 03 · Trầm chững chạc (synthetic)",
+  "seed": 20261017,
+  "language": "vi",
+  "speed": 1.0,
+  "speed_applied": "ffmpeg atempo once, pitch preserved",
+  "lead": 0.6,
+  "gap": 0.7,
+  "tail": 1.6,
+  "duration": 42.43333333333333,
+  "frames": 1273,
+  "beats": [
+    {
+      "index": 0,
+      "key": "810ab647eaf2698fc74c0f2a3ddcde54d0f749c2b618849a4f3b544002dadfc8",
+      "start": 0.6,
+      "end": 8.328625,
+      "peak": 0.7748
+    },
+    {
+      "index": 1,
+      "key": "8f13cb0837eaa131a99b3800878509d12dc9bc71d717fa287f99d185362bcd41",
+      "start": 9.028625,
+      "end": 12.561791666666666,
+      "peak": 0.7941
+    },
+    {
+      "index": 2,
+      "key": "c63400db49ade1b55eb4c0fa9586c84dff9b1e12561b8d38de65c88375b97efd",
+      "start": 13.261791666666667,
+      "end": 15.464645833333334,
+      "peak": 0.7939
+    },
+    {
+      "index": 3,
+      "key": "5a2a550cddd4b5dae323e54bec821ef9e0cfc13b9177ff06fdccc0ce75b43b90",
+      "start": 16.164645833333335,
+      "end": 18.534625,
+      "peak": 0.7942
+    },
+    {
+      "index": 4,
+      "key": "cacebfb12faeed1aa5e85aa8223dd07f101b3fe69c589edeb7d8f18fa35db9c5",
+      "start": 19.234625,
+      "end": 25.577375,
+      "peak": 0.7937
+    },
+    {
+      "index": 5,
+      "key": "a3fa60d059c046576a9d40dbc71b12c32bbb664c6155ca77f2024afe0ef36721",
+      "start": 26.277375,
+      "end": 30.6195,
+      "peak": 0.7937
+    },
+    {
+      "index": 6,
+      "key": "665a39f29b06ff8167a85d6e87fa14b9392e2609087a55bb33f5c96849f108b2",
+      "start": 31.3195,
+      "end": 35.19025,
+      "peak": 0.7937
+    },
+    {
+      "index": 7,
+      "key": "b4989974cb783cf8a8a658de054638451d260600f698fda55561515e3ee0587e",
+      "start": 35.89025,
+      "end": 40.81925,
+      "peak": 0.7943
+    }
+  ]
+}

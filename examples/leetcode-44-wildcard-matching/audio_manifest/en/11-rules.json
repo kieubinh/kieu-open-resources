@@ -1,0 +1,62 @@
+{
+  "scene": "11-rules",
+  "sha256": "0ca279359804b1901fe10482865f6764bfc7d5ea349c7f570278664c1ea86bbf",
+  "engine": "VoiceStudio local",
+  "base": "http://127.0.0.1:3900",
+  "model": "voxcpm2",
+  "voice": "823d23e3",
+  "voice_name": "Kieu Studio English B · Warm Low (synthetic)",
+  "seed": 20261019,
+  "language": "en",
+  "speed": 1.0,
+  "speed_applied": "ffmpeg atempo once, pitch preserved",
+  "lead": 0.0,
+  "gap": 0.7,
+  "tail": 1.6,
+  "duration": 47.3,
+  "frames": 1419,
+  "beats": [
+    {
+      "index": 0,
+      "key": "3e75ca41e5d023a5eb08c777a8df6d6e74a45e4a3973ddad45ab8163716b41c0",
+      "start": 0.0,
+      "end": 6.133604166666666,
+      "peak": 0.7942
+    },
+    {
+      "index": 1,
+      "key": "88b583b02b77ccaefad94d2b5ed1a4f4f04190677ce26f466db0f2cb26265ac9",
+      "start": 6.8336041666666665,
+      "end": 16.383,
+      "peak": 0.7938
+    },
+    {
+      "index": 2,
+      "key": "1ee132bcff30d84b45dec641f0ab78f9257317220e3f16b359ec1995aade06c8",
+      "start": 17.083,
+      "end": 24.4359375,
+      "peak": 0.7939
+    },
+    {
+      "index": 3,
+      "key": "9fd72ad75cbf97abf19fc0eceeef206bd6154592d2d27805e1d4a547e5eb8e8d",
+      "start": 25.1359375,
+      "end": 32.05775,
+      "peak": 0.7937
+    },
+    {
+      "index": 4,
+      "key": "b58eee57c54a77a1fda4a2fab304de78b8779f30e9e635b1f3b88cf39ecdb07c",
+      "start": 32.75775,
+      "end": 38.5521875,
+      "peak": 0.7937
+    },
+    {
+      "index": 5,
+      "key": "ee734ca988375c687503959a9f7f3888130eeed067f06533a65f2b5893e584f9",
+      "start": 39.2521875,
+      "end": 45.668625,
+      "peak": 0.7937
+    }
+  ]
+}
