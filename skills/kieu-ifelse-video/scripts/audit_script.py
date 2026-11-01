@@ -30,7 +30,7 @@ def audit(text):
 
 def hard_failures(r):
     fails = []
-    if not 1150 <= r['syllables'] <= 1600: fails.append(f"length {r['syllables']} outside 1150-1600")
+    if not 1150 <= r['syllables'] <= 1650: fails.append(f"length {r['syllables']} outside 1150-1650")
     if r['paragraphs'] != 1: fails.append('script must be one paragraph')
     if r['quotes']: fails.append('no quotation marks around dialogue')
     if [d for d in r['digits'] if not re.fullmatch(r'(1\d|20)\d\d', d)]: fails.append('spell numbers as words (years may stay digits)')

@@ -10,6 +10,13 @@ Channel id `UC5XjxC7YXhtemY1c7njkCGA`. Follow `skills/kieu-github-video/referenc
 - **Thumbnail:** Studio silently drops a custom thumbnail while the channel is not phone-verified, and no error appears. The owner verifies at https://www.youtube.com/verify. Afterwards use `#file-loader` on the video's edit page.
 - **Disclosure:** confirm `VIDEO_MADE_FOR_KIDS_NOT_MFK` and `VIDEO_HAS_ALTERED_CONTENT_YES` on the edit page after saving.
 
+## Facebook
+The channel has no Page of its own. EP01 went to Page Kieu Studio, the owner's choice. A Facebook post is public as soon as it goes out, so it needs its own go-ahead. Use the Meta Business Suite composer:
+- **Accounts:** the composer pre-selects the linked Instagram account. Untick it unless the owner asks for Instagram.
+- **File:** the composer creates its file input detached from the page, so it cannot be found in the DOM. Hook `HTMLInputElement.prototype.click` before pressing the upload button to catch the input, then give it the file.
+- **Text:** the editor is Draft.js. Type one paragraph at a time with Return between them. Pasting or typing newlines scrambles the text.
+- **Format:** every video becomes a Reel, and the composer has no custom-cover control.
+
 ## Channel branding
 Studio: `.../editing/profile`, one page for banner, picture and description, then Xuất bản. After publishing, the page may still block navigation with a "Leave site?" dialog even though Hủy and Xuất bản are greyed out; close the tab and verify on the public channel page.
 
