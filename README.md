@@ -3,6 +3,7 @@
 Reusable open-source skills, educational tools and video templates from **Kieu Studio / The Art of Coding**.
 
 - [Problem-solving video factory](#problem-solving-video-factory): the `kieu-leetcode-video` skill and a LeetCode #10 reference episode.
+- [Nếu Như films](skills/kieu-ifelse-video/SKILL.md): the `kieu-ifelse-video` skill for faceless What If stick-figure films, with a starter project and a blind voice check.
 - [Kieu Open Resources registry (V2, P0)](#kieu-open-resources-registry-v2): git-versioned registry, core SDK, `kieu-open-resources` CLI and the `kieu-resource-discovery` skill.
 - [12 mẫu tư duy giải thuật toán](docs/cheatsheets/12-mau-tu-duy-giai-thuat-toan/): free Vietnamese cheatsheet (PDF) with Python 3 templates and AI practice prompts.
 - [Legacy Kieu Resources service (v1)](#kieu-resources-registry): the earlier remote-first HTTP API / MCP adapter; not connected to the V2 registry.

@@ -1,0 +1,17 @@
+{
+ "voice": {"id": "27ad8d83", "model": "tts-1", "language": "vi", "speed": 1.1},
+ "say": {"Guinness": "Ghi-nét", "micro": "mi-crô", "2006": "hai nghìn không trăm lẻ sáu"},
+ "breaks": ["Tên bạn là", "Điểm cộng", "Và có một cái giá", "Chỉ một người", "Nhưng năm nay", "Rồi tới đêm", "Bạn gỡ micro", "Bạn không có chiếc", "Có thật không", "Rồi một buổi"],
+ "gaps": {"042b.wav": 0.6, "043.wav": 0.6, "045a.wav": 0.5, "045b.wav": 1.1, "045c.wav": 0.5},
+ "mute": {"027.wav": [[6.74, 7.3]], "038.wav": [[1.7, 1.99]]},
+ "youtube": {
+  "title": "Nếu Trí Nhớ Của Bạn Mạnh Gấp 100 Lần?",
+  "video_url": "https://youtu.be/PHq51TVoydg",
+  "hook": "Bạn nhớ mọi thứ từng thấy, từng nghe. Không quên được gì. Rồi một đêm, người bạn yêu nhất quên mất bạn là ai. Vậy nếu trí nhớ của bạn mạnh gấp một trăm lần thì sao?",
+  "chapters": [["a01", "Trí nhớ gấp 100 lần"], ["b06", "Một luật duy nhất"], ["c01", "Điểm cộng"], ["d01", "Cái giá"], ["e01", "Bà nội"], ["f01", "Đêm chung kết"], ["g01", "Lựa chọn"], ["h01", "Cuốn sổ của một đời người"], ["i01", "Có thật không?"]],
+  "sources": "Phần siêu năng lực và câu chuyện là hư cấu. Các dữ kiện khoa học dựa trên: Miller (1956), Ebbinghaus (1885), Maguire và cộng sự (2003), Richards & Frankland (2017), Parker, Cahill & McGaugh (2006), Jacobsen và cộng sự (2015), Luria (1968), Guinness World Records, Alzheimer's Association.",
+  "warning": "Video này không phải lời khuyên y tế. Nếu người thân có dấu hiệu sa sút trí tuệ, hãy gặp bác sĩ.",
+  "hashtags": "#NeuNhu #TriNho #KhoaHoc",
+  "tags": ["nếu như", "what if tiếng việt", "trí nhớ", "trí nhớ siêu phàm", "não bộ", "phim hoạt hình ngắn", "người que", "khoa học", "sa sút trí tuệ"]
+ }
+}
