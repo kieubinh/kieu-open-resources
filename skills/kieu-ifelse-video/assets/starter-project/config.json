@@ -1,0 +1,24 @@
+{
+ "title": "Nếu Trí Nhớ Của Bạn Mạnh Gấp 100 Lần?",
+ "lang": "vi",
+ "aspect": "16:9",
+ "resolution": "1080p",
+ "fps": 24,
+ "style": "dusk",
+ "voiceover": "input/voiceover.wav",
+ "script": "input/script.txt",
+ "duration": 367.76,
+ "captions": false,
+ "bars": "wide",
+ "fadeIn": 0.5,
+ "fadeOut": 0.8,
+ "music": {
+  "enabled": true,
+  "gainDb": -22
+ },
+ "sfx": {
+  "enabled": true,
+  "gainDb": -6
+ },
+ "loudness": -14
+}

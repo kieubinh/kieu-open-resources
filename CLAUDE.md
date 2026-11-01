@@ -11,3 +11,7 @@ Use `.claude/skills/kieu-resource-discovery/SKILL.md` (canonical: `skills/kieu-r
 ## GitHub Radar videos
 
 Use `.claude/skills/kieu-github-video/SKILL.md` (canonical: `skills/kieu-github-video/`) for Kieu Studio videos about fast-growing useful GitHub repos, **one repo per video**. Verify growth numbers with a dated source, give every repo a caveat, tell it as a story with illustrations, narrate at 1.0x via local VoiceStudio, show the circular speaking avatar bottom-right with lip-sync, and never commit the avatar portrait.
+
+## Nếu Như videos
+
+Use `.claude/skills/kieu-ifelse-video/SKILL.md` (canonical: `skills/kieu-ifelse-video/`) for "Nếu Như" (What If) films on @NeuNhuPhim: one change to the viewer's body or mind, real sourced science, a human ending. Audit the script, narrate at 1.1x via local VoiceStudio only, check every take blind with `scripts/voice.py`, no speaking avatar, upload Private first. The 2D Studio kit is not redistributable: never commit it.
