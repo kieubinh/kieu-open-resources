@@ -51,3 +51,14 @@ One-page A4 cheat sheets for the next two GitHub Radar Shorts. Snapshot 2026-11-
 | GR10 | `anthropics/knowledge-work-plugins` | [vi](GR10_knowledge-work-plugins_cheatsheet.pdf) | [en](GR10_knowledge-work-plugins_cheatsheet_EN.pdf) |
 
 Star totals come from the GitHub API and growth from GitHub Trending (Trending-reported, not independently reconstructed). Both sheets carry a caveat block.
+
+## GR11-GR12 (Shorts, Vietnamese)
+
+One-page A4 cheat sheets for the next two GitHub Radar Shorts. Snapshot 2026-11-01.
+
+| Short | Repo | Cheat sheet |
+| --- | --- | --- |
+| GR11 | `JetBrains/thinkrail` | [GR11_thinkrail_cheatsheet.pdf](GR11_thinkrail_cheatsheet.pdf) |
+| GR12 | `Donchitos/Claude-Code-Game-Studios` | [GR12_Claude-Code-Game-Studios_cheatsheet.pdf](GR12_Claude-Code-Game-Studios_cheatsheet.pdf) |
+
+Star totals come from the GitHub API; growth from GitHub Trending (Trending-reported, not independently reconstructed): a weekly figure for GR11 and a daily figure for GR12. Both sheets carry a caveat block.
