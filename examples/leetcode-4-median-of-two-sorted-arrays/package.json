@@ -14,7 +14,7 @@
     "trace": "python3 code/trace.py",
     "voice:generate:en": "KIEU_LANG=en VOICESTUDIO_VOICE_PROFILE=823d23e3 python3 scripts/voicestudio.py --synthesize",
     "render:review:en": "KIEU_LANG=en python3 scripts/build_timeline.py --preview && remotion render src/index.ts EP04-Median output/EP04_EN_REMOTION_REVIEW.mp4 --codec=h264",
-    "render:release:en": "KIEU_LANG=en python3 scripts/build_timeline.py && remotion render src/index.ts EP04-Median output/EP04_EN_VOICESTUDIO_CANDIDATE.mp4 --codec=h264",
+    "render:release:en": "KIEU_LANG=en python3 scripts/build_timeline.py && KIEU_LANG=en ${KIEU_PYTHON:-python3} ../../skills/kieu-leetcode-video/scripts/make_av_tracks.py --project . --srt output/EP04_EN_VOICESTUDIO_ALIGNED.srt --captions && remotion render src/index.ts EP04-Median output/EP04_EN_VOICESTUDIO_CANDIDATE.mp4 --codec=h264",
     "test:en": "KIEU_LANG=en python3 -m unittest discover -s tests -p 'test_*.py' -v"
   },
   "dependencies": {

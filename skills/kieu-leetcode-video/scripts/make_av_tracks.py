@@ -8,10 +8,11 @@ Writes src/envelope.json: {levels, mouthO, mouthS}, one value per video frame of
 audio (the same articulation as examples/github-trending-*/scripts/make_envelope.py). Silent scenes stay at zero.
 With --srt, every scene is transcribed by local VoiceStudio (cached in output/asr-<lang>/), script sentences are mapped
 to the word timestamps, and an SRT plus output/asr_report-<lang>.json (word error rate per scene) are written.
---captions also rewrites src/captions.json, which the episode burns in. The script text stays the subtitle text.
+--captions also rewrites src/captions.json, which the episode burns in, so run it after build_timeline.py and before
+the render. The script text stays the subtitle text. Needs numpy.
 """
 from __future__ import annotations
-import argparse, difflib, importlib, json, os, re, subprocess, sys, urllib.request, uuid
+import argparse, difflib, hashlib, importlib, json, os, re, subprocess, sys, urllib.parse, urllib.request, uuid
 from pathlib import Path
 import numpy as np
 
@@ -56,17 +57,24 @@ def smooth(values, attack, release):
 
 
 def transcribe(wav, cache, lang):
+    audio = wav.read_bytes()
+    digest = hashlib.sha256(audio).hexdigest()
     if cache.is_file():
-        return json.loads(cache.read_text())
+        data = json.loads(cache.read_text())
+        if data.get('wav_sha256') == digest:
+            return data
+    if urllib.parse.urlsplit(BASE).hostname not in ('127.0.0.1', 'localhost'):
+        raise SystemExit('A local VoiceStudio endpoint is required.')
     boundary = uuid.uuid4().hex
     field = lambda k, v: f'--{boundary}\r\nContent-Disposition: form-data; name="{k}"\r\n\r\n{v}\r\n'.encode()
     body = b''.join([field('model', 'whisper-1'), field('language', lang), field('response_format', 'verbose_json'),
                      field('timestamp_granularities[]', 'word'),
                      f'--{boundary}\r\nContent-Disposition: form-data; name="file"; filename="a.wav"\r\nContent-Type: audio/wav\r\n\r\n'.encode(),
-                     wav.read_bytes(), f'\r\n--{boundary}--\r\n'.encode()])
+                     audio, f'\r\n--{boundary}--\r\n'.encode()])
     req = urllib.request.Request(BASE + '/v1/audio/transcriptions', data=body, method='POST',
                                  headers={'Content-Type': f'multipart/form-data; boundary={boundary}'})
     data = json.loads(urllib.request.urlopen(req, timeout=600).read())
+    data['wav_sha256'] = digest
     cache.parent.mkdir(parents=True, exist_ok=True)
     cache.write_text(json.dumps(data, ensure_ascii=False))
     return data
