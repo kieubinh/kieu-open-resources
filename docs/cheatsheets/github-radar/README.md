@@ -86,3 +86,14 @@ English one-page A4 cheat sheets for the English versions of GitHub Radar Shorts
 | GR14 | `NationalSecurityAgency/ghidra` | [GR14_ghidra_cheatsheet_EN.pdf](GR14_ghidra_cheatsheet_EN.pdf) |
 
 Same numbers as the Vietnamese sheets: star totals from the GitHub API, growth from GitHub Trending (Trending-reported, not independently reconstructed). Every sheet carries a caveat block.
+
+## GR15-GR16 (Shorts, Vietnamese)
+
+One-page A4 cheat sheets for the next two GitHub Radar Shorts. Snapshot 2026-11-02.
+
+| Short | Repo | Cheat sheet |
+| --- | --- | --- |
+| GR15 | `TauricResearch/TradingAgents` | [GR15_TradingAgents_cheatsheet.pdf](GR15_TradingAgents_cheatsheet.pdf) |
+| GR16 | `Leonxlnx/taste-skill` | [GR16_taste-skill_cheatsheet.pdf](GR16_taste-skill_cheatsheet.pdf) |
+
+Star totals come from the GitHub API; growth from GitHub Trending (Trending-reported, not independently reconstructed): a weekly figure for GR15 and monthly plus weekly figures for GR16. Both sheets carry a caveat block; the GR15 sheet states that TradingAgents is a research framework and not financial advice.
