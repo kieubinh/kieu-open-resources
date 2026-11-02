@@ -97,3 +97,16 @@ One-page A4 cheat sheets for the next two GitHub Radar Shorts. Snapshot 2026-11-
 | GR16 | `Leonxlnx/taste-skill` | [GR16_taste-skill_cheatsheet.pdf](GR16_taste-skill_cheatsheet.pdf) |
 
 Star totals come from the GitHub API; growth from GitHub Trending (Trending-reported, not independently reconstructed): a weekly figure for GR15 and monthly plus weekly figures for GR16. Both sheets carry a caveat block; the GR15 sheet states that TradingAgents is a research framework and not financial advice.
+
+## GR17-GR20 (Shorts, Vietnamese)
+
+One-page A4 cheat sheets for four GitHub Radar Shorts. Snapshot 2026-11-02.
+
+| Short | Repo | Cheat sheet |
+| --- | --- | --- |
+| GR17 | `Nutlope/hallmark` | [GR17_hallmark_cheatsheet.pdf](GR17_hallmark_cheatsheet.pdf) |
+| GR18 | `AgriciDaniel/claude-seo` | [GR18_claude-seo_cheatsheet.pdf](GR18_claude-seo_cheatsheet.pdf) |
+| GR19 | `flutter/flutter` | [GR19_flutter_cheatsheet.pdf](GR19_flutter_cheatsheet.pdf) |
+| GR20 | `ghostty-org/ghostty` | [GR20_ghostty_cheatsheet.pdf](GR20_ghostty_cheatsheet.pdf) |
+
+Star totals come from the GitHub API; growth comes from GitHub Trending and has not been independently reconstructed. GR17 and GR18 show monthly and weekly figures, GR19 shows the monthly figure, and GR20 shows the weekly figure. Each sheet includes a caveat block.
