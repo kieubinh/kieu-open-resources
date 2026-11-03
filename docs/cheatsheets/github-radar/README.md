@@ -121,3 +121,7 @@ One-page A4 cheat sheets for two GitHub Radar Shorts. Snapshot 2026-11-03.
 | GR22 | `HKUDS/DeepTutor` | [GR22_DeepTutor_cheatsheet.pdf](GR22_DeepTutor_cheatsheet.pdf) |
 
 Star totals come from the GitHub API. Growth is reported by GitHub Trending, not independently reconstructed: monthly for GR21, and weekly and monthly on Python Trending for GR22. Both sheets include caveats.
+
+## GR23 (Short, Vietnamese)
+
+One-page A4 cheat sheet for `floci-io/floci`, snapshot 2026-11-04: [GR23_floci_cheatsheet.pdf](GR23_floci_cheatsheet.pdf). The GitHub API provides the star total and Java-filtered GitHub Trending reports the weekly gain; growth was not independently reconstructed. The sheet includes caveats about local endpoints, authentication, and compatibility.
