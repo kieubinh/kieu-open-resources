@@ -125,3 +125,7 @@ Star totals come from the GitHub API. Growth is reported by GitHub Trending, not
 ## GR23 (Short, Vietnamese)
 
 One-page A4 cheat sheet for `floci-io/floci`, snapshot 2026-11-04: [GR23_floci_cheatsheet.pdf](GR23_floci_cheatsheet.pdf). The GitHub API provides the star total and Java-filtered GitHub Trending reports the weekly gain; growth was not independently reconstructed. The sheet includes caveats about local endpoints, authentication, and compatibility.
+
+## GR24 (Short, Vietnamese)
+
+One-page A4 cheat sheet for `anthropics/claude-plugins-official`, snapshot 2026-11-04: [GR24_claude-plugins-official_cheatsheet.pdf](GR24_claude-plugins-official_cheatsheet.pdf). GitHub API supplies the star total; the monthly gain is GitHub Trending-reported and not independently reconstructed. The sheet cautions that individual plugins have their own licences, components and access requirements.
