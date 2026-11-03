@@ -110,3 +110,14 @@ One-page A4 cheat sheets for four GitHub Radar Shorts. Snapshot 2026-11-02.
 | GR20 | `ghostty-org/ghostty` | [GR20_ghostty_cheatsheet.pdf](GR20_ghostty_cheatsheet.pdf) |
 
 Star totals come from the GitHub API; growth comes from GitHub Trending and has not been independently reconstructed. GR17 and GR18 show monthly and weekly figures, GR19 shows the monthly figure, and GR20 shows the weekly figure. Each sheet includes a caveat block.
+
+## GR21-GR22 (Shorts, Vietnamese)
+
+One-page A4 cheat sheets for two GitHub Radar Shorts. Snapshot 2026-11-03.
+
+| Short | Repo | Cheat sheet |
+| --- | --- | --- |
+| GR21 | `tester-army/e2e` | [GR21_e2e_cheatsheet.pdf](GR21_e2e_cheatsheet.pdf) |
+| GR22 | `HKUDS/DeepTutor` | [GR22_DeepTutor_cheatsheet.pdf](GR22_DeepTutor_cheatsheet.pdf) |
+
+Star totals come from the GitHub API. Growth is reported by GitHub Trending, not independently reconstructed: monthly for GR21, and weekly and monthly on Python Trending for GR22. Both sheets include caveats.
