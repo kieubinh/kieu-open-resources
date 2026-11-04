@@ -141,3 +141,7 @@ One-page A4 cheat sheet for `github/spec-kit`, snapshot 2026-11-04: [GR26_spec-k
 ## GR27 (Short, Vietnamese)
 
 One-page A4 cheat sheet for `cjpais/Handy`, snapshot 2026-11-04: [GR27_Handy_cheatsheet.pdf](GR27_Handy_cheatsheet.pdf). GitHub API supplies the star total; Rust-filtered GitHub Trending reports the weekly gain and it has not been independently reconstructed. The sheet covers local transcription, permissions, models and platform limitations.
+
+## GR28 (Short, Vietnamese)
+
+One-page A4 cheat sheet for `Crosstalk-Solutions/project-nomad`, snapshot 2026-11-04: [GR28_project-nomad_cheatsheet.pdf](GR28_project-nomad_cheatsheet.pdf). GitHub API supplies the star total; TypeScript-filtered GitHub Trending reports the weekly gain, not independently reconstructed. The sheet includes authentication, network access and installation caveats.
