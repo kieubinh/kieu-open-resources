@@ -133,3 +133,7 @@ One-page A4 cheat sheet for `anthropics/claude-plugins-official`, snapshot 2026-
 ## GR25 (Short, Vietnamese)
 
 One-page A4 cheat sheet for `calesthio/OpenMontage`, snapshot 2026-11-04: [GR25_OpenMontage_cheatsheet.pdf](GR25_OpenMontage_cheatsheet.pdf). GitHub API supplies the star total; weekly and monthly gains are reported by Python-filtered GitHub Trending and not independently reconstructed. The sheet includes AGPL-3.0, provider and media-rights caveats.
+
+## GR26 (Short, Vietnamese)
+
+One-page A4 cheat sheet for `github/spec-kit`, snapshot 2026-11-04: [GR26_spec-kit_cheatsheet.pdf](GR26_spec-kit_cheatsheet.pdf). GitHub API supplies the star total; the weekly gain is reported by Python-filtered GitHub Trending and not independently reconstructed. The sheet cautions readers to review agent output and third-party extensions.
