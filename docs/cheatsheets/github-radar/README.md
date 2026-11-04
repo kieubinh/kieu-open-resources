@@ -129,3 +129,7 @@ One-page A4 cheat sheet for `floci-io/floci`, snapshot 2026-11-04: [GR23_floci_c
 ## GR24 (Short, Vietnamese)
 
 One-page A4 cheat sheet for `anthropics/claude-plugins-official`, snapshot 2026-11-04: [GR24_claude-plugins-official_cheatsheet.pdf](GR24_claude-plugins-official_cheatsheet.pdf). GitHub API supplies the star total; the monthly gain is GitHub Trending-reported and not independently reconstructed. The sheet cautions that individual plugins have their own licences, components and access requirements.
+
+## GR25 (Short, Vietnamese)
+
+One-page A4 cheat sheet for `calesthio/OpenMontage`, snapshot 2026-11-04: [GR25_OpenMontage_cheatsheet.pdf](GR25_OpenMontage_cheatsheet.pdf). GitHub API supplies the star total; weekly and monthly gains are reported by Python-filtered GitHub Trending and not independently reconstructed. The sheet includes AGPL-3.0, provider and media-rights caveats.
