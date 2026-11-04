@@ -137,3 +137,7 @@ One-page A4 cheat sheet for `calesthio/OpenMontage`, snapshot 2026-11-04: [GR25_
 ## GR26 (Short, Vietnamese)
 
 One-page A4 cheat sheet for `github/spec-kit`, snapshot 2026-11-04: [GR26_spec-kit_cheatsheet.pdf](GR26_spec-kit_cheatsheet.pdf). GitHub API supplies the star total; the weekly gain is reported by Python-filtered GitHub Trending and not independently reconstructed. The sheet cautions readers to review agent output and third-party extensions.
+
+## GR27 (Short, Vietnamese)
+
+One-page A4 cheat sheet for `cjpais/Handy`, snapshot 2026-11-04: [GR27_Handy_cheatsheet.pdf](GR27_Handy_cheatsheet.pdf). GitHub API supplies the star total; Rust-filtered GitHub Trending reports the weekly gain and it has not been independently reconstructed. The sheet covers local transcription, permissions, models and platform limitations.
