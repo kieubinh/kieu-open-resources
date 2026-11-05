@@ -145,3 +145,8 @@ One-page A4 cheat sheet for `cjpais/Handy`, snapshot 2026-11-04: [GR27_Handy_che
 ## GR28 (Short, Vietnamese)
 
 One-page A4 cheat sheet for `Crosstalk-Solutions/project-nomad`, snapshot 2026-11-04: [GR28_project-nomad_cheatsheet.pdf](GR28_project-nomad_cheatsheet.pdf). GitHub API supplies the star total; TypeScript-filtered GitHub Trending reports the weekly gain, not independently reconstructed. The sheet includes authentication, network access and installation caveats.
+
+
+## GR29 (Short, Vietnamese)
+
+One-page A4 cheat sheet for `microsoft/playwright`, snapshot 2026-11-05: [GR29_playwright_cheatsheet.pdf](GR29_playwright_cheatsheet.pdf). GitHub API supplies the star total; the JavaScript-filtered GitHub Trending page reports weekly and monthly gains, with no daily figure listed. Growth is not independently reconstructed. The sheet includes cautions about sensitive trace data, browser binary licence terms and the limits of automated checks.
