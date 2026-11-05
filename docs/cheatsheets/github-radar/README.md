@@ -150,3 +150,8 @@ One-page A4 cheat sheet for `Crosstalk-Solutions/project-nomad`, snapshot 2026-1
 ## GR29 (Short, Vietnamese)
 
 One-page A4 cheat sheet for `microsoft/playwright`, snapshot 2026-11-05: [GR29_playwright_cheatsheet.pdf](GR29_playwright_cheatsheet.pdf). GitHub API supplies the star total; the JavaScript-filtered GitHub Trending page reports weekly and monthly gains, with no daily figure listed. Growth is not independently reconstructed. The sheet includes cautions about sensitive trace data, browser binary licence terms and the limits of automated checks.
+
+
+## GR30 (Short, Vietnamese)
+
+One-page A4 cheat sheet for `microsoft/PowerToys`, snapshot 2026-11-05: [GR30_PowerToys_cheatsheet.pdf](GR30_PowerToys_cheatsheet.pdf). GitHub API supplies the star total; GitHub Trending (English content) reports +1,896 stars for the month and +518 for the week, with no daily figure listed. Growth is not independently reconstructed. The sheet includes Windows-only, diagnostic telemetry, and bulk-rename preview caveats.
