@@ -8,7 +8,7 @@ seeds and the best one is kept. Old takes move to audio/chunks_v1. Run with the 
 
 Usage: voice.py --episode DIR --plan                 split docs/script.txt into audio/voice_ledger.json, edit it freely
        voice.py --episode DIR [--max-takes N] [--seed N] [--score-only] [name ...]
-Report: audio/voice_qc.json. Settings: DIR/episode.json ("voice", "say").
+Report: audio/voice_qc.json. Settings: DIR/episode.json ("voice", "say", "asr_skip": words ASR never writes as scripted).
 """
 import argparse, difflib, hashlib, json, os, re, shutil, sys, tempfile, time, unicodedata, urllib.error, urllib.request, wave
 from pathlib import Path
@@ -127,7 +127,7 @@ def end_burst(e):
     return bool((end - i) * 0.01 < 0.3 and gap * 0.01 > 0.1)
 
 
-def score(model, path, text):
+def score(model, path, text, skip=()):
     import numpy as np
     sr, x = load(path); want = toks(text); hop = int(sr * 0.01)
     e = np.array([np.sqrt((x[i:i + hop] ** 2).mean()) for i in range(0, len(x) - hop, hop)]); on = np.where(e > 0.006)[0]
@@ -135,9 +135,9 @@ def score(model, path, text):
     x = x[on[0] * hop:(on[-1] + 2) * hop]; pad = np.zeros(int(sr * 0.5), np.float32); got = covered(want, hear(model, sr, x))
     for t in np.arange(0, max(0.1, len(x) / sr - 1.0), 2.0):
         got |= covered(want, hear(model, sr, np.concatenate([pad, x[int(t * sr):int((t + 3.5) * sr)], pad])))
-    missing = [want[i] for i in range(len(want)) if i not in got and want[i] not in EXEMPT]
+    missing = [want[i] for i in range(len(want)) if i not in got and want[i] not in EXEMPT and want[i] not in skip]
     tail = hear(model, sr, np.concatenate([x[-int(sr * 2.2):], pad]))
-    last = [i for i in range(len(want) - 2, len(want)) if want[i] not in EXEMPT]
+    last = [i for i in range(len(want) - 2, len(want)) if want[i] not in EXEMPT and want[i] not in skip]
     tail_cut = len(covered(want[-2:], tail)) < 2 and bool(last)
     end = np.sqrt((x[-int(sr * 0.05):] ** 2).mean()) / e.max(); trail = (len(e) - 1 - on[-1]) * 0.01
     abrupt = bool(trail < 0.03 and end > 0.08)
@@ -161,7 +161,7 @@ def main():
     for n in sorted(a.names or L):
         text = L[n]['spoken']
         if Q.get(n, {}).get('pass') and not a.names: continue
-        s = score(model, d / n, text) if (d / n).exists() else {'cost': 99}
+        s = score(model, d / n, text, cfg.get('asr_skip', ())) if (d / n).exists() else {'cost': 99}
         print(n, 'current', s, flush=True); Q[n] = {**s, 'pass': s['cost'] == 0, 'take': 'current'}
         if s['cost'] and not a.score_only:
             best, cost = None, s['cost']
@@ -170,7 +170,7 @@ def main():
                         'seed': a.seed + t, 'duration': round(len(text.split()) / 3.0 + 1.2, 1)}
                 t0 = time.time(); blob = api('/v1/audio/speech', body)
                 if blob[:4] != b'RIFF': sys.exit(f'bad WAV for {n}')
-                f = tmp / f'{n[:-4]}_{a.seed + t}.wav'; f.write_bytes(blob); r = score(model, f, text)
+                f = tmp / f'{n[:-4]}_{a.seed + t}.wav'; f.write_bytes(blob); r = score(model, f, text, cfg.get('asr_skip', ()))
                 print(n, 'take', t, r, f'{time.time() - t0:.0f}s', flush=True)
                 if r['cost'] < cost: best, cost, s = f, r['cost'], r
                 if r['cost'] == 0: break

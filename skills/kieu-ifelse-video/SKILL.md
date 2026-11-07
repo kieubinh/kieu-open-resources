@@ -28,17 +28,17 @@ Each episode changes exactly one thing about the viewer's body or mind, follows 
 ## House rules
 - Narration: local VoiceStudio only, Narrator 03 (`27ad8d83`), 1.1x, no fallback engine, no cloud TTS.
 - Faceless: no Kieu speaking avatar on this channel, unlike other Kieu videos.
-- 16:9, 1080p, 24 fps, style `dusk`, about 6 minutes at 1.1x, captions as an SRT rather than burned in.
+- 16:9, 1080p, 24 fps, style `dusk`, 6-8 minutes at 1.1x, captions as an SRT rather than burned in (Shorts burn them in).
 - A review MP4 is never called publish-ready. The audio is not verified until a human has listened.
 
 ## Files
 - `references/script-playbook.md`: title rules, beats, voice, facts, final checklist.
-- `references/production-pipeline.md`: studio setup, voice checks, shots, build, QA, known failures.
-- `references/publish.md`: channel branding safe areas and upload differences for this channel.
+- `references/production-pipeline.md`: studio setup, voice checks, shots, build, QA, Shorts, known failures.
+- `references/publish.md`: channel branding safe areas, upload differences for this channel, and the Facebook recipe.
 - `assets/starter-project/`: EP01 as a working template (cast, shot library, sets, shots, story tools, script, sources).
-- `assets/episode.example.json`: per-episode voice, pause, mute and YouTube settings.
+- `assets/episode.example.json`: per-episode voice, ASR skip list, pause, mute and YouTube settings.
 - `assets/brand/brand.js`: banner, logo and thumbnail shots.
-- `scripts/audit_script.py`, `voice.py`, `join_voice.py`, `make_meta.py`, `patch_kit.py`, `build_episode.sh`.
+- `scripts/audit_script.py`, `voice.py`, `join_voice.py`, `make_meta.py`, `make_short.py`, `patch_kit.py`, `build_episode.sh`.
 - `NOTICE.md`: what is original here and what stays out of this repository.
 
 ## How to invoke
