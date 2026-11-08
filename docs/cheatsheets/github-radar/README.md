@@ -155,3 +155,17 @@ One-page A4 cheat sheet for `microsoft/playwright`, snapshot 2026-11-05: [GR29_p
 ## GR30 (Short, Vietnamese)
 
 One-page A4 cheat sheet for `microsoft/PowerToys`, snapshot 2026-11-05: [GR30_PowerToys_cheatsheet.pdf](GR30_PowerToys_cheatsheet.pdf). GitHub API supplies the star total; GitHub Trending (English content) reports +1,896 stars for the month and +518 for the week, with no daily figure listed. Growth is not independently reconstructed. The sheet includes Windows-only, diagnostic telemetry, and bulk-rename preview caveats.
+
+## GR31-GR35 (Shorts, Vietnamese)
+
+One-page A4 cheat sheets for the next five GitHub Radar Shorts. Snapshot 2026-11-08.
+
+| Short | Repo | Cheat sheet |
+| --- | --- | --- |
+| GR31 | `mattpocock/skills` | [GR31_skills_cheatsheet.pdf](GR31_skills_cheatsheet.pdf) |
+| GR32 | `vercel-labs/agent-browser` | [GR32_agent-browser_cheatsheet.pdf](GR32_agent-browser_cheatsheet.pdf) |
+| GR33 | `storytold/artcraft` | [GR33_artcraft_cheatsheet.pdf](GR33_artcraft_cheatsheet.pdf) |
+| GR34 | `astral-sh/ruff` | [GR34_ruff_cheatsheet.pdf](GR34_ruff_cheatsheet.pdf) |
+| GR35 | `prometheus/prometheus` | [GR35_prometheus_cheatsheet.pdf](GR35_prometheus_cheatsheet.pdf) |
+
+Star totals come from the GitHub API; growth from GitHub Trending (Trending-reported, not independently reconstructed): weekly and daily figures for GR31 and GR32, a monthly figure for GR33, a daily figure for GR34 and GR35. Every sheet carries a caveat block.
