@@ -169,3 +169,17 @@ One-page A4 cheat sheets for the next five GitHub Radar Shorts. Snapshot 2026-11
 | GR35 | `prometheus/prometheus` | [GR35_prometheus_cheatsheet.pdf](GR35_prometheus_cheatsheet.pdf) |
 
 Star totals come from the GitHub API; growth from GitHub Trending (Trending-reported, not independently reconstructed): weekly and daily figures for GR31 and GR32, a monthly figure for GR33, a daily figure for GR34 and GR35. Every sheet carries a caveat block.
+
+## GR36-GR40 (snapshot 2026-11-09)
+
+One-page A4 cheat sheets for GitHub Radar Shorts GR36-GR40.
+
+| Short | Repo | Cheat sheet |
+| --- | --- | --- |
+| GR36 | `NVIDIA/auto-ontology` | [GR36_auto-ontology_cheatsheet.pdf](GR36_auto-ontology_cheatsheet.pdf) |
+| GR37 | `meta/astryx` | [GR37_astryx_cheatsheet.pdf](GR37_astryx_cheatsheet.pdf) |
+| GR38 | `vercel-labs/agent-desktop` | [GR38_agent-desktop_cheatsheet.pdf](GR38_agent-desktop_cheatsheet.pdf) |
+| GR39 | `The-PR-Agent/pr-agent` | [GR39_pr-agent_cheatsheet.pdf](GR39_pr-agent_cheatsheet.pdf) |
+| GR40 | `hyprwm/Hyprland` | [GR40_Hyprland_cheatsheet.pdf](GR40_Hyprland_cheatsheet.pdf) |
+
+Star totals come from the GitHub API; growth from GitHub Trending (Trending-reported, not independently reconstructed): a weekly figure for GR36, GR38, GR39 and GR40, a daily figure for GR37. Every sheet carries a caveat block.
