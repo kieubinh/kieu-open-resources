@@ -183,3 +183,17 @@ One-page A4 cheat sheets for GitHub Radar Shorts GR36-GR40.
 | GR40 | `hyprwm/Hyprland` | [GR40_Hyprland_cheatsheet.pdf](GR40_Hyprland_cheatsheet.pdf) |
 
 Star totals come from the GitHub API; growth from GitHub Trending (Trending-reported, not independently reconstructed): a weekly figure for GR36, GR38, GR39 and GR40, a daily figure for GR37. Every sheet carries a caveat block.
+
+## GR36-GR40 English (snapshot 2026-11-09)
+
+English one-page A4 cheat sheets for the English versions of GR36-GR40.
+
+| Short | Repo | Cheat sheet |
+| --- | --- | --- |
+| GR36 | `NVIDIA/auto-ontology` | [GR36_auto-ontology_cheatsheet_EN.pdf](GR36_auto-ontology_cheatsheet_EN.pdf) |
+| GR37 | `meta/astryx` | [GR37_astryx_cheatsheet_EN.pdf](GR37_astryx_cheatsheet_EN.pdf) |
+| GR38 | `vercel-labs/agent-desktop` | [GR38_agent-desktop_cheatsheet_EN.pdf](GR38_agent-desktop_cheatsheet_EN.pdf) |
+| GR39 | `The-PR-Agent/pr-agent` | [GR39_pr-agent_cheatsheet_EN.pdf](GR39_pr-agent_cheatsheet_EN.pdf) |
+| GR40 | `hyprwm/Hyprland` | [GR40_Hyprland_cheatsheet_EN.pdf](GR40_Hyprland_cheatsheet_EN.pdf) |
+
+Growth figures are Trending-reported (weekly for GR36, GR38, GR39, GR40; daily for GR37), not independently reconstructed. Every sheet carries a caveat block.
