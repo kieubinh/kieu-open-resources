@@ -197,3 +197,17 @@ English one-page A4 cheat sheets for the English versions of GR36-GR40.
 | GR40 | `hyprwm/Hyprland` | [GR40_Hyprland_cheatsheet_EN.pdf](GR40_Hyprland_cheatsheet_EN.pdf) |
 
 Growth figures are Trending-reported (weekly for GR36, GR38, GR39, GR40; daily for GR37), not independently reconstructed. Every sheet carries a caveat block.
+
+## GR41-GR45 (snapshot 2026-11-13)
+
+One-page A4 cheat sheets for GitHub Radar Shorts GR41-GR45.
+
+| Short | Repo | Cheat sheet |
+| --- | --- | --- |
+| GR41 | `openai/codex` | [GR41_codex_cheatsheet.pdf](GR41_codex_cheatsheet.pdf) |
+| GR42 | `immich-app/immich` | [GR42_immich_cheatsheet.pdf](GR42_immich_cheatsheet.pdf) |
+| GR43 | `google-deepmind/mujoco` | [GR43_mujoco_cheatsheet.pdf](GR43_mujoco_cheatsheet.pdf) |
+| GR44 | `NVIDIA/SkillSpector` | [GR44_SkillSpector_cheatsheet.pdf](GR44_SkillSpector_cheatsheet.pdf) |
+| GR45 | `rustdesk/rustdesk` | [GR45_rustdesk_cheatsheet.pdf](GR45_rustdesk_cheatsheet.pdf) |
+
+Growth figures are Trending-reported weekly figures (not independently reconstructed). Every sheet carries a caveat block.
