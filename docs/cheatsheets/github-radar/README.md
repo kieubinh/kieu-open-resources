@@ -211,3 +211,17 @@ One-page A4 cheat sheets for GitHub Radar Shorts GR41-GR45.
 | GR45 | `rustdesk/rustdesk` | [GR45_rustdesk_cheatsheet.pdf](GR45_rustdesk_cheatsheet.pdf) |
 
 Growth figures are Trending-reported weekly figures (not independently reconstructed). Every sheet carries a caveat block.
+
+## GR41-GR45 English (snapshot 2026-11-13)
+
+English one-page A4 cheat sheets for the English versions of GR41-GR45.
+
+| Short | Repo | Cheat sheet |
+| --- | --- | --- |
+| GR41 | `openai/codex` | [GR41_codex_cheatsheet_EN.pdf](GR41_codex_cheatsheet_EN.pdf) |
+| GR42 | `immich-app/immich` | [GR42_immich_cheatsheet_EN.pdf](GR42_immich_cheatsheet_EN.pdf) |
+| GR43 | `google-deepmind/mujoco` | [GR43_mujoco_cheatsheet_EN.pdf](GR43_mujoco_cheatsheet_EN.pdf) |
+| GR44 | `NVIDIA/SkillSpector` | [GR44_SkillSpector_cheatsheet_EN.pdf](GR44_SkillSpector_cheatsheet_EN.pdf) |
+| GR45 | `rustdesk/rustdesk` | [GR45_rustdesk_cheatsheet_EN.pdf](GR45_rustdesk_cheatsheet_EN.pdf) |
+
+Growth figures are Trending-reported weekly figures, not independently reconstructed. Every sheet carries a caveat block.
