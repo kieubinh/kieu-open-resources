@@ -9,5 +9,6 @@ Free study sheets (vocabulary + transcript) for the "Easy English Podcast (A2-B1
 | EP03 — 5 Evening Habits for a Better Tomorrow | [EP03_5-evening-habits_study-sheet.pdf](EP03_5-evening-habits_study-sheet.pdf) |
 | EP04 — Stop Putting Things Off: 5 Easy Ways to Start | [EP04_stop-putting-things-off_study-sheet.pdf](EP04_stop-putting-things-off_study-sheet.pdf) |
 | EP05 — Where Does Your Money Go? 5 Easy Ways to Save | [EP05_where-does-your-money-go_study-sheet.pdf](EP05_where-does-your-money-go_study-sheet.pdf) |
+| EP06 — How to Start a Conversation: 5 Easy Small Talk Tips | [EP06_how-to-start-a-conversation_study-sheet.pdf](EP06_how-to-start-a-conversation_study-sheet.pdf) |
 
 The voices in the episodes are AI voices. Scripts and drawings are by Kieu Studio.
