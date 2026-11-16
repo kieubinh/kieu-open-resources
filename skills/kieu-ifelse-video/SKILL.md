@@ -21,7 +21,7 @@ Each episode changes exactly one thing about the viewer's body or mind, follows 
 4. **Approval.** Show title, rule, chosen beat, facts and script. Wait unless the owner already told you to go straight through. Changing the rule, the ending or a fact re-opens approval.
 5. **Voice.** `voice.py --plan`, edit the ledger so no chunk breaks a thought, then `voice.py`. Fix every take the check reports (pipeline section 2). Speed is **1.1x**, applied once in `join_voice.py`.
 6. **Shots.** Copy `assets/starter-project/` into the studio, replace story and scenes, draft with estimated timing, check the contact sheet (pipeline section 3).
-7. **Build.** Run `scripts/build_episode.sh` in the background. It joins, aligns on the real voice, renders, mixes and writes metadata.
+7. **Build.** Run `scripts/build_episode.sh` in the background. It joins, aligns on the real voice, snaps word edges to the real pauses, renders, mixes and writes metadata.
 8. **QA.** Re-run the blind check, look at a frame every 8-10 s, read the ASR diff for extra words (pipeline section 5). State what was not checked. Nobody has listened until a human says so.
 9. **Release.** Only on request: `references/publish.md`. Upload means **Private**. Public and playlists are separate go-aheads. Committing is separate too.
 
@@ -40,6 +40,7 @@ Each episode changes exactly one thing about the viewer's body or mind, follows 
 - `assets/brand/brand.js`: banner, logo and thumbnail shots.
 - `scripts/audit_script.py`, `voice.py`, `join_voice.py`, `make_meta.py`, `patch_kit.py`, `build_episode.sh`.
 - `NOTICE.md`: what is original here and what stays out of this repository.
+- `scripts/snap_words.py`: moves ASR word edges onto the real pauses. `build_episode.sh` runs it.
 
 ## How to invoke
 "Use the kieu-ifelse-video skill to make a Nếu Như episode: Nếu Bạn Không Bao Giờ Cần Ngủ?"

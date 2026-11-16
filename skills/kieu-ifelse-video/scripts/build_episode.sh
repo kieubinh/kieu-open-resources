@@ -7,6 +7,8 @@ cd $ST; PY=.venv/bin/python
 $PY $SK/patch_kit.py --studio $ST --check
 $PY $SK/join_voice.py --episode $EP --out $ST/$P/input/voiceover.wav
 $PY tools/transcribe.py --project $P --script $P/input/script.txt --lang vi --model small 2>&1 | tail -3
+cp $P/timeline/words.json $P/timeline/words.raw.json
+$PY $SK/snap_words.py $P
 P=$P $PY - <<'X'
 import json, os, subprocess
 P = os.environ['P']; p = P + '/config.json'; c = json.load(open(p))

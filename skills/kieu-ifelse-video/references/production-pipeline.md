@@ -49,6 +49,8 @@ zsh SK/scripts/build_episode.sh STUDIO P EP
 
 Run it in the background. A 6-minute 1080p render takes about 18 minutes on a MacBook Air M5. A voice-only change that keeps every timestamp needs just `join_voice.py`, `audio/mix.py` and a copy of the MP4.
 
+Right after alignment the build saves `timeline/words.raw.json` and runs `snap_words.py`, which rebuilds `timeline/words.json` from it with word edges on the real pauses. Whisper puts a sentence's first word in the pause before it, so without this, cuts land about 0.5 s before the last sound of the sentence and some shots run only 0.3 s (EP03: shortest shot 0.32 s without it, 0.71 s with it). To try a change to the snapping, run `.venv/bin/python SK/scripts/snap_words.py P`, then `P/story/build_shots.py`; it always starts from the raw file. A sentence of one or two words is never moved past the pause after it, because the whole sentence can fit in front of that pause ("Hà Nội." in EP03).
+
 ## 5. QA
 - Re-run `voice.py --episode EP` and confirm nothing regressed.
 - Diff a blind transcript of the final voiceover against the script. Read every line where ASR has extra words. Alignment near 89% is normal here because ASR writes numbers as digits and confuses accents, so read the diff rather than the percentage.
