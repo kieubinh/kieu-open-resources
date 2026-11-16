@@ -11,7 +11,7 @@ Measured targets for Vietnamese. For another language, keep the structure and ai
 - Do not repeat or rephrase an earlier title. A stronger step on a proven premise is allowed about once in five.
 
 ## Format
-- 1,300-1,500 syllables (hard limits 1,150 and 1,600).
+- 1,300-1,500 syllables (hard limits 1,150 and 1,650; EP02 ran 1,616 and came to 7:39).
 - One paragraph of pure speech. No headings, stage directions, speaker names, quotation marks, timestamps, emoji or markdown.
 - Dialogue sits in the flow as its own short sentence. Make the speaker obvious from context or a name in the line.
 - Numbers as words, except years. Metric units.

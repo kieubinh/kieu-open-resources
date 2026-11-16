@@ -1,6 +1,6 @@
 #!/bin/zsh
 # Rebuild an episode from checked takes: join, align, shots, render, mix, metadata, review MP4.
-# Usage: build_episode.sh STUDIO_DIR projects/NAME EPISODE_DIR   Run in the background; the render takes about 18 minutes.
+# Usage: build_episode.sh STUDIO_DIR projects/NAME EPISODE_DIR   Run in the background; the render takes about 40 minutes for a 7-minute episode.
 set -e
 ST=$1; P=$2; EP=$3; SK=${0:A:h}
 cd $ST; PY=.venv/bin/python

@@ -1,6 +1,7 @@
 {
  "voice": {"id": "27ad8d83", "model": "tts-1", "language": "vi", "speed": 1.1},
  "say": {"Guinness": "Ghi-nét", "micro": "mi-crô", "2006": "hai nghìn không trăm lẻ sáu"},
+ "asr_skip": ["phẩy"],
  "breaks": ["Tên bạn là", "Điểm cộng", "Và có một cái giá", "Chỉ một người", "Nhưng năm nay", "Rồi tới đêm", "Bạn gỡ micro", "Bạn không có chiếc", "Có thật không", "Rồi một buổi"],
  "gaps": {"042b.wav": 0.6, "043.wav": 0.6, "045a.wav": 0.5, "045b.wav": 1.1, "045c.wav": 0.5},
  "mute": {"027.wav": [[6.74, 7.3]], "038.wav": [[1.7, 1.99]]},
