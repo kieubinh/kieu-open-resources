@@ -34,7 +34,7 @@
     "url": "https://github.com/kieubinh/kieu-open-resources/tree/docs/kieu-learning-english-toeic-listening-review/skills/kieu-learning-english",
     "provider": "github",
     "repository": "https://github.com/kieubinh/kieu-open-resources",
-    "revision": "24873f5a93a494dd2f9d36c7c9ae5de015f5d9a9",
+    "revision": "f9ad8b7e3ba05689284ba7cf3dcf79e2f4921118",
     "revision_type": "commit"
   },
   "dates": {
@@ -101,9 +101,9 @@
   },
   "revisions": [
     {
-      "revision": "24873f5a93a494dd2f9d36c7c9ae5de015f5d9a9",
+      "revision": "f9ad8b7e3ba05689284ba7cf3dcf79e2f4921118",
       "date": "2026-11-21",
-      "note": "initial TOEIC Learning English workflow skill"
+      "note": "initial TOEIC Learning English workflow skill; clarifies audio-only attempts and captioned review replay"
     }
   ],
   "limitations": [
