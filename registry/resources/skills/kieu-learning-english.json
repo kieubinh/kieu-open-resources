@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "id": "kieu-learning-english",
+  "name": "Kieu Learning English Skill",
+  "description": "Produces and QA-checks long-form TOEIC Listening and Reading practice episodes for Maya & Emma English, with exam-format content, audio-only listening attempts, captioned replays, and answer explanations.",
+  "type": "skill",
+  "categories": [
+    "video",
+    "education"
+  ],
+  "tags": [
+    "toeic",
+    "english-learning",
+    "listening",
+    "reading",
+    "video"
+  ],
+  "tasks": [
+    "video-production",
+    "education",
+    "quality-assurance"
+  ],
+  "languages": [
+    "en",
+    "vi"
+  ],
+  "keywords": [
+    "agent skill",
+    "codex",
+    "claude code",
+    "toeic practice"
+  ],
+  "source": {
+    "url": "https://github.com/kieubinh/kieu-open-resources/tree/docs/kieu-learning-english-toeic-listening-review/skills/kieu-learning-english",
+    "provider": "github",
+    "repository": "https://github.com/kieubinh/kieu-open-resources",
+    "revision": "24873f5a93a494dd2f9d36c7c9ae5de015f5d9a9",
+    "revision_type": "commit"
+  },
+  "dates": {
+    "added": "2026-11-21"
+  },
+  "maintainer": "Kieu Studio",
+  "documentation": [
+    "https://github.com/kieubinh/kieu-open-resources/blob/docs/kieu-learning-english-toeic-listening-review/skills/kieu-learning-english/SKILL.md"
+  ],
+  "quickstart": [
+    {
+      "title": "Use in Codex or Claude Code",
+      "steps": [
+        "Open this repository in the agent",
+        "Ask: Use the kieu-learning-english skill to create the next Maya & Emma TOEIC practice episode"
+      ],
+      "verified": false
+    }
+  ],
+  "requirements": {
+    "install": "Clone the repository or run kieu-open-resources install-skill",
+    "access": "open",
+    "integration_difficulty": "low"
+  },
+  "platforms": [
+    "macos",
+    "linux"
+  ],
+  "runtimes": [
+    "codex",
+    "claude-code"
+  ],
+  "license": {
+    "id": "MIT",
+    "status": "verified",
+    "evidence": [
+      {
+        "path": "LICENSE",
+        "claim": "Repository LICENSE file is the MIT License (c) 2026 Kieu Studio",
+        "license_id": "MIT"
+      }
+    ]
+  },
+  "usage_rights": {
+    "use": "permitted",
+    "research": "permitted",
+    "modification": "permitted",
+    "redistribution": "permitted",
+    "commercial-use": "permitted"
+  },
+  "restrictions": [
+    "Third-party TOEIC materials keep their own copyrights; use them only as format and difficulty references unless reproduction is licensed."
+  ],
+  "approval": {
+    "status": "candidate",
+    "history": []
+  },
+  "validation": {
+    "status": "passed"
+  },
+  "provenance": {
+    "origin": "Authored for Kieu Studio in response to channel production requirements",
+    "added_via": "Codex; submitted as a candidate for repository review"
+  },
+  "revisions": [
+    {
+      "revision": "24873f5a93a494dd2f9d36c7c9ae5de015f5d9a9",
+      "date": "2026-11-21",
+      "note": "initial TOEIC Learning English workflow skill"
+    }
+  ],
+  "limitations": [
+    "VoiceStudio and the established Maya/Emma profiles are required for production with the channel voices."
+  ],
+  "projects": [
+    "kieu-open-resources"
+  ]
+}
